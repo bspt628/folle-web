@@ -7,7 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MessageCircle, FileText } from "lucide-react";
+import {
+	Mail,
+	MessageCircle,
+	FileText,
+	Twitter,
+	Instagram,
+} from "lucide-react";
 import { submitContactForm } from "@/lib/api/contact";
 
 export default function ContactPage() {
@@ -109,11 +115,26 @@ export default function ContactPage() {
 										<MessageCircle className="text-[#002060]" size={32} />
 										<div>
 											<h3 className="font-semibold text-gray-800 mb-1">SNS</h3>
-											<p className="text-gray-600">
-												各種SNSのDMでも
-												<br />
-												お問い合わせを受け付けています。
-											</p>
+											<div className="flex flex-col items-center space-y-2">
+												<a
+													href="https://x.com/orchpiufolle"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+												>
+													<Twitter size={20} />
+													<span>X (Twitter)</span>
+												</a>
+												<a
+													href="https://www.instagram.com/orchpiufolle/"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+												>
+													<Instagram size={20} />
+													<span>Instagram</span>
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -199,7 +220,7 @@ export default function ContactPage() {
 											value={formData.subject}
 											onChange={handleChange}
 											className="w-full"
-											placeholder="お問い合わせの件名をご記入ください"
+											placeholder="お問い合わせの件名をご記入ください。"
 											disabled={isSubmitting}
 										/>
 									</div>
@@ -219,7 +240,7 @@ export default function ContactPage() {
 											value={formData.message}
 											onChange={handleChange}
 											className="w-full"
-											placeholder="お問い合わせ内容をご記入ください。演奏会に関するお問い合わせの場合は、演奏会名を明記していただけますと幸いです。"
+											placeholder="お問い合わせの内容をご記入ください。"
 											disabled={isSubmitting}
 										/>
 									</div>
