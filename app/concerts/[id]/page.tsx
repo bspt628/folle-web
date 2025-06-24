@@ -7,6 +7,7 @@ import { useConcert } from "@/lib/hooks/useConcerts";
 import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
 import { useParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function ConcertDetailPage() {
 	const params = useParams();
@@ -55,7 +56,7 @@ export default function ConcertDetailPage() {
 
 							{/* Concert Details */}
 							<div className="lg:w-1/2">
-								<h1 className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+								<h1 className="page-title text-gray-800 mb-8">
 									{concert.title}
 								</h1>
 
@@ -65,7 +66,7 @@ export default function ConcertDetailPage() {
 											<div className="flex items-center space-x-3">
 												<Calendar className="text-[#002060]" size={20} />
 												<span className="text-gray-800 font-medium">
-													{format(parseISO(concert.date), "yyyy-MM-dd", {
+													{format(parseISO(concert.date), "yyyy年MM月dd日(E)", {
 														locale: ja,
 													})}
 												</span>
@@ -92,7 +93,7 @@ export default function ConcertDetailPage() {
 
 										{concert.program.length > 0 && (
 											<div className="mt-6">
-												<h3 className="font-serif text-xl font-semibold mb-4">
+												<h3 className="text-xl font-semibold mb-4">
 													プログラム
 												</h3>
 												<ul className="space-y-3">
@@ -114,11 +115,28 @@ export default function ConcertDetailPage() {
 								{concert.ticketPrice.length > 0 && (
 									<Card>
 										<CardContent className="p-6">
-											<div className="flex items-center space-x-3 mb-4">
-												<Ticket className="text-[#002060]" size={20} />
-												<h3 className="font-serif text-xl font-semibold text-gray-800">
-													チケット情報
-												</h3>
+											<div className="flex items-center justify-between mb-4">
+												<div className="flex items-center space-x-3">
+													<Ticket className="text-[#002060]" size={20} />
+													<h3 className="text-xl font-semibold text-gray-800">
+														チケット情報
+													</h3>
+												</div>
+												{concert.teketUrl && (
+													<a
+														href={concert.teketUrl}
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														<Button
+															variant="outline"
+															className="bg-gray-900 text-white hover:bg-gray-800 border-0"
+														>
+															<Ticket className="w-4 h-4 mr-2" />
+															チケット
+														</Button>
+													</a>
+												)}
 											</div>
 											<div className="space-y-2">
 												{concert.ticketPrice.map((ticket, index) => (

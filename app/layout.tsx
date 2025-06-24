@@ -1,36 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
+import { BIZ_UDGothic } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const roboto = Roboto({
+	weight: ["400", "500", "700"],
 	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-roboto",
 });
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const bizUDGothic = BIZ_UDGothic({
+	weight: ["400", "700"],
 	subsets: ["latin"],
+	display: "swap",
+	preload: false,
+	variable: "--font-biz-ud",
 });
 
 export const metadata: Metadata = {
 	title: "Orchestra più folle",
-	description: "心に響くハーモニーを、あなたと共に。",
+	description: "Orchestra più folle official website",
 };
 
 export default function RootLayout({
 	children,
-}: Readonly<{
+}: {
 	children: React.ReactNode;
-}>) {
+}) {
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${roboto.variable} ${bizUDGothic.variable} font-sans antialiased min-h-screen flex flex-col`}
 			>
 				<Header />
-				<main>{children}</main>
+				<main className="flex-grow">{children}</main>
 				<Footer />
 			</body>
 		</html>

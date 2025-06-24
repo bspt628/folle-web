@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Clock } from "lucide-react";
-import { getUpcomingConcert } from "@/lib/api/concerts";
+import { getUpcomingConcert } from "@/lib/constants/concerts";
 import Link from "next/link";
 
 export default async function HomePage() {
@@ -39,10 +39,8 @@ export default async function HomePage() {
 				</div>
 
 				<div className="relative z-10 text-center text-white px-4">
-					<h1 className="font-serif text-4xl md:text-6xl font-bold mb-6">
-						Orchestra più folle
-					</h1>
-					<p className="text-xl md:text-2xl font-light">
+					<h1 className="page-title mb-6">Orchestra più folle</h1>
+					<p className="text-xl md:text-2xl font-light tracking-wide">
 						心に響くハーモニーを、あなたと共に。
 					</p>
 				</div>
@@ -52,9 +50,7 @@ export default async function HomePage() {
 			<section className="py-16 bg-gray-50">
 				<div className="container mx-auto px-4">
 					<div className="flex justify-between items-center mb-8">
-						<h2 className="font-serif text-3xl font-bold text-gray-800">
-							What&apos;s New
-						</h2>
+						<h2 className="section-title text-gray-800">What&apos;s New</h2>
 						<Button
 							variant="outline"
 							className="bg-white text-[#002060] border-[#002060] hover:bg-[#002060] hover:text-white"

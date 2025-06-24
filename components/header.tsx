@@ -40,7 +40,7 @@ export default function Header() {
 							height={40}
 							className="rounded-full"
 						/>
-						<span className="font-serif text-xl font-bold text-gray-800">
+						<span className="text-xl font-medium tracking-tight text-gray-800">
 							Orchestra più folle
 						</span>
 					</Link>
@@ -51,7 +51,7 @@ export default function Header() {
 							<Link
 								key={item.href}
 								href={item.href}
-								className="text-gray-700 hover:text-[#002060] transition-colors duration-200 font-medium"
+								className="text-gray-700 hover:text-[#002060] transition-colors duration-200"
 							>
 								{item.label}
 							</Link>
@@ -75,7 +75,7 @@ export default function Header() {
 								<Link
 									key={item.href}
 									href={item.href}
-									className="text-gray-700 hover:text-[#002060] transition-colors duration-200 font-medium py-2"
+									className="text-gray-700 hover:text-[#002060] transition-colors duration-200 py-2"
 									onClick={() => setIsMobileMenuOpen(false)}
 								>
 									{item.label}
