@@ -7,7 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MessageCircle, FileText } from "lucide-react";
+import {
+	Mail,
+	MessageCircle,
+	FileText,
+	Twitter,
+	Instagram,
+	CheckCircle,
+	AlertCircle,
+} from "lucide-react";
 import { submitContactForm } from "@/lib/api/contact";
 
 export default function ContactPage() {
@@ -19,17 +27,24 @@ export default function ContactPage() {
 	});
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [submitStatus, setSubmitStatus] = useState<{
+		type: "success" | "error" | null;
+		message: string | null;
+	}>({ type: null, message: null });
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setIsSubmitting(true);
-		setSubmitError(null);
+		setSubmitStatus({ type: null, message: null });
 
 		try {
 			const result = await submitContactForm(formData);
 			if (result.success) {
-				alert("お問い合わせを送信いたしました。ありがとうございます。");
+				setSubmitStatus({
+					type: "success",
+					message:
+						"お問い合わせを送信いたしました。内容を確認次第、担当者よりご連絡させていただきます。",
+				});
 				setFormData({
 					name: "",
 					email: "",
@@ -41,9 +56,11 @@ export default function ContactPage() {
 			}
 		} catch (error) {
 			console.error("Error submitting form:", error);
-			setSubmitError(
-				"お問い合わせの送信に失敗しました。しばらく時間をおいて再度お試しください。"
-			);
+			setSubmitStatus({
+				type: "error",
+				message:
+					"お問い合わせの送信に失敗しました。しばらく時間をおいて再度お試しください。",
+			});
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -109,11 +126,26 @@ export default function ContactPage() {
 										<MessageCircle className="text-[#002060]" size={32} />
 										<div>
 											<h3 className="font-semibold text-gray-800 mb-1">SNS</h3>
-											<p className="text-gray-600">
-												各種SNSのDMでも
-												<br />
-												お問い合わせを受け付けています。
-											</p>
+											<div className="flex flex-col items-center space-y-2">
+												<a
+													href="https://x.com/orchpiufolle"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+												>
+													<Twitter size={20} />
+													<span>X (Twitter)</span>
+												</a>
+												<a
+													href="https://www.instagram.com/orchpiufolle/"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+												>
+													<Instagram size={20} />
+													<span>Instagram</span>
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -138,12 +170,24 @@ export default function ContactPage() {
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
+								{submitStatus.type && (
+									<div
+										className={`mb-6 p-4 rounded-lg flex items-start space-x-3 ${
+											submitStatus.type === "success"
+												? "bg-green-50 text-green-800 border border-green-200"
+												: "bg-red-50 text-red-800 border border-red-200"
+										}`}
+									>
+										{submitStatus.type === "success" ? (
+											<CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+										) : (
+											<AlertCircle className="h-5 w-5 text-red-500 mt-0.5" />
+										)}
+										<div className="flex-1">{submitStatus.message}</div>
+									</div>
+								)}
+
 								<form onSubmit={handleSubmit} className="space-y-6">
-									{submitError && (
-										<div className="text-red-500 text-sm text-center">
-											{submitError}
-										</div>
-									)}
 									<div>
 										<label
 											htmlFor="name"
@@ -199,7 +243,7 @@ export default function ContactPage() {
 											value={formData.subject}
 											onChange={handleChange}
 											className="w-full"
-											placeholder="お問い合わせの件名をご記入ください"
+											placeholder="お問い合わせの件名をご記入ください。"
 											disabled={isSubmitting}
 										/>
 									</div>
@@ -219,7 +263,7 @@ export default function ContactPage() {
 											value={formData.message}
 											onChange={handleChange}
 											className="w-full"
-											placeholder="お問い合わせ内容をご記入ください。演奏会に関するお問い合わせの場合は、演奏会名を明記していただけますと幸いです。"
+											placeholder="お問い合わせの内容をご記入ください。"
 											disabled={isSubmitting}
 										/>
 									</div>

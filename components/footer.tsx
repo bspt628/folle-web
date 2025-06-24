@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
 	return (
@@ -43,13 +43,20 @@ export default function Footer() {
 					<div>
 						<h3 className="text-lg font-medium tracking-tight mb-4">SNS</h3>
 						<div className="flex space-x-4">
-							<a href="#" className="hover:text-[#D4AF37] transition-colors">
+							<a
+								href="https://x.com/orchpiufolle"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:text-[#D4AF37] transition-colors"
+							>
 								<Twitter size={24} />
 							</a>
-							<a href="#" className="hover:text-[#D4AF37] transition-colors">
-								<Facebook size={24} />
-							</a>
-							<a href="#" className="hover:text-[#D4AF37] transition-colors">
+							<a
+								href="https://www.instagram.com/orchpiufolle/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="hover:text-[#D4AF37] transition-colors"
+							>
 								<Instagram size={24} />
 							</a>
 						</div>

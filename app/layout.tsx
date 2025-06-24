@@ -22,7 +22,7 @@ const bizUDGothic = BIZ_UDGothic({
 
 export const metadata: Metadata = {
 	title: "Orchestra più folle",
-	description: "Orchestra più folle official website",
+	description: "Orchestra più folle（通称Fオケ）の公式サイトです。演奏会情報をお届けします。",
 };
 
 export default function RootLayout({
