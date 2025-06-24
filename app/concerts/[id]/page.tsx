@@ -111,8 +111,22 @@ export default function ConcertDetailPage() {
 									</CardContent>
 								</Card>
 
+								{/* Concert Description */}
+								{concert.description && (
+									<Card className="mb-8">
+										<CardContent className="p-6">
+											<h3 className="text-xl font-semibold text-gray-800 mb-4">
+												演奏会について
+											</h3>
+											<p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+												{concert.description}
+											</p>
+										</CardContent>
+									</Card>
+								)}
+
 								{/* Ticket Information */}
-								{concert.ticketPrice.length > 0 && (
+								{concert.ticketPrice && concert.ticketPrice.length > 0 && (
 									<Card>
 										<CardContent className="p-6">
 											<div className="flex items-center justify-between mb-4">
@@ -147,9 +161,11 @@ export default function ConcertDetailPage() {
 														<span className="text-gray-700">
 															{ticket.category}
 														</span>
-														<span className="font-medium">
-															¥{ticket.price.toLocaleString()}
-														</span>
+														{ticket.price !== null && (
+															<span className="font-medium">
+																¥{ticket.price.toLocaleString()}
+															</span>
+														)}
 													</div>
 												))}
 											</div>
