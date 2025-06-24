@@ -115,8 +115,8 @@ export default async function HomePage() {
 										<div className="flex items-center space-x-3 text-gray-600">
 											<Clock size={20} />
 											<span>
-												{upcomingConcert.openTime}開場（
-												{upcomingConcert.startTime}開演）
+												{upcomingConcert.startTime}開演（
+												{upcomingConcert.openTime}開場）
 											</span>
 										</div>
 										<div className="flex items-center space-x-3 text-gray-600">
@@ -126,7 +126,7 @@ export default async function HomePage() {
 
 										<div className="mt-6">
 											<h4 className="font-semibold text-gray-800 mb-2">
-												主要曲目
+												プログラム
 											</h4>
 											<ul className="text-gray-600 space-y-1">
 												{upcomingConcert.program.map((item, index) => (
