@@ -16,27 +16,36 @@ export type Concert = {
 		width: number | null;
 		height: number | null;
 	} | null;
-	ticketPrice: {
+	ticketPrice?: {
 		category: string;
-		price: number;
+		price: number | null;
 	}[];
 	teketUrl: string | null;
+	description?: string;
 };
 
 export const CONCERTS: Concert[] = [
 	{
 		id: "1",
-		title: "第1回定期演奏会",
-		date: "2024-05-26",
-		openTime: "13:30",
-		startTime: "14:00",
+		title: "第1回特別演奏会",
+		date: "2025-11-09",
+		openTime: "13:00",
+		startTime: "13:30",
 		venue: {
-			name: "杉並公会堂",
+			name: "所沢市民文化センター ミューズ アークホール",
 		},
 		program: [
 			{
-				composer: "ドヴォルザーク",
-				title: "交響曲第9番 ホ短調「新世界より」",
+				composer: "ベートーヴェン",
+				title: "「シュテファン王」序曲",
+			},
+			{
+				composer: "メンデルスゾーン",
+				title: "交響曲第4番 「イタリア」",
+			},
+			{
+				composer: "メンデルスゾーン",
+				title: "交響曲第5番 「宗教改革」",
 			},
 		],
 		posterImage: {
@@ -46,15 +55,13 @@ export const CONCERTS: Concert[] = [
 		},
 		ticketPrice: [
 			{
-				category: "一般",
-				price: 1000,
-			},
-			{
-				category: "学生",
-				price: 500,
+				category: "全席自由・入場無料",
+				price: null,
 			},
 		],
 		teketUrl: "https://teket.jp/sample/1",
+		description:
+			"第1回特別演奏会は、指揮に水戸博之氏を迎え、「定番の曲目を熱狂的にお届けする」ことをテーマにした演奏会を開催予定です。東京大学音楽部管弦楽団の現役団員が中心となり、各個人が各々の個性や情熱をぶつけ、考え抜いた音楽を奏で、それを味わっていただく演奏会です。",
 	},
 	{
 		id: "2",

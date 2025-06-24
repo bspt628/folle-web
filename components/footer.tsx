@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
 	return (
@@ -9,7 +9,7 @@ export default function Footer() {
 					{/* Site Map */}
 					<div>
 						<h3 className="text-lg font-medium tracking-tight mb-4">
-							サイトマップ
+							Site Map
 						</h3>
 						<nav className="space-y-2">
 							<Link
@@ -52,9 +52,6 @@ export default function Footer() {
 							<a href="#" className="hover:text-[#D4AF37] transition-colors">
 								<Instagram size={24} />
 							</a>
-							<a href="#" className="hover:text-[#D4AF37] transition-colors">
-								<Youtube size={24} />
-							</a>
 						</div>
 					</div>
 
@@ -64,10 +61,9 @@ export default function Footer() {
 							お問い合わせ
 						</h3>
 						<div className="space-y-2 text-sm">
-							<p>Email: info@orchestra-piu-folle.jp</p>
-							<p>Tel: 03-1234-5678</p>
+							<p>Email: orchestrapiufolle[at]gmail.com</p>
 							<p className="mt-4 text-gray-400">
-								© 2024 Orchestra più folle. All rights reserved.
+								© 2025 Orchestra più folle. All rights reserved.
 							</p>
 						</div>
 					</div>

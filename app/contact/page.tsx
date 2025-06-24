@@ -1,158 +1,244 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MessageCircle } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, MessageCircle, FileText } from "lucide-react";
+import { submitContactForm } from "@/lib/api/contact";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		subject: "",
+		message: "",
+	});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    alert("お問い合わせを送信いたしました。ありがとうございます。")
-  }
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+		setSubmitError(null);
 
-  return (
-    <div className="pt-20">
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-4xl font-bold text-gray-800 text-center mb-12">Contact Us</h1>
+		try {
+			const result = await submitContactForm(formData);
+			if (result.success) {
+				alert("お問い合わせを送信いたしました。ありがとうございます。");
+				setFormData({
+					name: "",
+					email: "",
+					subject: "",
+					message: "",
+				});
+			} else {
+				throw new Error("送信に失敗しました");
+			}
+		} catch (error) {
+			console.error("Error submitting form:", error);
+			setSubmitError(
+				"お問い合わせの送信に失敗しました。しばらく時間をおいて再度お試しください。"
+			);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
-          <div className="max-w-4xl mx-auto">
-            {/* Contact Information */}
-            <Card className="mb-12">
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl text-gray-800 text-center">お問い合わせ先</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                  <div className="flex flex-col items-center space-y-3">
-                    <Mail className="text-[#002060]" size={32} />
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">メール</h3>
-                      <p className="text-gray-600">info@orchestra-piu-folle.jp</p>
-                    </div>
-                  </div>
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
 
-                  <div className="flex flex-col items-center space-y-3">
-                    <Phone className="text-[#002060]" size={32} />
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">電話</h3>
-                      <p className="text-gray-600">03-1234-5678</p>
-                    </div>
-                  </div>
+	return (
+		<div className="pt-20">
+			<section className="py-16">
+				<div className="container mx-auto px-4">
+					<h1 className="font-serif text-4xl font-bold text-gray-800 text-center mb-12">
+						Contact Us
+					</h1>
 
-                  <div className="flex flex-col items-center space-y-3">
-                    <MessageCircle className="text-[#002060]" size={32} />
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">SNS</h3>
-                      <p className="text-gray-600">
-                        各種SNSのDMでも
-                        <br />
-                        お気軽にどうぞ
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+					<div className="max-w-4xl mx-auto">
+						{/* Contact Information */}
+						<Card className="mb-12">
+							<CardHeader>
+								<CardTitle className="font-serif text-2xl text-gray-800 text-center">
+									お問い合わせ先
+								</CardTitle>
+							</CardHeader>
+							<CardContent>
+								<div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+									<div className="flex flex-col items-center space-y-3">
+										<FileText className="text-[#002060]" size={32} />
+										<div>
+											<h3 className="font-semibold text-gray-800 mb-1">
+												フォーム
+											</h3>
+											<p className="text-gray-600">
+												下記のフォームから
+												<br />
+												お問い合わせいただけます
+											</p>
+										</div>
+									</div>
 
-            {/* Contact Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl text-gray-800 text-center">お問い合わせフォーム</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      お名前 <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full"
-                    />
-                  </div>
+									<div className="flex flex-col items-center space-y-3">
+										<Mail className="text-[#002060]" size={32} />
+										<div>
+											<h3 className="font-semibold text-gray-800 mb-1">
+												メール
+											</h3>
+											<p className="text-gray-600">
+												orchestrapiufolle[at]gmail.com
+											</p>
+											<p className="text-sm text-gray-500 mt-1">
+												※[at]を@に置き換えてください
+											</p>
+										</div>
+									</div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      メールアドレス <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full"
-                    />
-                  </div>
+									<div className="flex flex-col items-center space-y-3">
+										<MessageCircle className="text-[#002060]" size={32} />
+										<div>
+											<h3 className="font-semibold text-gray-800 mb-1">SNS</h3>
+											<p className="text-gray-600">
+												各種SNSのDMでも
+												<br />
+												お問い合わせを受け付けています。
+											</p>
+										</div>
+									</div>
+								</div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      件名
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full"
-                    />
-                  </div>
+								<div className="mt-8 text-sm text-gray-600 space-y-2">
+									<p>・3日以内を目安にメールにてご連絡させていただきます。</p>
+									<p>
+										・4日以上経っても返信がない場合はお手数ですが、上記のメールアドレスまで直接ご連絡ください。
+									</p>
+									<p>
+										・なお、こちらからのメールが迷惑メールに分類されてしまうケースもございますので、そちらもご確認ください。
+									</p>
+								</div>
+							</CardContent>
+						</Card>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      お問い合わせ内容 <span className="text-red-500">*</span>
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full"
-                    />
-                  </div>
+						{/* Contact Form */}
+						<Card>
+							<CardHeader>
+								<CardTitle className="font-serif text-2xl text-gray-800 text-center">
+									お問い合わせフォーム
+								</CardTitle>
+							</CardHeader>
+							<CardContent>
+								<form onSubmit={handleSubmit} className="space-y-6">
+									{submitError && (
+										<div className="text-red-500 text-sm text-center">
+											{submitError}
+										</div>
+									)}
+									<div>
+										<label
+											htmlFor="name"
+											className="block text-sm font-medium text-gray-700 mb-2"
+										>
+											お名前 <span className="text-red-500">*</span>
+										</label>
+										<Input
+											id="name"
+											name="name"
+											type="text"
+											required
+											value={formData.name}
+											onChange={handleChange}
+											className="w-full"
+											placeholder="山田 太郎"
+											disabled={isSubmitting}
+										/>
+									</div>
 
-                  <div className="text-center">
-                    <Button type="submit" className="bg-[#002060] hover:bg-[#001040] text-white px-8 py-3">
-                      送信
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+									<div>
+										<label
+											htmlFor="email"
+											className="block text-sm font-medium text-gray-700 mb-2"
+										>
+											メールアドレス <span className="text-red-500">*</span>
+										</label>
+										<Input
+											id="email"
+											name="email"
+											type="email"
+											required
+											pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+											value={formData.email}
+											onChange={handleChange}
+											className="w-full"
+											placeholder="example@email.com"
+											disabled={isSubmitting}
+										/>
+									</div>
+
+									<div>
+										<label
+											htmlFor="subject"
+											className="block text-sm font-medium text-gray-700 mb-2"
+										>
+											件名
+										</label>
+										<Input
+											id="subject"
+											name="subject"
+											type="text"
+											value={formData.subject}
+											onChange={handleChange}
+											className="w-full"
+											placeholder="お問い合わせの件名をご記入ください"
+											disabled={isSubmitting}
+										/>
+									</div>
+
+									<div>
+										<label
+											htmlFor="message"
+											className="block text-sm font-medium text-gray-700 mb-2"
+										>
+											お問い合わせ内容 <span className="text-red-500">*</span>
+										</label>
+										<Textarea
+											id="message"
+											name="message"
+											required
+											rows={6}
+											value={formData.message}
+											onChange={handleChange}
+											className="w-full"
+											placeholder="お問い合わせ内容をご記入ください。演奏会に関するお問い合わせの場合は、演奏会名を明記していただけますと幸いです。"
+											disabled={isSubmitting}
+										/>
+									</div>
+
+									<div className="text-center">
+										<Button
+											type="submit"
+											className="bg-[#002060] hover:bg-[#001040] text-white px-8 py-3"
+											disabled={isSubmitting}
+										>
+											{isSubmitting ? "送信中..." : "送信"}
+										</Button>
+									</div>
+								</form>
+							</CardContent>
+						</Card>
+					</div>
+				</div>
+			</section>
+		</div>
+	);
 }

@@ -3,12 +3,8 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export default function AboutPage() {
   const historyItems = [
-    { year: "2010", event: "Orchestra più folle設立" },
-    { year: "2011", event: "第1回定期演奏会開催" },
-    { year: "2015", event: "団員数50名を突破" },
-    { year: "2018", event: "海外演奏旅行（ウィーン）実施" },
-    { year: "2020", event: "オンライン演奏会開催" },
-    { year: "2024", event: "第24回定期演奏会開催、団員数80名" },
+    { year: "2025", event: "Orchestra più folle設立" },
+    { year: "2025", event: "第1回定期演奏会開催" },
   ]
 
   return (
@@ -17,16 +13,10 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-4xl font-bold text-gray-800 mb-8">私たちについて</h1>
+            <h1 className="font-serif text-4xl font-bold text-gray-800 mb-8">Orchestra più Folle について</h1>
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              Orchestra più folleは、2010年に設立されたアマチュアオーケストラです。 「più
-              folle」はイタリア語で「より情熱的に」という意味を持ち、
-              私たちは音楽への情熱を胸に、心に響くハーモニーを奏でることを目指しています。
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              年齢や経験を問わず、音楽を愛する仲間たちが集まり、
-              クラシック音楽の素晴らしさを多くの方々と共有したいという想いで活動を続けています。
-              定期演奏会をはじめ、地域のイベントへの参加など、様々な場面で演奏活動を行っています。
+            Orchestra più Folle（Fオケ）は東京大学音楽部管弦楽団の団員とOBOGを中心に結成されたオーケストラです。「più Folle」は「もっと狂って」という意味を持ちます。
+            一見不思議な団体に見えますが、一人一人個性を持った団員が音楽と向き合い、熱狂的に音を紡ぐという意味合いが込められています。若く熱狂的な演奏で、クラシック音楽の魅力を一歩踏み込んでお届けするオーケストラです。
             </p>
           </div>
         </div>
@@ -50,8 +40,8 @@ export default function AboutPage() {
                       className="rounded-full mx-auto mb-4"
                     />
                     <div>
-                      <p className="font-semibold text-gray-800">音楽監督・常任指揮者</p>
-                      <p className="text-[#002060] font-serif text-lg font-bold">田中 太郎</p>
+                      <p className="font-semibold text-gray-800">代表</p>
+                      <p className="text-[#002060] font-serif text-lg font-bold">藤井 敦也</p>
                     </div>
                   </div>
 

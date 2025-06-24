@@ -8,16 +8,8 @@ import Link from "next/link";
 export default async function HomePage() {
 	const newsItems = [
 		{
-			date: "2024.12.15",
-			title: "第25回定期演奏会のチケット販売開始のお知らせ",
-		},
-		{
-			date: "2024.11.28",
-			title: "新団員募集のお知らせ（ヴァイオリン・チェロ）",
-		},
-		{
-			date: "2024.11.10",
-			title: "第24回定期演奏会が無事終了いたしました",
+			date: "2025.06.30",
+			title: "Orchestra più folleのWebサイトを公開しました",
 		},
 	];
 
@@ -41,7 +33,7 @@ export default async function HomePage() {
 				<div className="relative z-10 text-center text-white px-4">
 					<h1 className="page-title mb-6">Orchestra più folle</h1>
 					<p className="text-xl md:text-2xl font-light tracking-wide">
-						心に響くハーモニーを、あなたと共に。
+						最高の演奏をあなたと。
 					</p>
 				</div>
 			</section>
