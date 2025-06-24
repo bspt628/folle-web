@@ -13,6 +13,8 @@ import {
 	FileText,
 	Twitter,
 	Instagram,
+	CheckCircle,
+	AlertCircle,
 } from "lucide-react";
 import { submitContactForm } from "@/lib/api/contact";
 
@@ -25,17 +27,24 @@ export default function ContactPage() {
 	});
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [submitStatus, setSubmitStatus] = useState<{
+		type: "success" | "error" | null;
+		message: string | null;
+	}>({ type: null, message: null });
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setIsSubmitting(true);
-		setSubmitError(null);
+		setSubmitStatus({ type: null, message: null });
 
 		try {
 			const result = await submitContactForm(formData);
 			if (result.success) {
-				alert("お問い合わせを送信いたしました。ありがとうございます。");
+				setSubmitStatus({
+					type: "success",
+					message:
+						"お問い合わせを送信いたしました。内容を確認次第、担当者よりご連絡させていただきます。",
+				});
 				setFormData({
 					name: "",
 					email: "",
@@ -47,9 +56,11 @@ export default function ContactPage() {
 			}
 		} catch (error) {
 			console.error("Error submitting form:", error);
-			setSubmitError(
-				"お問い合わせの送信に失敗しました。しばらく時間をおいて再度お試しください。"
-			);
+			setSubmitStatus({
+				type: "error",
+				message:
+					"お問い合わせの送信に失敗しました。しばらく時間をおいて再度お試しください。",
+			});
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -159,12 +170,24 @@ export default function ContactPage() {
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
+								{submitStatus.type && (
+									<div
+										className={`mb-6 p-4 rounded-lg flex items-start space-x-3 ${
+											submitStatus.type === "success"
+												? "bg-green-50 text-green-800 border border-green-200"
+												: "bg-red-50 text-red-800 border border-red-200"
+										}`}
+									>
+										{submitStatus.type === "success" ? (
+											<CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+										) : (
+											<AlertCircle className="h-5 w-5 text-red-500 mt-0.5" />
+										)}
+										<div className="flex-1">{submitStatus.message}</div>
+									</div>
+								)}
+
 								<form onSubmit={handleSubmit} className="space-y-6">
-									{submitError && (
-										<div className="text-red-500 text-sm text-center">
-											{submitError}
-										</div>
-									)}
 									<div>
 										<label
 											htmlFor="name"
