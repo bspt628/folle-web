@@ -1,0 +1,168 @@
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar, MapPin, Clock } from "lucide-react";
+import { getUpcomingConcert } from "@/lib/api/concerts";
+import Link from "next/link";
+
+export default async function HomePage() {
+	const newsItems = [
+		{
+			date: "2024.12.15",
+			title: "第25回定期演奏会のチケット販売開始のお知らせ",
+		},
+		{
+			date: "2024.11.28",
+			title: "新団員募集のお知らせ（ヴァイオリン・チェロ）",
+		},
+		{
+			date: "2024.11.10",
+			title: "第24回定期演奏会が無事終了いたしました",
+		},
+	];
+
+	const upcomingConcert = await getUpcomingConcert();
+
+	return (
+		<div>
+			{/* Hero Section */}
+			<section className="relative h-screen flex items-center justify-center">
+				<div className="absolute inset-0 z-0">
+					<Image
+						src="/hero.jpg"
+						alt="Orchestra Performance"
+						fill
+						className="object-cover"
+						priority
+					/>
+					<div className="absolute inset-0 bg-black/40" />
+				</div>
+
+				<div className="relative z-10 text-center text-white px-4">
+					<h1 className="font-serif text-4xl md:text-6xl font-bold mb-6">
+						Orchestra più folle
+					</h1>
+					<p className="text-xl md:text-2xl font-light">
+						心に響くハーモニーを、あなたと共に。
+					</p>
+				</div>
+			</section>
+
+			{/* What's New Section */}
+			<section className="py-16 bg-gray-50">
+				<div className="container mx-auto px-4">
+					<div className="flex justify-between items-center mb-8">
+						<h2 className="font-serif text-3xl font-bold text-gray-800">
+							What&apos;s New
+						</h2>
+						<Button
+							variant="outline"
+							className="bg-white text-[#002060] border-[#002060] hover:bg-[#002060] hover:text-white"
+						>
+							一覧を見る
+						</Button>
+					</div>
+
+					<div className="space-y-4">
+						{newsItems.map((item, index) => (
+							<Card
+								key={index}
+								className="hover:shadow-md transition-shadow cursor-pointer"
+							>
+								<CardContent className="flex items-center justify-between p-6">
+									<div className="flex items-center space-x-4">
+										<span className="text-[#002060] font-mono text-sm">
+											{item.date}
+										</span>
+										<h3 className="text-gray-800 font-medium">{item.title}</h3>
+									</div>
+									<div className="text-gray-400">→</div>
+								</CardContent>
+							</Card>
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* Next Concert Section */}
+			{upcomingConcert && (
+				<section className="py-16">
+					<div className="container mx-auto px-4">
+						<h2 className="font-serif text-3xl font-bold text-gray-800 text-center mb-12">
+							Next Concert
+						</h2>
+
+						<Card className="max-w-4xl mx-auto overflow-hidden">
+							<div className="md:flex">
+								<div className="md:w-1/2">
+									<Image
+										src={upcomingConcert.posterImage?.url || "/placeholder.jpg"}
+										alt={`${upcomingConcert.title} Poster`}
+										width={600}
+										height={400}
+										className="w-full h-64 md:h-full object-cover"
+									/>
+								</div>
+								<div className="md:w-1/2 p-8">
+									<CardHeader className="p-0 mb-6">
+										<CardTitle className="font-serif text-2xl text-gray-800">
+											{upcomingConcert.title}
+										</CardTitle>
+									</CardHeader>
+									<CardContent className="p-0 space-y-4">
+										<div className="flex items-center space-x-3 text-gray-600">
+											<Calendar size={20} />
+											<span>
+												{new Date(upcomingConcert.date).toLocaleDateString(
+													"ja-JP",
+													{
+														year: "numeric",
+														month: "long",
+														day: "numeric",
+														weekday: "long",
+													}
+												)}
+											</span>
+										</div>
+										<div className="flex items-center space-x-3 text-gray-600">
+											<Clock size={20} />
+											<span>
+												{upcomingConcert.openTime}開場（
+												{upcomingConcert.startTime}開演）
+											</span>
+										</div>
+										<div className="flex items-center space-x-3 text-gray-600">
+											<MapPin size={20} />
+											<span>{upcomingConcert.venue.name}</span>
+										</div>
+
+										<div className="mt-6">
+											<h4 className="font-semibold text-gray-800 mb-2">
+												主要曲目
+											</h4>
+											<ul className="text-gray-600 space-y-1">
+												{upcomingConcert.program.map((item, index) => (
+													<li key={index}>
+														{item.composer} / {item.title}
+													</li>
+												))}
+											</ul>
+										</div>
+
+										<div className="mt-8">
+											<Link href={`/concerts/${upcomingConcert.id}`}>
+												<Button className="bg-[#002060] hover:bg-[#001040] text-white">
+													詳細はこちら
+												</Button>
+											</Link>
+										</div>
+									</CardContent>
+								</div>
+							</div>
+						</Card>
+					</div>
+				</section>
+			)}
+		</div>
+	);
+}
