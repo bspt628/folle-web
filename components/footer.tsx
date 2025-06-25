@@ -1,10 +1,21 @@
 import Link from "next/link";
 import { Instagram, Twitter } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
 	return (
-		<footer className="bg-[#eaeff2] text-gray-800 py-12">
-			<div className="container mx-auto px-4">
+		<footer className="relative text-white py-12">
+			<div className="absolute inset-0 overflow-hidden">
+				<Image
+					src="/black_back.jpg"
+					alt="Background"
+					fill
+					className="object-cover brightness-100"
+					priority={false}
+				/>
+			</div>
+			<div className="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
+			<div className="container mx-auto px-4 relative z-10">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{/* Site Map */}
 					<div>
@@ -12,7 +23,7 @@ export default function Footer() {
 							href="/"
 							className="block hover:text-[#C9A333] transition-colors"
 						>
-							<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
+							<h3 className="text-lg font-medium tracking-tight mb-4 text-white hover:text-[#C9A333] transition-colors">
 								Orchestra più folle
 							</h3>
 						</Link>
@@ -40,7 +51,7 @@ export default function Footer() {
 
 					{/* Social Media */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
+						<h3 className="text-lg font-medium tracking-tight mb-4 text-white">
 							SNS
 						</h3>
 						<div className="flex space-x-4">
@@ -65,15 +76,9 @@ export default function Footer() {
 
 					{/* Contact Info */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
-							お問い合わせ
-						</h3>
-						<div className="space-y-2 text-sm">
-							<p>Email: orchestrapiufolle[at]gmail.com</p>
-							<p className="mt-4 text-gray-600">
-								© 2025 Orchestra più folle. All rights reserved.
-							</p>
-						</div>
+						<p className="mt-4 text-white/80">
+							© 2025 Orchestra più folle. All rights reserved.
+						</p>
 					</div>
 				</div>
 			</div>
