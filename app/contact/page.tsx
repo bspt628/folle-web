@@ -79,7 +79,7 @@ export default function ContactPage() {
 		<div className="pt-20">
 			<section className="py-16">
 				<div className="container mx-auto px-4">
-					<h1 className="font-serif text-4xl font-bold text-gray-800 text-center mb-12">
+					<h1 className="text-4xl font-bold text-gray-800 text-center mb-12">
 						Contact Us
 					</h1>
 
@@ -87,7 +87,7 @@ export default function ContactPage() {
 						{/* Contact Information */}
 						<Card className="mb-12">
 							<CardHeader>
-								<CardTitle className="font-serif text-2xl text-gray-800 text-center">
+								<CardTitle className="text-2xl text-gray-800 text-center">
 									お問い合わせ先
 								</CardTitle>
 							</CardHeader>
@@ -131,7 +131,7 @@ export default function ContactPage() {
 													href="https://x.com/orchpiufolle"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#C9A333] transition-colors"
 												>
 													<Twitter size={20} />
 													<span>X (Twitter)</span>
@@ -140,7 +140,7 @@ export default function ContactPage() {
 													href="https://www.instagram.com/orchpiufolle/"
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex items-center space-x-2 text-gray-600 hover:text-[#002060] transition-colors"
+													className="flex items-center space-x-2 text-gray-600 hover:text-[#C9A333] transition-colors"
 												>
 													<Instagram size={20} />
 													<span>Instagram</span>
@@ -165,7 +165,7 @@ export default function ContactPage() {
 						{/* Contact Form */}
 						<Card>
 							<CardHeader>
-								<CardTitle className="font-serif text-2xl text-gray-800 text-center">
+								<CardTitle className="text-2xl text-gray-800 text-center">
 									お問い合わせフォーム
 								</CardTitle>
 							</CardHeader>

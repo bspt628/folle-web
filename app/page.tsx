@@ -76,7 +76,7 @@ export default async function HomePage() {
 			{upcomingConcert && (
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<h2 className="font-serif text-3xl font-bold text-gray-800 text-center mb-12">
+						<h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
 							Next Concert
 						</h2>
 
@@ -93,7 +93,7 @@ export default async function HomePage() {
 								</div>
 								<div className="md:w-1/2 p-8">
 									<CardHeader className="p-0 mb-6">
-										<CardTitle className="font-serif text-2xl text-gray-800">
+										<CardTitle className="text-2xl text-gray-800">
 											{upcomingConcert.title}
 										</CardTitle>
 									</CardHeader>
