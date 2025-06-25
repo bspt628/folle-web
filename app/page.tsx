@@ -41,30 +41,18 @@ export default async function HomePage() {
 			{/* What's New Section */}
 			<section className="py-16 bg-gray-50">
 				<div className="container mx-auto px-4">
-					<div className="flex justify-between items-center mb-8">
-						<h2 className="section-title text-gray-800">What&apos;s New</h2>
-						<Button
-							variant="outline"
-							className="bg-white text-[#002060] border-[#002060] hover:bg-[#002060] hover:text-white"
-						>
-							一覧を見る
-						</Button>
-					</div>
+					<h2 className="section-title text-gray-800 mb-8">What&apos;s New</h2>
 
 					<div className="space-y-4">
 						{newsItems.map((item, index) => (
-							<Card
-								key={index}
-								className="hover:shadow-md transition-shadow cursor-pointer"
-							>
-								<CardContent className="flex items-center justify-between p-6">
+							<Card key={index}>
+								<CardContent className="flex items-center p-6">
 									<div className="flex items-center space-x-4">
 										<span className="text-[#002060] font-mono text-sm">
 											{item.date}
 										</span>
 										<h3 className="text-gray-800 font-medium">{item.title}</h3>
 									</div>
-									<div className="text-gray-400">→</div>
 								</CardContent>
 							</Card>
 						))}
