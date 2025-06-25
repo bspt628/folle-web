@@ -15,7 +15,7 @@ export default function AboutPage() {
 				<div className="container mx-auto px-4">
 					<div className="max-w-4xl mx-auto">
 						<h1 className="text-4xl font-bold text-white mb-12 text-center">
-							団体紹介
+							About Us
 						</h1>
 
 						<Card className="bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden">
@@ -45,41 +45,18 @@ export default function AboutPage() {
 
 								{/* Content */}
 								<div className="relative p-8">
-									<div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm">
-										<p className="text-lg text-white/90 leading-[3] jp-text-optimize">
-											Orchestra più Folle
-											<wbr />
-											（Fオケ）は
-											<wbr />
-											東京大学音楽部管弦楽団の
-											<wbr />
-											団員とOBOGを中心に
-											<wbr />
-											結成されたオーケストラです。
-											<wbr />
-											「più Folle」は
-											<wbr />
-											「もっと狂って」という
-											<wbr />
-											意味を持ちます。
-											<wbr />
-											一見不思議な団体に見えますが、
-											<wbr />
-											一人一人個性を持った団員が
-											<wbr />
-											音楽と向き合い、
-											<wbr />
-											熱狂的に音を紡ぐという
-											<wbr />
-											意味合いが込められています。
-											<wbr />
-											若く熱狂的な演奏で、
-											<wbr />
-											クラシック音楽の魅力を
-											<wbr />
-											一歩踏み込んで
-											<wbr />
-											お届けするオーケストラです。
+									<div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm space-y-6">
+										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
+											Orchestra più Folle（Fオケ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に結成されたオーケストラです。
+										</p>
+										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
+											「più Folle」は「もっと狂って」という意味を持ちます。
+										</p>
+										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
+											一見不思議な団体に見えますが、一人一人個性を持った団員が音楽と向き合い、熱狂的に音を紡ぐという意味合いが込められています。
+										</p>
+										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
+											若く熱狂的な演奏で、クラシック音楽の魅力を一歩踏み込んでお届けするオーケストラです。
 										</p>
 									</div>
 								</div>
