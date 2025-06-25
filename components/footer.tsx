@@ -3,21 +3,20 @@ import { Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
 	return (
-		<footer className="bg-theme-main text-white py-12">
+		<footer className="bg-[#eaeff2] text-gray-800 py-12">
 			<div className="container mx-auto px-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{/* Site Map */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-white">
-							Site Map
-						</h3>
+						<Link
+							href="/"
+							className="block hover:text-[#C9A333] transition-colors"
+						>
+							<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
+								Orchestra più folle
+							</h3>
+						</Link>
 						<nav className="space-y-2">
-							<Link
-								href="/"
-								className="block hover:text-[#C9A333] transition-colors"
-							>
-								Home
-							</Link>
 							<Link
 								href="/about"
 								className="block hover:text-[#C9A333] transition-colors"
@@ -41,7 +40,7 @@ export default function Footer() {
 
 					{/* Social Media */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-white">
+						<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
 							SNS
 						</h3>
 						<div className="flex space-x-4">
@@ -66,12 +65,12 @@ export default function Footer() {
 
 					{/* Contact Info */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-white">
+						<h3 className="text-lg font-medium tracking-tight mb-4 text-gray-800">
 							お問い合わせ
 						</h3>
 						<div className="space-y-2 text-sm">
 							<p>Email: orchestrapiufolle[at]gmail.com</p>
-							<p className="mt-4 text-white/70">
+							<p className="mt-4 text-gray-600">
 								© 2025 Orchestra più folle. All rights reserved.
 							</p>
 						</div>
