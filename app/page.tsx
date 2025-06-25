@@ -76,7 +76,7 @@ export default async function HomePage() {
 										alt={`${upcomingConcert.title} Poster`}
 										width={600}
 										height={400}
-										className="w-full h-64 md:h-full object-cover"
+										className="w-full h-64 md:h-full object-cover ml-4"
 									/>
 								</div>
 								<div className="md:w-1/2 p-8">

@@ -18,7 +18,6 @@ export default function Header() {
 	}, []);
 
 	const navItems = [
-		{ href: "/", label: "Home" },
 		{ href: "/about", label: "About Us" },
 		{ href: "/concerts", label: "Concerts" },
 		{ href: "/contact", label: "Contact Us" },
