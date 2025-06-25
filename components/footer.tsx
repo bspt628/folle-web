@@ -16,18 +16,27 @@ export default function Footer() {
 			</div>
 			<div className="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 			<div className="container mx-auto px-4 relative z-10">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{/* Site Map */}
 					<div>
-						<Link
-							href="/"
-							className="block hover:text-[#C9A333] transition-colors"
-						>
-							<h3 className="text-lg font-medium tracking-tight mb-4 text-white hover:text-[#C9A333] transition-colors">
-								Orchestra più folle
-							</h3>
-						</Link>
-						<nav className="space-y-2">
+						<div className="flex items-center mb-4">
+							<Image
+								src="/logo.png"
+								alt="Logo"
+								width={30}
+								height={30}
+								className="mr-2"
+							/>
+							<Link
+								href="/"
+								className="hover:text-[#C9A333] transition-colors flex items-center"
+							>
+								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[#C9A333] transition-colors">
+									Orchestra più folle
+								</h3>
+							</Link>
+						</div>
+						<nav className="grid grid-cols-1 gap-2">
 							<Link
 								href="/about"
 								className="block hover:text-[#C9A333] transition-colors"
@@ -49,11 +58,8 @@ export default function Footer() {
 						</nav>
 					</div>
 
-					{/* Social Media */}
+					{/* Social Media and Copyright */}
 					<div>
-						<h3 className="text-lg font-medium tracking-tight mb-4 text-white">
-							SNS
-						</h3>
 						<div className="flex space-x-4">
 							<a
 								href="https://x.com/orchpiufolle"
@@ -72,10 +78,6 @@ export default function Footer() {
 								<Instagram size={24} />
 							</a>
 						</div>
-					</div>
-
-					{/* Contact Info */}
-					<div>
 						<p className="mt-4 text-white/80">
 							© 2025 Orchestra più folle. All rights reserved.
 						</p>

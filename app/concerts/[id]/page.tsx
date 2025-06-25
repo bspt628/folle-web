@@ -106,7 +106,7 @@ export default function ConcertDetailPage() {
 													<span className="text-white font-medium">
 														{format(
 															parseISO(concert.date),
-															"yyyy年MM月dd日(E)",
+															"yyyy年MM月dd日 (E)",
 															{
 																locale: ja,
 															}
@@ -119,17 +119,20 @@ export default function ConcertDetailPage() {
 												<div className="flex items-center space-x-3">
 													<Clock className="text-[#cfa580]" size={20} />
 													<span className="text-white font-medium">
-														{concert.startTime}開演（{concert.openTime}開場）
+														{concert.startTime} 開演 （{concert.openTime} 開場）
 													</span>
 												</div>
 											)}
 
 											{concert.venue?.name && (
-												<div className="flex items-center space-x-3">
-													<MapPin className="text-[#cfa580]" size={20} />
-													<span className="text-white font-medium">
+												<div className="flex items-start space-x-2 text-white/90">
+													<MapPin
+														size={20}
+														className="text-[#cfa580] shrink-0 mt-1"
+													/>
+													<div className="break-words whitespace-pre-wrap">
 														{concert.venue.name}
-													</span>
+													</div>
 												</div>
 											)}
 
@@ -144,7 +147,7 @@ export default function ConcertDetailPage() {
 																<span className="font-semibold">
 																	{item.composer}
 																</span>
-																{item.title && <> / {item.title}</>}
+																{item.title && <>: {item.title}</>}
 															</li>
 														))}
 													</ul>
@@ -157,12 +160,18 @@ export default function ConcertDetailPage() {
 									{concert.description && (
 										<Card className="mb-8 bg-white/10 backdrop-blur-md">
 											<CardContent className="p-6">
-												<h3 className="text-xl font-semibold text-white mb-4">
-													演奏会について
-												</h3>
-												<p className="text-white/90 leading-relaxed whitespace-pre-wrap jp-text-optimize">
-													{concert.description}
-												</p>
+												<div className="text-white/90 leading-loose jp-text-optimize">
+													{concert.description
+														.split("\n")
+														.map((paragraph, index) => (
+															<p
+																key={index}
+																className="indent-4 mb-4 last:mb-0"
+															>
+																{paragraph}
+															</p>
+														))}
+												</div>
 											</CardContent>
 										</Card>
 									)}

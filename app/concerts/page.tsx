@@ -18,7 +18,7 @@ export default function ConcertsPage() {
 			<section className="py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold text-white text-center mb-12">
-						演奏会情報
+						Concerts
 					</h1>
 
 					<div className="max-w-4xl mx-auto space-y-8">
@@ -77,9 +77,12 @@ export default function ConcertsPage() {
 											)}
 
 											{concert.venue?.name && (
-												<div className="flex items-center space-x-2 text-white/90">
-													<MapPin size={20} className="text-[#cfa580]" />
-													<span>{concert.venue.name}</span>
+												<div className="flex items-start space-x-2 text-white/90">
+													<MapPin
+														size={20}
+														className="text-[#cfa580] shrink-0 mt-1"
+													/>
+													<div className="break-all">{concert.venue.name}</div>
 												</div>
 											)}
 										</div>
