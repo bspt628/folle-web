@@ -76,7 +76,7 @@ export default async function HomePage() {
 			{upcomingConcert && (
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<h2 className="font-serif text-3xl font-bold text-gray-800 text-center mb-12">
+						<h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
 							Next Concert
 						</h2>
 
@@ -93,7 +93,7 @@ export default async function HomePage() {
 								</div>
 								<div className="md:w-1/2 p-8">
 									<CardHeader className="p-0 mb-6">
-										<CardTitle className="font-serif text-2xl text-gray-800">
+										<CardTitle className="text-2xl text-gray-800">
 											{upcomingConcert.title}
 										</CardTitle>
 									</CardHeader>
@@ -115,8 +115,8 @@ export default async function HomePage() {
 										<div className="flex items-center space-x-3 text-gray-600">
 											<Clock size={20} />
 											<span>
-												{upcomingConcert.openTime}開場（
-												{upcomingConcert.startTime}開演）
+												{upcomingConcert.startTime}開演（
+												{upcomingConcert.openTime}開場）
 											</span>
 										</div>
 										<div className="flex items-center space-x-3 text-gray-600">
@@ -126,7 +126,7 @@ export default async function HomePage() {
 
 										<div className="mt-6">
 											<h4 className="font-semibold text-gray-800 mb-2">
-												主要曲目
+												プログラム
 											</h4>
 											<ul className="text-gray-600 space-y-1">
 												{upcomingConcert.program.map((item, index) => (

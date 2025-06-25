@@ -118,7 +118,7 @@ export default function ConcertDetailPage() {
 											<h3 className="text-xl font-semibold text-gray-800 mb-4">
 												演奏会について
 											</h3>
-											<p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+											<p className="text-gray-700 leading-relaxed whitespace-pre-wrap jp-text-optimize">
 												{concert.description}
 											</p>
 										</CardContent>
@@ -136,21 +136,37 @@ export default function ConcertDetailPage() {
 														チケット情報
 													</h3>
 												</div>
-												{concert.teketUrl && (
-													<a
-														href={concert.teketUrl}
-														target="_blank"
-														rel="noopener noreferrer"
-													>
-														<Button
-															variant="outline"
-															className="bg-gray-900 text-white hover:bg-gray-800 border-0"
+												<div className="relative group inline-block">
+													{concert.teketUrl ? (
+														<a
+															href={concert.teketUrl}
+															target="_blank"
+															rel="noopener noreferrer"
 														>
-															<Ticket className="w-4 h-4 mr-2" />
-															チケット
-														</Button>
-													</a>
-												)}
+															<Button
+																variant="outline"
+																className="bg-gray-900/80 text-white hover:text-[#C9A333] border-0"
+															>
+																<Ticket className="w-4 h-4 mr-2" />
+																チケット予約
+															</Button>
+														</a>
+													) : (
+														<>
+															<Button
+																variant="outline"
+																className="bg-gray-900/80 text-white hover:text-[#C9A333] border-0 cursor-not-allowed opacity-80"
+																disabled
+															>
+																<Ticket className="w-4 h-4 mr-2" />
+																チケット予約
+															</Button>
+															<span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/90 text-white text-sm rounded-md whitespace-nowrap after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-black/90">
+																Coming Soon
+															</span>
+														</>
+													)}
+												</div>
 											</div>
 											<div className="space-y-2">
 												{concert.ticketPrice.map((ticket, index) => (
