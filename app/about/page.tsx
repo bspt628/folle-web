@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PageContainer } from "@/components/ui/page-container";
+import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
 	const historyItems = [
@@ -12,16 +13,78 @@ export default function AboutPage() {
 			{/* About Section */}
 			<section className="py-16">
 				<div className="container mx-auto px-4">
-					<div className="max-w-4xl mx-auto text-center">
-						<h1 className="text-4xl font-bold text-white mb-8">
+					<div className="max-w-4xl mx-auto">
+						<h1 className="text-4xl font-bold text-white mb-12 text-center">
 							Orchestra più Folle について
 						</h1>
-						<p className="text-lg text-white/90 leading-[4.5] mb-8 jp-text-optimize">
-							Orchestra più
-							Folle（Fオケ）は東京大学音楽部管弦楽団の団員とOBOGを中心に結成されたオーケストラです。
-							「più Folle」は「もっと狂って」という意味を持ちます。
-							一見不思議な団体に見えますが、一人一人個性を持った団員が音楽と向き合い、熱狂的に音を紡ぐという意味合いが込められています。若く熱狂的な演奏で、クラシック音楽の魅力を一歩踏み込んでお届けするオーケストラです。
-						</p>
+
+						<Card className="bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden">
+							<div className="relative">
+								{/* Decorative Element */}
+								<div className="absolute top-0 left-0 w-32 h-32 bg-[#b04940]/20 rounded-full -translate-x-16 -translate-y-16" />
+								<div className="absolute bottom-0 right-0 w-32 h-32 bg-[#cfa580]/20 rounded-full translate-x-16 translate-y-16" />
+
+								{/* Logo and Title */}
+								<div className="relative pt-8 px-8 pb-4 flex items-center justify-center border-b border-white/10">
+									<div className="flex items-center gap-4">
+										<div className="relative w-16 h-16">
+											<Image
+												src="/logo.png"
+												alt="Orchestra più Folle Logo"
+												fill
+												className="object-contain"
+											/>
+										</div>
+										<div>
+											<h2 className="text-4xl font-bold bg-gradient-to-r from-[#cfa580] to-white bg-clip-text text-transparent">
+												Orchestra più Folle
+											</h2>
+										</div>
+									</div>
+								</div>
+
+								{/* Content */}
+								<div className="relative p-8">
+									<div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm">
+										<p className="text-lg text-white/90 leading-[3] jp-text-optimize">
+											Orchestra più Folle
+											<wbr />
+											（Fオケ）は
+											<wbr />
+											東京大学音楽部管弦楽団の
+											<wbr />
+											団員とOBOGを中心に
+											<wbr />
+											結成されたオーケストラです。
+											<wbr />
+											「più Folle」は
+											<wbr />
+											「もっと狂って」という
+											<wbr />
+											意味を持ちます。
+											<wbr />
+											一見不思議な団体に見えますが、
+											<wbr />
+											一人一人個性を持った団員が
+											<wbr />
+											音楽と向き合い、
+											<wbr />
+											熱狂的に音を紡ぐという
+											<wbr />
+											意味合いが込められています。
+											<wbr />
+											若く熱狂的な演奏で、
+											<wbr />
+											クラシック音楽の魅力を
+											<wbr />
+											一歩踏み込んで
+											<wbr />
+											お届けするオーケストラです。
+										</p>
+									</div>
+								</div>
+							</div>
+						</Card>
 					</div>
 				</div>
 			</section>
