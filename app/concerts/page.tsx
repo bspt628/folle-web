@@ -35,9 +35,13 @@ export default function ConcertsPage() {
 												priority
 											/>
 										)}
-										{new Date(concert.date) > new Date() && (
+										{new Date(concert.date) > new Date() ? (
 											<div className="absolute top-4 right-4 bg-[#D4AF37] text-white px-3 py-1 rounded-full text-sm font-semibold">
 												開催予定
+											</div>
+										) : (
+											<div className="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+												終演
 											</div>
 										)}
 									</div>
