@@ -80,7 +80,7 @@ export default function ContactPage() {
 			<section className="py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold text-white text-center mb-12">
-						Contact Us
+						お問い合わせ
 					</h1>
 
 					<div className="max-w-4xl mx-auto">
@@ -143,14 +143,16 @@ export default function ContactPage() {
 								</div>
 							</div>
 
-							<div className="mt-8 text-sm text-white/90 space-y-2">
-								<p>・3日以内を目安にメールにてご連絡させていただきます。</p>
-								<p>
-									・4日以上経っても返信がない場合はお手数ですが、上記のメールアドレスまで直接ご連絡ください。
-								</p>
-								<p>
-									・なお、こちらからのメールが迷惑メールに分類されてしまうケースもございますので、そちらもご確認ください。
-								</p>
+							<div className="mt-8 text-sm text-white/90">
+								<ul className="list-disc list-inside space-y-2">
+									<li>3日以内を目安にメールにてご連絡させていただきます。</li>
+									<li>
+										4日以上経っても返信がない場合はお手数ですが、上記のメールアドレスまで直接ご連絡ください。
+									</li>
+									<li>
+										なお、こちらからのメールが迷惑メールに分類されてしまうケースもございますので、そちらもご確認ください。
+									</li>
+								</ul>
 							</div>
 						</div>
 
