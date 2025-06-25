@@ -33,9 +33,6 @@ export default async function HomePage() {
 							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
 								Orchestra più folle
 							</h1>
-							<p className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-white/90">
-								最高の演奏をあなたと。
-							</p>
 						</div>
 					</div>
 

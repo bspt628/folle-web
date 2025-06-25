@@ -18,7 +18,7 @@ export default function ConcertsPage() {
 			<section className="py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold text-white text-center mb-12">
-						Concerts
+						演奏会情報
 					</h1>
 
 					<div className="max-w-4xl mx-auto space-y-8">
