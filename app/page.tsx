@@ -1,94 +1,91 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { getUpcomingConcert } from "@/lib/constants/concerts";
+import { getNewsItems } from "@/lib/constants/news";
 import Link from "next/link";
 
 export default async function HomePage() {
-	const newsItems = [
-		{
-			date: "2025.06.30",
-			title: "Orchestra più folleのWebサイトを公開しました",
-		},
-	];
-
+	const newsItems = getNewsItems();
 	const upcomingConcert = await getUpcomingConcert();
 
 	return (
-		<div>
-			{/* Hero Section */}
-			<section className="relative h-screen flex items-center justify-center">
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/hero.jpg"
-						alt="Orchestra Performance"
-						fill
-						className="object-cover"
-						priority
-					/>
-					<div className="absolute inset-0 bg-black/40" />
-				</div>
+		<div className="h-screen relative">
+			{/* Background Image */}
+			<div className="absolute inset-0 z-0">
+				<Image
+					src="/red_back.jpg"
+					alt="Orchestra Performance"
+					fill
+					className="object-cover"
+					priority
+				/>
+				<div className="absolute inset-0 bg-black/60" />
+			</div>
 
-				<div className="relative z-10 text-center text-white px-4">
-					<h1 className="page-title mb-6">Orchestra più folle</h1>
-					<p className="text-xl md:text-2xl font-light tracking-wide">
-						最高の演奏をあなたと。
-					</p>
-				</div>
-			</section>
+			{/* Content Container */}
+			<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
+				{/* Left Side */}
+				<div className="w-full md:w-1/2 h-auto md:h-full flex flex-col">
+					{/* Hero Content */}
+					<div className="flex-1 flex items-center justify-center p-8">
+						<div className="text-center">
+							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+								Orchestra più folle
+							</h1>
+							<p className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-white/90">
+								最高の演奏をあなたと。
+							</p>
+						</div>
+					</div>
 
-			{/* What's New Section */}
-			<section className="py-16 bg-gray-50">
-				<div className="container mx-auto px-4">
-					<h2 className="section-title text-gray-800 mb-8">What&apos;s New</h2>
-
-					<div className="space-y-4">
-						{newsItems.map((item, index) => (
-							<Card key={index}>
-								<CardContent className="flex items-center p-6">
+					{/* News Section */}
+					<div className="p-4 md:p-8">
+						<h2 className="text-2xl font-bold text-white mb-4">
+							What&apos;s New
+						</h2>
+						<div className="space-y-3">
+							{newsItems.map((item, index) => (
+								<div
+									key={index}
+									className="bg-white/20 backdrop-blur-md rounded-lg p-4"
+								>
 									<div className="flex items-center space-x-4">
-										<span className="text-[#002060] font-mono text-sm">
+										<span className="text-[#cfa580] font-mono text-sm">
 											{item.date}
 										</span>
-										<h3 className="text-gray-800 font-medium">{item.title}</h3>
+										<h3 className="text-white font-medium">{item.title}</h3>
 									</div>
-								</CardContent>
-							</Card>
-						))}
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
-			</section>
 
-			{/* Next Concert Section */}
-			{upcomingConcert && (
-				<section className="py-16">
-					<div className="container mx-auto px-4">
-						<h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
-							Next Concert
-						</h2>
-
-						<Card className="max-w-4xl mx-auto overflow-hidden">
-							<div className="md:flex">
-								<div className="md:w-1/2">
+				{/* Right Side - Next Concert */}
+				<div className="w-full md:w-1/2 h-auto md:h-full p-4 md:p-8 flex items-center">
+					{upcomingConcert && (
+						<div className="w-full">
+							<h2 className="text-2xl font-bold text-white mb-6">
+								Next Concert
+							</h2>
+							<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20">
+								<div className="relative aspect-[3/2] w-full">
 									<Image
 										src={upcomingConcert.posterImage?.url || "/placeholder.jpg"}
 										alt={`${upcomingConcert.title} Poster`}
-										width={600}
-										height={400}
-										className="w-full h-64 md:h-full object-cover ml-4"
+										fill
+										className="object-cover"
 									/>
 								</div>
-								<div className="md:w-1/2 p-8">
-									<CardHeader className="p-0 mb-6">
-										<CardTitle className="text-2xl text-gray-800">
-											{upcomingConcert.title}
-										</CardTitle>
-									</CardHeader>
-									<CardContent className="p-0 space-y-4">
-										<div className="flex items-center space-x-3 text-gray-600">
-											<Calendar size={20} />
-											<span>
+								<div className="p-4 md:p-6">
+									<h3 className="text-xl font-bold text-white mb-4">
+										{upcomingConcert.title}
+									</h3>
+									<div className="space-y-3 text-white/90">
+										<div className="flex items-center space-x-3">
+											<Calendar size={18} className="text-[#cfa580]" />
+											<span className="text-sm md:text-base">
 												{new Date(upcomingConcert.date).toLocaleDateString(
 													"ja-JP",
 													{
@@ -100,45 +97,36 @@ export default async function HomePage() {
 												)}
 											</span>
 										</div>
-										<div className="flex items-center space-x-3 text-gray-600">
-											<Clock size={20} />
-											<span>
+										<div className="flex items-center space-x-3">
+											<Clock size={18} className="text-[#cfa580]" />
+											<span className="text-sm md:text-base">
 												{upcomingConcert.startTime}開演（
 												{upcomingConcert.openTime}開場）
 											</span>
 										</div>
-										<div className="flex items-center space-x-3 text-gray-600">
-											<MapPin size={20} />
-											<span>{upcomingConcert.venue.name}</span>
+										<div className="flex items-center space-x-3">
+											<MapPin size={18} className="text-[#cfa580]" />
+											<span className="text-sm md:text-base">
+												{upcomingConcert.venue.name}
+											</span>
 										</div>
-
-										<div className="mt-6">
-											<h4 className="font-semibold text-gray-800 mb-2">
-												プログラム
-											</h4>
-											<ul className="text-gray-600 space-y-1">
-												{upcomingConcert.program.map((item, index) => (
-													<li key={index}>
-														{item.composer} / {item.title}
-													</li>
-												))}
-											</ul>
-										</div>
-
-										<div className="mt-8">
-											<Link href={`/concerts/${upcomingConcert.id}`}>
-												<Button className="bg-[#002060] hover:bg-[#001040] text-white">
-													詳細はこちら
-												</Button>
-											</Link>
-										</div>
-									</CardContent>
+									</div>
+									<div className="mt-6">
+										<Link href={`/concerts/${upcomingConcert.id}`}>
+											<Button className="w-full bg-[#b04940] hover:bg-[#c27f62] text-white">
+												詳細はこちら
+											</Button>
+										</Link>
+									</div>
 								</div>
 							</div>
-						</Card>
-					</div>
-				</section>
-			)}
+						</div>
+					)}
+				</div>
+			</div>
+
+			{/* 代表者挨拶セクション - 非表示 */}
+			<div className="hidden">{/* ここに代表者挨拶のコンテンツを入れる */}</div>
 		</div>
 	);
 }

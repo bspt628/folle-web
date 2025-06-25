@@ -76,10 +76,16 @@ const config = {
 					from: { height: "var(--radix-accordion-content-height)" },
 					to: { height: "0" },
 				},
+				brightness: {
+					"0%": { filter: "brightness(0.3)" },
+					"50%": { filter: "brightness(1)" },
+					"100%": { filter: "brightness(0.3)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				brightness: "brightness 2s ease-in-out infinite",
 			},
 		},
 	},

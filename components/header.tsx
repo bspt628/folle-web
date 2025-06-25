@@ -26,7 +26,7 @@ export default function Header() {
 	return (
 		<>
 			<header
-				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-black/10 ${
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/10 backdrop-blur-md border-b border-white/10 ${
 					isScrolled ? "shadow-sm" : ""
 				}`}
 			>
@@ -40,7 +40,7 @@ export default function Header() {
 								height={40}
 								className="rounded-full"
 							/>
-							<span className="text-xl font-medium tracking-tight text-gray-800 group-hover:text-[#C9A333] transition-colors duration-200">
+							<span className="text-xl font-medium tracking-tight text-white group-hover:text-[#C9A333] transition-colors duration-200">
 								Orchestra più folle
 							</span>
 						</Link>
@@ -51,7 +51,7 @@ export default function Header() {
 								<Link
 									key={item.href}
 									href={item.href}
-									className="text-gray-800 hover:text-[#C9A333] transition-colors duration-200"
+									className="text-white hover:text-[#C9A333] transition-colors duration-200"
 								>
 									{item.label}
 								</Link>
@@ -60,7 +60,7 @@ export default function Header() {
 
 						{/* Mobile Menu Button */}
 						<button
-							className="md:hidden p-2 text-gray-800 hover:text-[#C9A333] transition-colors duration-200"
+							className="md:hidden p-2 text-white hover:text-[#C9A333] transition-colors duration-200"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						>
 							{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -75,7 +75,7 @@ export default function Header() {
 									<Link
 										key={item.href}
 										href={item.href}
-										className="text-gray-800 hover:text-[#C9A333] transition-colors duration-200 py-2"
+										className="text-white hover:text-[#C9A333] transition-colors duration-200 py-2"
 										onClick={() => setIsMobileMenuOpen(false)}
 									>
 										{item.label}
