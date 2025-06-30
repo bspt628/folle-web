@@ -84,6 +84,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ```json 
 {
 		date: "2025.06.30", // 日付
-		title: "Orchestra più folleのWebサイトを公開しました", // 本文
+		title: "Orchestra più FolleのWebサイトを公開しました", // 本文
 	}
 ```
