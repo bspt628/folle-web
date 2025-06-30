@@ -4,8 +4,8 @@ import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
 	const historyItems = [
-		{ year: "2025.8", event: "Orchestra più Folle 設立" },
-		{ year: "2025.11", event: "第1回特別演奏会開催予定" },
+		{ year: "2025", event: "Orchestra più Folle 設立" },
+		{ year: "2025", event: "第1回特別演奏会開催予定" },
 	];
 
 	return (
