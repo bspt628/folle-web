@@ -41,7 +41,7 @@ export default function Header() {
 								className="rounded-full"
 							/>
 							<span className="text-xl font-medium tracking-tight text-white group-hover:text-[#C9A333] transition-colors duration-200">
-								Orchestra più folle
+								Orchestra più Folle
 							</span>
 						</Link>
 

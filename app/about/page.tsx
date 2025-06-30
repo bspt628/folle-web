@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
 	const historyItems = [
-		{ year: "2025.8", event: "Orchestra più folle 設立" },
+		{ year: "2025.8", event: "Orchestra più Folle 設立" },
 		{ year: "2025.11", event: "第1回特別演奏会開催予定" },
 	];
 
@@ -95,7 +95,7 @@ export default function AboutPage() {
 								<div className="flex-1">
 									<p className="text-white/90 leading-relaxed mb-4 jp-text-optimize">
 										Orchestra più
-										folleの音楽監督を務めさせていただいております田中太郎です。
+										Folleの音楽監督を務めさせていただいております田中太郎です。
 										当団は設立から14年を迎え、多くの音楽愛好家の皆様に支えられながら成長してまいりました。
 									</p>
 									<p className="text-white/90 leading-relaxed mb-4 jp-text-optimize">

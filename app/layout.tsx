@@ -5,9 +5,9 @@ import Footer from "@/components/footer";
 import { roboto } from "@/app/ui/fonts";
 
 export const metadata: Metadata = {
-	title: "Orchestra più folle",
+	title: "Orchestra più Folle",
 	description:
-		"Orchestra più folle（通称Fオケ）の公式サイトです。演奏会情報をお届けします。",
+		"Orchestra più Folle（通称Fオケ）の公式サイトです。演奏会情報をお届けします。",
 };
 
 export default function RootLayout({

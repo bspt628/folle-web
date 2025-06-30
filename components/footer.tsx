@@ -32,7 +32,7 @@ export default function Footer() {
 								className="hover:text-[#C9A333] transition-colors flex items-center"
 							>
 								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[#C9A333] transition-colors">
-									Orchestra più folle
+									Orchestra più Folle
 								</h3>
 							</Link>
 						</div>
@@ -79,7 +79,7 @@ export default function Footer() {
 							</a>
 						</div>
 						<p className="mt-4 text-white/80">
-							© 2025 Orchestra più folle. All rights reserved.
+							© 2025 Orchestra più Folle. All rights reserved.
 						</p>
 					</div>
 				</div>

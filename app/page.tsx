@@ -44,7 +44,7 @@ export default function HomePage() {
 					<div className="flex-1 flex items-center justify-center p-8">
 						<div className="text-center">
 							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-								Orchestra più folle
+								Orchestra più Folle
 							</h1>
 						</div>
 					</div>

@@ -10,7 +10,7 @@ export const newsItems: NewsItem[] = [
 	},
 	{
 		date: "2025.06.30",
-		title: "Orchestra più folleのWebサイトを公開しました",
+		title: "Orchestra più FolleのWebサイトを公開しました",
 	},
 ];
 
