@@ -21,7 +21,7 @@ export default function Footer() {
 					<div>
 						<div className="flex items-center mb-4">
 							<Image
-								src="/logo.png"
+								src="/logo-color.png"
 								alt="Logo"
 								width={30}
 								height={30}

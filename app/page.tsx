@@ -82,7 +82,7 @@ export default function HomePage() {
 			{/* オーバーレイ */}
 			<div className="overlay">
 				<Image
-					src="/logo.png"
+					src="/logo-color.png"
 					alt="Logo"
 					className="logo"
 					width={100}
@@ -110,9 +110,30 @@ export default function HomePage() {
 					{/* Hero Content */}
 					<div className="flex-1 flex items-center justify-center p-8">
 						<div className="text-center">
-							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-								Orchestra più Folle
-							</h1>
+							<div className="flex items-center justify-center gap-4">
+								<div
+									className="logo-container"
+									onClick={(e) => {
+										const target = e.currentTarget.querySelector("img");
+										if (target) {
+											target.classList.remove("logo-flip");
+											void target.offsetWidth; // リフロー強制
+											target.classList.add("logo-flip");
+										}
+									}}
+								>
+									<Image
+										src="/logo-color.png"
+										alt="Orchestra più Folle Logo"
+										width={80}
+										height={80}
+										className="w-20 h-20"
+									/>
+								</div>
+								<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+									Orchestra più Folle
+								</h1>
+							</div>
 						</div>
 					</div>
 

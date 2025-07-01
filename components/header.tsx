@@ -34,7 +34,7 @@ export default function Header() {
 					<div className="flex items-center justify-between">
 						<Link href="/" className="flex items-center space-x-3 group">
 							<Image
-								src="/logo.png"
+								src="/logo-color.png"
 								alt="Orchestra più folle Logo"
 								width={40}
 								height={40}

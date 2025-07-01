@@ -29,7 +29,7 @@ export default function AboutPage() {
 									<div className="flex items-center gap-4">
 										<div className="relative w-16 h-16">
 											<Image
-												src="/logo.png"
+												src="/logo-color.png"
 												alt="Orchestra più Folle Logo"
 												fill
 												className="object-contain"
@@ -47,7 +47,8 @@ export default function AboutPage() {
 								<div className="relative p-8">
 									<div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm space-y-6">
 										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
-											Orchestra più Folle（Fオケ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に結成されたオーケストラです。
+											Orchestra più
+											Folle（Fオケ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に結成されたオーケストラです。
 										</p>
 										<p className="text-lg text-white/90 leading-[2] jp-text-optimize indent-4">
 											「più Folle」は「もっと狂って」という意味を持ちます。
