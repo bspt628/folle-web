@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const router = useRouter();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -23,6 +25,11 @@ export default function Header() {
 		{ href: "/contact", label: "Contact Us" },
 	];
 
+	const handleLogoClick = (e: React.MouseEvent) => {
+		e.preventDefault();
+		router.push("/");
+	};
+
 	return (
 		<>
 			<header
@@ -32,7 +39,11 @@ export default function Header() {
 			>
 				<div className="container mx-auto px-4 py-4">
 					<div className="flex items-center justify-between">
-						<Link href="/" className="flex items-center space-x-3 group">
+						<Link
+							href="/"
+							onClick={handleLogoClick}
+							className="flex items-center space-x-3 group"
+						>
 							<Image
 								src="/logo.png"
 								alt="Orchestra più folle Logo"
