@@ -14,7 +14,7 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/red_back.jpg"
+						src="/black_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -36,7 +36,7 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/red_back.jpg"
+						src="/black_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -58,7 +58,7 @@ export default function ConcertDetailPage() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/red_back.jpg"
+					src="/black_back.jpg"
 					alt="Background"
 					fill
 					className="object-cover"
@@ -98,7 +98,7 @@ export default function ConcertDetailPage() {
 										<div className="space-y-4 text-white/90 mb-8">
 											<div className="space-y-1">
 												<div className="flex flex-wrap items-baseline gap-x-3">
-													<span className="text-[#cfa580] font-bold w-12">
+													<span className="text-white font-bold w-12">
 														日時:
 													</span>
 													<span className="break-all">
@@ -113,19 +113,19 @@ export default function ConcertDetailPage() {
 													</span>
 												</div>
 												<div className="flex flex-wrap items-baseline gap-x-3">
-													<span className="text-[#cfa580] font-bold w-12">
+													<span className="text-white font-bold w-12">
 														開場:
 													</span>
 													<span className="break-all">{concert.openTime}</span>
 												</div>
 												<div className="flex flex-wrap items-baseline gap-x-3">
-													<span className="text-[#cfa580] font-bold w-12">
+													<span className="text-white font-bold w-12">
 														開演:
 													</span>
 													<span className="break-all">{concert.startTime}</span>
 												</div>
 												<div className="flex flex-wrap items-baseline gap-x-3">
-													<span className="text-[#cfa580] font-bold w-12">
+													<span className="text-white font-bold w-12">
 														場所:
 													</span>
 													<span className="break-all">
@@ -181,20 +181,14 @@ export default function ConcertDetailPage() {
 												>
 													<Button
 														variant="outline"
-														className="w-full bg-[#b04940] hover:bg-[#c27f62] text-white border-0 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 relative py-3 group flex items-center gap-0"
 													>
 														<div className="w-[108px] h-[42px] relative">
 															<Image
 																src="/teket-logo-v-white.svg"
 																alt="Teket Logo"
 																fill
-																className="object-contain transition-opacity duration-200 group-hover:opacity-0"
-															/>
-															<Image
-																src="/teket-logo-v-dark.svg"
-																alt="Teket Logo"
-																fill
-																className="object-contain absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+																className="object-contain"
 															/>
 														</div>
 														<span className="-ml-4">で予約する</span>
@@ -204,7 +198,7 @@ export default function ConcertDetailPage() {
 												<div className="relative group">
 													<Button
 														variant="outline"
-														className="w-full bg-[#b04940] hover:bg-[#c27f62] text-white border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
 														disabled
 													>
 														<div className="w-[108px] h-[42px] relative">
@@ -212,13 +206,7 @@ export default function ConcertDetailPage() {
 																src="/teket-logo-v-white.svg"
 																alt="Teket Logo"
 																fill
-																className="object-contain transition-opacity duration-200 group-hover:opacity-0"
-															/>
-															<Image
-																src="/teket-logo-v-dark.svg"
-																alt="Teket Logo"
-																fill
-																className="object-contain absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+																className="object-contain"
 															/>
 														</div>
 														<span className="-ml-4">で予約する</span>

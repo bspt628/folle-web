@@ -91,7 +91,7 @@ export default function ContactPage() {
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 								<div className="flex flex-col items-center space-y-3">
-									<FileText className="text-[#cfa580]" size={32} />
+									<FileText className="text-[var(--accent-green)]" size={32} />
 									<div>
 										<h3 className="font-semibold text-white mb-1">フォーム</h3>
 										<p className="text-white/90">
@@ -103,7 +103,7 @@ export default function ContactPage() {
 								</div>
 
 								<div className="flex flex-col items-center space-y-3">
-									<Mail className="text-[#cfa580]" size={32} />
+									<Mail className="text-[var(--accent-green)]" size={32} />
 									<div>
 										<h3 className="font-semibold text-white mb-1">メール</h3>
 										<p className="text-white/90">
@@ -116,7 +116,10 @@ export default function ContactPage() {
 								</div>
 
 								<div className="flex flex-col items-center space-y-3">
-									<MessageCircle className="text-[#cfa580]" size={32} />
+									<MessageCircle
+										className="text-[var(--accent-green)]"
+										size={32}
+									/>
 									<div>
 										<h3 className="font-semibold text-white mb-1">SNS</h3>
 										<div className="flex flex-col items-center space-y-2">
@@ -124,7 +127,7 @@ export default function ContactPage() {
 												href="https://x.com/orchpiufolle"
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex items-center space-x-2 text-white/90 hover:text-[#C9A333] transition-colors"
+												className="flex items-center space-x-2 text-white/90 hover:text-[var(--accent-green)] transition-colors"
 											>
 												<Twitter size={20} />
 												<span>X (Twitter)</span>
@@ -133,7 +136,7 @@ export default function ContactPage() {
 												href="https://www.instagram.com/orchpiufolle/"
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex items-center space-x-2 text-white/90 hover:text-[#C9A333] transition-colors"
+												className="flex items-center space-x-2 text-white/90 hover:text-[var(--accent-green)] transition-colors"
 											>
 												<Instagram size={20} />
 												<span>Instagram</span>
