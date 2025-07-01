@@ -187,7 +187,7 @@ export default function HomePage() {
 									className="bg-white/20 backdrop-blur-md rounded-lg p-5"
 								>
 									<div className="flex items-center space-x-4">
-										<span className="text-[#cfa580] font-mono text-sm">
+										<span className="text-[var(--accent-green)] font-mono text-sm">
 											{item.date}
 										</span>
 										<h3 className="text-white font-medium">{item.title}</h3>

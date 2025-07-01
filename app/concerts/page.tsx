@@ -39,7 +39,7 @@ export default function ConcertsPage() {
 												/>
 											)}
 											{new Date(concert.date) > new Date() ? (
-												<div className="absolute top-4 right-4 bg-[#cfa580] text-white px-3 py-1 rounded-full text-sm font-semibold">
+												<div className="absolute top-4 right-4 bg-[var(--accent-green)] text-black px-3 py-1 rounded-full text-sm font-semibold">
 													開催予定
 												</div>
 											) : (
@@ -57,9 +57,7 @@ export default function ConcertsPage() {
 
 										<div className="space-y-1">
 											<div className="flex flex-wrap items-baseline gap-x-2">
-												<span className="text-[#cfa580] font-bold w-10">
-													日時:
-												</span>
+												<span className="text-white font-bold w-10">日時:</span>
 												<span className="break-all text-white">
 													{format(parseISO(concert.date), "yyyy.MM.dd(E)", {
 														locale: ja,
@@ -69,7 +67,7 @@ export default function ConcertsPage() {
 
 											{concert.openTime && (
 												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-[#cfa580] font-bold w-10">
+													<span className="text-white font-bold w-10">
 														開場:
 													</span>
 													<span className="break-all text-white">
@@ -80,7 +78,7 @@ export default function ConcertsPage() {
 
 											{concert.startTime && (
 												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-[#cfa580] font-bold w-10">
+													<span className="text-white font-bold w-10">
 														開演:
 													</span>
 													<span className="break-all text-white">
@@ -91,7 +89,7 @@ export default function ConcertsPage() {
 
 											{concert.venue?.name && (
 												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-[#cfa580] font-bold w-10">
+													<span className="text-white font-bold w-10">
 														場所:
 													</span>
 													<span className="break-all text-white">

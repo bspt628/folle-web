@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -30,9 +30,9 @@ export default function Footer() {
 							<Link
 								href="/"
 								onClick={handleLogoClick}
-								className="hover:text-[#C9A333] transition-colors flex items-center"
+								className="hover:text-[var(--accent-green)] transition-colors flex items-center"
 							>
-								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[#C9A333] transition-colors">
+								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[var(--accent-green)] transition-colors">
 									Orchestra più Folle
 								</h3>
 							</Link>
@@ -40,19 +40,19 @@ export default function Footer() {
 						<nav className="grid grid-cols-1 gap-2">
 							<Link
 								href="/about"
-								className="block hover:text-[#C9A333] transition-colors"
+								className="block hover:text-[var(--accent-green)] transition-colors"
 							>
 								About Us
 							</Link>
 							<Link
 								href="/concerts"
-								className="block hover:text-[#C9A333] transition-colors"
+								className="block hover:text-[var(--accent-green)] transition-colors"
 							>
 								Concerts
 							</Link>
 							<Link
 								href="/contact"
-								className="block hover:text-[#C9A333] transition-colors"
+								className="block hover:text-[var(--accent-green)] transition-colors"
 							>
 								Contact Us
 							</Link>
@@ -61,20 +61,26 @@ export default function Footer() {
 
 					{/* Social Media and Copyright */}
 					<div>
-						<div className="flex space-x-4">
+						<div className="flex space-x-4 h-6">
 							<a
 								href="https://x.com/orchpiufolle"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[#C9A333] transition-colors"
+								className="transition-colors group w-6 h-6 flex items-center justify-center"
 							>
-								<Twitter size={24} />
+								<Image
+									src="/x-logo-white.png"
+									alt="X (Twitter)"
+									width={24}
+									height={24}
+									className="transition-all duration-200 group-hover:[filter:brightness(100%)_sepia(100%)_hue-rotate(57deg)_saturate(1100%)]"
+								/>
 							</a>
 							<a
 								href="https://www.instagram.com/orchpiufolle/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[#C9A333] transition-colors"
+								className="hover:text-[var(--accent-green)] transition-colors w-6 h-6 flex items-center justify-center"
 							>
 								<Instagram size={24} />
 							</a>

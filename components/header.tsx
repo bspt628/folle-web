@@ -51,7 +51,7 @@ export default function Header() {
 								height={40}
 								className="rounded-full"
 							/>
-							<span className="text-xl font-medium tracking-tight text-white group-hover:text-[#C9A333] transition-colors duration-200">
+							<span className="text-xl font-medium tracking-tight text-white group-hover:text-[var(--accent-green)] transition-colors duration-200">
 								Orchestra più Folle
 							</span>
 						</Link>
@@ -62,7 +62,7 @@ export default function Header() {
 								<Link
 									key={item.href}
 									href={item.href}
-									className="text-white hover:text-[#C9A333] transition-colors duration-200"
+									className="text-white hover:text-[var(--accent-green)] transition-colors duration-200"
 								>
 									{item.label}
 								</Link>
@@ -71,7 +71,7 @@ export default function Header() {
 
 						{/* Mobile Menu Button */}
 						<button
-							className="md:hidden p-2 text-white hover:text-[#C9A333] transition-colors duration-200"
+							className="md:hidden p-2 text-white hover:text-[var(--accent-green)] transition-colors duration-200"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						>
 							{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -86,7 +86,7 @@ export default function Header() {
 									<Link
 										key={item.href}
 										href={item.href}
-										className="text-white hover:text-[#C9A333] transition-colors duration-200 py-2"
+										className="text-white hover:text-[var(--accent-green)] transition-colors duration-200 py-2"
 										onClick={() => setIsMobileMenuOpen(false)}
 									>
 										{item.label}

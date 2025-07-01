@@ -6,28 +6,29 @@
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 0 0% 20%;
-		--card: 0 0% 100%;
-		--card-foreground: 0 0% 20%;
+		--card: 47 65% 50%;
+		--card-foreground: 0 0% 100%;
 		--popover: 0 0% 100%;
 		--popover-foreground: 0 0% 20%;
-		--primary: 0 0% 20%;
-		--primary-foreground: 0 0% 20%;
+		--primary: 47 65% 50%;
+		--primary-foreground: 0 0% 100%;
 		--secondary: 0 0% 20%;
-		--secondary-foreground: 0 0% 20%;
+		--secondary-foreground: 0 0% 100%;
 		--muted: 0 0% 20%;
-		--muted-foreground: 0 0% 20%;
-		--accent: 0 0% 20%;
-		--accent-foreground: 0 0% 20%;
+		--muted-foreground: 0 0% 60%;
+		--accent: 47 65% 50%;
+		--accent-foreground: 0 0% 100%;
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 0 0% 98%;
-		--border: 0 0% 20%;
+		--border: 47 65% 50%;
 		--input: 0 0% 20%;
-		--ring: 0 0% 20%;
+		--ring: 47 65% 50%;
 		--radius: 0.5rem;
 		--radius-sm: calc(var(--radius) - 4px);
 		--radius-md: calc(var(--radius) - 2px);
 		--radius-lg: var(--radius);
 		--radius-xl: calc(var(--radius) + 4px);
+		--accent-green: #77e98a;
 
 		/* フォント変数 */
 		--font-roboto: var(--font-roboto);
