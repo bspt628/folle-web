@@ -55,7 +55,7 @@ export const CONCERTS: Concert[] = [
 		},
 		ticketPrice: [
 			{
-				category: "全席自由・入場無料",
+				category: "入場無料・全席自由",
 				price: null,
 			},
 		],

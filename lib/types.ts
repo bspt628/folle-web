@@ -3,20 +3,21 @@ export type NewsItem = {
 	title: string;
 };
 
-export type Concert = {
+export interface Venue {
+	name: string | null;
+}
+
+export interface Concert {
 	id: string;
 	title: string | null;
 	date: string;
 	openTime: string | null;
 	startTime: string | null;
-	venue: {
-		name: string | null;
-	};
+	venue: Venue;
 	program: {
 		composer: string | null;
 		title: string | null;
 	}[];
-	description?: string;
 	posterImage?: {
 		url: string | null;
 		width: number | null;
@@ -26,4 +27,6 @@ export type Concert = {
 		category: string;
 		price: number | null;
 	}[];
-};
+	teketUrl: string | null;
+	description?: string;
+}

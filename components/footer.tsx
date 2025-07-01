@@ -1,8 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
+	const router = useRouter();
+
+	const handleLogoClick = (e: React.MouseEvent) => {
+		e.preventDefault();
+		router.push("/");
+	};
+
 	return (
 		<footer className="relative text-white py-12">
 			<div className="absolute inset-0 overflow-hidden">
@@ -29,6 +39,7 @@ export default function Footer() {
 							/>
 							<Link
 								href="/"
+								onClick={handleLogoClick}
 								className="hover:text-[#C9A333] transition-colors flex items-center"
 							>
 								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[#C9A333] transition-colors">
