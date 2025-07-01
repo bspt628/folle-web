@@ -5,12 +5,12 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
 	{
-		date: "2025.07.02",
-		title: "第1回特別演奏会のチケットリンクを公開しました",
+		date: "2025.07.12",
+		title: "第1回特別演奏会の演奏会情報を公開しました",
 	},
 	{
-		date: "2025.06.30",
-		title: "Orchestra più FolleのWebサイトを公開しました",
+		date: "2025.07.12",
+		title: "Orchestra più Folle のWebサイトを公開しました",
 	},
 ];
 

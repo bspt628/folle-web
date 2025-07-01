@@ -59,7 +59,7 @@ export const CONCERTS: Concert[] = [
 				price: null,
 			},
 		],
-		teketUrl: null,
+		teketUrl: "https://teket.jp/14035/53069",
 		description:
 			"第1回特別演奏会は、指揮に水戸博之氏を迎え、「定番の曲目を熱狂的にお届けする」ことをテーマにした演奏会を開催予定です。\n東京大学音楽部管弦楽団の現役団員が中心となり、各個人が各々の個性や情熱をぶつけ、考え抜いた音楽を奏で、それを味わっていただく演奏会です。",
 	},
