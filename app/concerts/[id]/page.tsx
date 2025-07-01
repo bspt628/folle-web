@@ -14,7 +14,7 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/red_back.jpg"
+						src="/black_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -36,7 +36,7 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/red_back.jpg"
+						src="/black_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -58,7 +58,7 @@ export default function ConcertDetailPage() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/red_back.jpg"
+					src="/black_back.jpg"
 					alt="Background"
 					fill
 					className="object-cover"

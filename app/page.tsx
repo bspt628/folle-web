@@ -153,7 +153,7 @@ export default function HomePage() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/red_back.jpg"
+					src="/black_back.jpg"
 					alt="Orchestra Performance"
 					fill
 					className="object-cover"

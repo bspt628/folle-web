@@ -14,17 +14,7 @@ export default function Footer() {
 	};
 
 	return (
-		<footer className="relative text-white py-12">
-			<div className="absolute inset-0 overflow-hidden">
-				<Image
-					src="/black_back.jpg"
-					alt="Background"
-					fill
-					className="object-cover brightness-100"
-					priority={false}
-				/>
-			</div>
-			<div className="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
+		<footer className="relative text-white py-12 bg-black">
 			<div className="container mx-auto px-4 relative z-10">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{/* Site Map */}
