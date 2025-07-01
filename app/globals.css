@@ -110,3 +110,98 @@
 		@apply bg-theme-base text-white border border-theme-accent hover:bg-theme-accent/10 transition-colors;
 	}
 }
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-1080deg);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes logoFadeIn {
+	0% {
+		opacity: 1;
+		transform: scale(0.1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.3);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes slideIn {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	z-index: 1000;
+	opacity: 1;
+	transition: opacity 1s ease-in-out;
+	animation: none;
+}
+
+.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.text {
+	display: inline-block;
+	opacity: 0;
+}
+
+.logo {
+	opacity: 0;
+}
+
+.animate-spin {
+	animation: spin 2s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+	opacity: 1;
+}
+
+.animate-fade-in {
+	opacity: 1;
+	animation: logoFadeIn 1s ease-in-out forwards;
+}
+
+.slideIn {
+	animation: slideIn 1s ease-in-out forwards;
+}
+
+.text-fade-in {
+	animation: textFadeIn 1s ease-in-out forwards;
+	opacity: 1;
+}

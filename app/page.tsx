@@ -20,10 +20,77 @@ export default function HomePage() {
 			setUpcomingConcert(concert);
 		};
 		fetchData();
+
+		// アニメーションのタイミングを制御
+		const overlay = document.querySelector(".overlay") as HTMLElement;
+		const logo = document.querySelector(".logo") as HTMLElement;
+		const text = document.querySelector(".text") as HTMLElement;
+
+		setTimeout(() => {
+			if (logo) {
+				logo.classList.add("animate-fade-in");
+			}
+		}, 0);
+
+		setTimeout(() => {
+			if (logo) {
+				logo.classList.remove("animate-fade-in");
+				logo.classList.add("animate-spin");
+			}
+		}, 1000);
+
+		setTimeout(() => {
+			if (text) {
+				text.classList.add("text-fade-in");
+			}
+		}, 1000);
+
+		setTimeout(() => {
+			if (text) {
+				const textContent = "Orchestra più Folle";
+				text.innerHTML = "";
+
+				// Wrap each character in a span
+				textContent.split("").forEach((char) => {
+					const span = document.createElement("span");
+					span.textContent = char;
+					span.style.color = "white"; // Initial color
+					text.appendChild(span);
+				});
+
+				let index = 0;
+				const interval = setInterval(() => {
+					if (index < text.children.length) {
+						(text.children[index] as HTMLElement).style.color = "black"; // Change color to white
+						index++;
+					} else {
+						clearInterval(interval);
+					}
+				}, 100); // Adjust the speed of the color change here
+			}
+		}, 1000); // Start text animation after logo animation
+
+		setTimeout(() => {
+			if (overlay) {
+				overlay.classList.add("hidden");
+			}
+		}, 3500);
 	}, []);
 
 	return (
 		<div className="h-screen relative">
+			{/* オーバーレイ */}
+			<div className="overlay">
+				<Image
+					src="/logo.png"
+					alt="Logo"
+					className="logo"
+					width={100}
+					height={100}
+				/>
+				<div className="text text-white text-2xl">Orchestra più Folle</div>
+			</div>
+
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
@@ -115,7 +182,8 @@ export default function HomePage() {
 										<div className="flex items-center space-x-3">
 											<Clock size={18} className="text-[#cfa580]" />
 											<span className="text-sm md:text-base">
-												{upcomingConcert.startTime} 開演 （{upcomingConcert.openTime} 開場）
+												{upcomingConcert.startTime} 開演 （
+												{upcomingConcert.openTime} 開場）
 											</span>
 										</div>
 										<div className="flex items-center space-x-3 flex-nowrap min-w-0">
