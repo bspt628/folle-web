@@ -168,7 +168,7 @@ export default function HomePage() {
 				<div className="w-full h-auto flex flex-col">
 					{/* Logo and Title */}
 					<div className="relative pl-0 py-0">
-						<div className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] relative opacity-60 slow-rotate">
+						<div className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] relative opacity-60">
 							<Image
 								src="/logo-green-transparent.png"
 								alt="Folle Logo"
