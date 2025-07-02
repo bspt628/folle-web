@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="ja" className={`${roboto.variable} ${inter.variable}`}>
+			<head>
+				<link rel="icon" href="/logo.png" />
+			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
 				<Header />
 				<main className="flex-grow">{children}</main>

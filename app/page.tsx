@@ -165,14 +165,17 @@ export default function HomePage() {
 			{/* オーバーレイ */}
 			{showOverlay && (
 				<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
-					<Image
-						src="/logo.png"
-						alt="Logo"
-						className="logo"
-						width={100}
-						height={100}
-					/>
-					<div className="text text-white text-2xl">Orchestra più Folle</div>
+					<div className="flex items-center">
+						<Image
+							src="/logo.svg"
+							alt="Logo"
+							className="logo w-[200px] h-[200px]"
+							width={200}
+							height={200}
+							priority
+						/>
+						<div className="text text-white text-2xl">Orchestra più Folle</div>
+					</div>
 				</div>
 			)}
 
@@ -196,7 +199,7 @@ export default function HomePage() {
 					<div className="relative pl-0 py-0 flex justify-center md:justify-start">
 						<div className="w-[500px] h-[500px] sm:w-[560px] sm:h-[560px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px] relative opacity-40 slow-rotate">
 							<Image
-								src="/logo-green-transparent.png"
+								src="/logo.svg"
 								alt="Folle Logo"
 								fill
 								className="object-contain [filter:drop-shadow(0_0_10px_white)_brightness(1.1)]"
