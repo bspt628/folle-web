@@ -196,7 +196,7 @@ export default function HomePage() {
 					<div className="relative pl-0 py-0 flex justify-center md:justify-start">
 						<div className="w-[500px] h-[500px] sm:w-[560px] sm:h-[560px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px] relative opacity-40 slow-rotate">
 							<Image
-								src="/logo-green-transparent.png"
+								src="/logo.svg"
 								alt="Folle Logo"
 								fill
 								className="object-contain [filter:drop-shadow(0_0_10px_white)_brightness(1.1)]"
