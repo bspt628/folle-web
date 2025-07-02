@@ -75,7 +75,7 @@ export default function ConcertDetailPage() {
 							<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden">
 								<div className="flex flex-col lg:flex-row">
 									{/* ポスター画像 */}
-									<div className="w-full lg:w-auto p-2.5">
+									<div className="w-full lg:w-auto p-5">
 										<div
 											className="relative w-full lg:w-[360px] mx-auto"
 											style={{ aspectRatio: "0.707" }}
