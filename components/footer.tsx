@@ -1,18 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import { Instagram } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import LogoLink from "@/components/ui/logo-link";
 
 export default function Footer() {
-	const router = useRouter();
-
-	const handleLogoClick = (e: React.MouseEvent) => {
-		e.preventDefault();
-		router.push("/");
-	};
-
 	return (
 		<footer className="relative text-white py-12 bg-black">
 			<div className="container mx-auto px-4 relative z-10">
@@ -20,22 +11,7 @@ export default function Footer() {
 					{/* Site Map */}
 					<div>
 						<div className="flex items-center mb-4">
-							<Image
-								src="/logo.png"
-								alt="Logo"
-								width={30}
-								height={30}
-								className="mr-2"
-							/>
-							<Link
-								href="/"
-								onClick={handleLogoClick}
-								className="hover:text-[var(--accent-green)] transition-colors flex items-center"
-							>
-								<h3 className="text-xl font-medium tracking-tight text-white hover:text-[var(--accent-green)] transition-colors">
-									Orchestra più Folle
-								</h3>
-							</Link>
+							<LogoLink variant="footer" />
 						</div>
 						<nav className="grid grid-cols-1 gap-2">
 							<Link

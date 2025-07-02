@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { PageContainer } from "@/components/ui/page-container";
 import { Card } from "@/components/ui/card";
+import LogoLink from "@/components/ui/logo-link";
 
 export default function AboutPage() {
 	const historyItems = [
@@ -27,19 +27,14 @@ export default function AboutPage() {
 								{/* Logo and Title */}
 								<div className="relative pt-8 px-8 pb-4 flex items-center justify-center border-b border-white/10">
 									<div className="flex items-center gap-4">
-										<div className="relative w-16 h-16">
-											<Image
-												src="/logo.png"
-												alt="Orchestra più Folle Logo"
-												fill
+										<div className="relative w-72 h-18">
+											<LogoLink
+												variant="about"
+												withLink={false}
 												className="object-contain"
 											/>
 										</div>
-										<div>
-											<h2 className="text-4xl font-bold bg-gradient-to-r from-[var(--accent-green)] to-white bg-clip-text text-transparent">
-												Orchestra più Folle
-											</h2>
-										</div>
+										<div></div>
 									</div>
 								</div>
 

@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useRouter } from "next/navigation";
+import LogoLink from "@/components/ui/logo-link";
 
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const router = useRouter();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -25,36 +23,16 @@ export default function Header() {
 		{ href: "/contact", label: "Contact Us" },
 	];
 
-	const handleLogoClick = (e: React.MouseEvent) => {
-		e.preventDefault();
-		router.push("/");
-	};
-
 	return (
 		<>
 			<header
-				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/10 backdrop-blur-md border-b border-white/10 ${
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/20 backdrop-blur-xl border-b border-white/10 ${
 					isScrolled ? "shadow-sm" : ""
 				}`}
 			>
-				<div className="container mx-auto px-4 py-4">
+				<div className="container mx-auto ">
 					<div className="flex items-center justify-between">
-						<Link
-							href="/"
-							onClick={handleLogoClick}
-							className="flex items-center space-x-3 group"
-						>
-							<Image
-								src="/logo.png"
-								alt="Orchestra più folle Logo"
-								width={40}
-								height={40}
-								className="rounded-full"
-							/>
-							<span className="text-xl font-medium tracking-tight text-white group-hover:text-[var(--accent-green)] transition-colors duration-200">
-								Orchestra più Folle
-							</span>
-						</Link>
+						<LogoLink variant="header" />
 
 						{/* Desktop Navigation */}
 						<nav className="max-md:hidden flex items-center space-x-8">

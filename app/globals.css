@@ -4,81 +4,105 @@
 
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 0 0% 20%;
-		--card: 47 65% 50%;
-		--card-foreground: 0 0% 100%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 0 0% 20%;
-		--primary: 47 65% 50%;
-		--primary-foreground: 0 0% 100%;
-		--secondary: 0 0% 20%;
-		--secondary-foreground: 0 0% 100%;
-		--muted: 0 0% 20%;
+		/* ▼▼▼ 色の定義を整理 ▼▼▼ */
+		/* 基本色 */
+		--brand: 47 65% 50%;
+		--foreground-base: 0 0% 20%;
+		--background-base: 0 0% 100%;
+		--destructive-base: 0 84.2% 60.2%;
+		--accent-green-base: #77e98a;
+
+		/* ライトモードのテーマカラー */
+		--background: var(--background-base);
+		--foreground: var(--foreground-base);
+		--card: var(--brand);
+		--card-foreground: var(--background-base);
+		--popover: var(--background-base);
+		--popover-foreground: var(--foreground-base);
+		--primary: var(--brand);
+		--primary-foreground: var(--background-base);
+		--secondary: var(--foreground-base);
+		--secondary-foreground: var(--background-base);
+		--muted: var(--foreground-base);
 		--muted-foreground: 0 0% 60%;
-		--accent: 47 65% 50%;
-		--accent-foreground: 0 0% 100%;
-		--destructive: 0 84.2% 60.2%;
+		--accent: var(--brand);
+		--accent-foreground: var(--background-base);
+		--destructive: var(--destructive-base);
 		--destructive-foreground: 0 0% 98%;
-		--border: 47 65% 50%;
-		--input: 0 0% 20%;
-		--ring: 47 65% 50%;
+		--border: var(--brand);
+		--input: var(--foreground-base);
+		--ring: var(--brand);
+		--accent-green: var(--accent-green-base);
+
+		/* ▼▼▼ フォント変数の不要な定義を削除 ▼▼▼ */
+
+		/* 半径 */
 		--radius: 0.5rem;
 		--radius-sm: calc(var(--radius) - 4px);
 		--radius-md: calc(var(--radius) - 2px);
 		--radius-lg: var(--radius);
 		--radius-xl: calc(var(--radius) + 4px);
-		--accent-green: #77e98a;
-
-		/* フォント変数 */
-		--font-roboto: var(--font-roboto);
 	}
 
 	.dark {
-		--background: 0 0% 20%;
-		--foreground: 0 0% 20%;
-		--card: 0 0% 20%;
-		--card-foreground: 0 0% 20%;
-		--popover: 0 0% 20%;
-		--popover-foreground: 0 0% 20%;
-		--primary: 0 0% 20%;
-		--primary-foreground: 0 0% 20%;
-		--secondary: 0 0% 20%;
-		--secondary-foreground: 0 0% 20%;
-		--muted: 0 0% 20%;
-		--muted-foreground: 0 0% 20%;
-		--accent: 0 0% 20%;
-		--accent-foreground: 0 0% 20%;
-		--destructive: 0 62.8% 30.6%;
+		/* ダークモードの基本色（例）*/
+		--brand: 47 65% 60%;
+		--foreground-base: 0 0% 98%;
+		--background-base: 0 0% 9%;
+		--destructive-base: 0 62.8% 30.6%;
+
+		/* ダークモードのテーマカラー */
+		--background: var(--background-base);
+		--foreground: var(--foreground-base);
+		--card: var(--background-base);
+		--card-foreground: var(--foreground-base);
+		--popover: var(--background-base);
+		--popover-foreground: var(--foreground-base);
+		--primary: var(--brand);
+		--primary-foreground: var(--background-base);
+		--secondary: var(--foreground-base);
+		--secondary-foreground: var(--background-base);
+		--muted: var(--background-base);
+		--muted-foreground: 0 0% 60%;
+		--accent: var(--brand);
+		--accent-foreground: var(--background-base);
+		--destructive: var(--destructive-base);
 		--destructive-foreground: 0 85.7% 97.3%;
-		--border: 0 0% 20%;
-		--input: 0 0% 20%;
-		--ring: 0 0% 20%;
+		--border: var(--brand);
+		--input: var(--foreground-base);
+		--ring: var(--brand);
 	}
 
 	* {
-		@apply border-border;
+		@apply border-[hsl(var(--border))];
+	}
+
+	/* フォーカスリングのグローバルスタイル */
+	input:focus,
+	textarea:focus {
+		outline: none;
+		border-color: var(--accent-green);
+		box-shadow: 0 0 0 3px hsla(var(--accent-green), 0.3); /* hslaを使うとアルファ値も変数管理可能 */
 	}
 
 	body {
-		@apply bg-white text-gray-800;
-		overscroll-behavior-x: auto;
+		@apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+		font-family: "Roboto", sans-serif; /* var(--font-roboto)より直接指定を推奨 */
 		line-height: 1.8;
-		font-family: var(--font-roboto);
+		overscroll-behavior-x: auto;
 	}
 
-	/* font-feature-settings から "palt" 1 を削除 */
+	/* font-feature-settings は必要に応じて .font-sans で維持 */
 	.font-sans {
 		font-feature-settings: "kern" 1, "halt" 1, "jp78" 0, "jp83" 0, "jp90" 0;
 	}
 
-	/* 日本語テキストの最適化 */
+	/* 日本語テキストの最適化 (line-heightのみ) */
 	.jp-text-optimize {
 		line-height: 2;
-		font-family: var(--font-roboto);
 	}
 
-	/* 見出しの最適化 */
+	/* 見出しの最適化 (line-heightのみ) */
 	h1,
 	h2,
 	h3,
@@ -86,38 +110,46 @@
 	h5,
 	h6 {
 		line-height: 1.6;
-		font-family: var(--font-roboto);
 	}
 }
 
 @layer components {
+	/* ▼▼▼ font-familyを削除し、カラーをCSS変数に統一 ▼▼▼ */
 	.page-title {
-		@apply text-4xl font-bold tracking-tight text-white;
+		@apply text-4xl font-bold tracking-tight text-[hsl(var(--primary-foreground))];
 		line-height: 1.4;
-		font-family: var(--font-roboto);
 	}
 
 	.section-title {
-		@apply text-4xl font-semibold tracking-tight text-gray-800;
+		@apply text-4xl font-semibold tracking-tight text-[hsl(var(--foreground))];
 		line-height: 1.4;
-		font-family: var(--font-roboto);
 	}
 
 	.btn-primary {
-		@apply bg-theme-accent text-white hover:opacity-90 transition-opacity;
+		@apply bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:opacity-90 transition-opacity;
 	}
 
 	.btn-secondary {
-		@apply bg-theme-base text-white border border-theme-accent hover:bg-theme-accent/10 transition-colors;
+		@apply bg-transparent text-[hsl(var(--primary))] border border-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/0.1)] transition-colors;
 	}
 }
 
+/* --- アニメーション関連 (変更なし、ただし未定義のキーフレームを修正) --- */
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
 	}
 	100% {
 		transform: rotate(-1080deg);
+	}
+}
+
+@keyframes slowRotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
 	}
 }
 
@@ -223,6 +255,10 @@
 }
 
 .text-fade-in {
-	animation: textFadeIn 1s ease-in-out forwards;
+	animation: fadeIn 1s ease-in-out forwards;
 	opacity: 1;
+}
+
+.slow-rotate {
+	animation: slowRotate 30s linear infinite;
 }

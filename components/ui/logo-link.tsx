@@ -1,0 +1,53 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+interface LogoLinkProps {
+	variant?: "header" | "footer" | "about";
+	withLink?: boolean;
+	className?: string;
+}
+
+export default function LogoLink({
+	variant = "header",
+	withLink = true,
+	className = "",
+}: LogoLinkProps) {
+	const router = useRouter();
+
+	const handleLogoClick = (e: React.MouseEvent) => {
+		e.preventDefault();
+		router.push("/");
+	};
+
+	const logoSrc = variant === "footer" ? "/logo-mono.png" : "/logo-mono.png";
+	const logoWidth = 300;
+	const logoHeight = 60;
+
+	const imageComponent = (
+		<Image
+			src={logoSrc}
+			alt="Logo"
+			width={logoWidth}
+			height={logoHeight}
+			className={`mr-2 ${className}`}
+			priority={variant === "header"}
+		/>
+	);
+
+	if (!withLink) {
+		return imageComponent;
+	}
+
+	return (
+		<Link
+			href="/"
+			onClick={handleLogoClick}
+			className="hover:text-[var(--accent-green)] transition-colors flex items-center"
+		>
+			{imageComponent}
+		</Link>
+	);
+}
