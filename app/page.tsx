@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { getUpcomingConcert } from "@/lib/constants/concerts";
 import { getNewsItems } from "@/lib/constants/news";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NewsItem } from "@/lib/types";
 import { Concert } from "@/lib/types";
 import { useRouter, usePathname } from "next/navigation";
@@ -13,8 +13,47 @@ export default function HomePage() {
 	const [upcomingConcert, setUpcomingConcert] = useState<Concert | null>(null);
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [isFadingOut, setIsFadingOut] = useState(false);
+	const [newsOffset, setNewsOffset] = useState(0);
+	const [isMdScreen, setIsMdScreen] = useState(false);
+	const [isLgScreen, setIsLgScreen] = useState(false);
+	const newsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const pathname = usePathname();
+
+	// 画面サイズの監視
+	useEffect(() => {
+		const checkScreenSize = () => {
+			setIsMdScreen(window.innerWidth >= 768);
+			setIsLgScreen(window.innerWidth >= 1024);
+		};
+
+		checkScreenSize();
+		window.addEventListener("resize", checkScreenSize);
+
+		return () => {
+			window.removeEventListener("resize", checkScreenSize);
+		};
+	}, []);
+
+	// ニュースセクションの位置調整
+	useEffect(() => {
+		const updateNewsPosition = () => {
+			if (isMdScreen && newsRef.current) {
+				const newsHeight = newsRef.current.offsetHeight;
+				const bottomPadding = 32; // フッターからの余白
+				setNewsOffset(newsHeight + bottomPadding);
+			} else {
+				setNewsOffset(0);
+			}
+		};
+
+		updateNewsPosition();
+		window.addEventListener("resize", updateNewsPosition);
+
+		return () => {
+			window.removeEventListener("resize", updateNewsPosition);
+		};
+	}, [newsItems, isMdScreen]);
 
 	// データフェッチを別のuseEffectで管理
 	useEffect(() => {
@@ -41,20 +80,7 @@ export default function HomePage() {
 
 		// デバッグ情報の出力
 		const navigationType = getNavigationType();
-		// const currentUrl = window.location.href;
-		// const referrer = document.referrer;
 		const isInternalNavigation = prevPath !== null;
-
-		// console.group("Navigation Debug Info");
-		// console.log("Navigation Type:", navigationType);
-		// console.log("Referrer:", referrer);
-		// console.log("Current URL:", currentUrl);
-		// console.log("Previous Path:", prevPath);
-		// console.log("Current Path:", currentPath);
-		// console.log("Is Internal Navigation:", isInternalNavigation);
-		// console.log("Is Direct Access:", !isInternalNavigation);
-		// console.log("Is Reload:", navigationType === "reload");
-		// console.groupEnd();
 
 		// 現在のパスをセッションストレージに保存
 		sessionStorage.setItem("prevPath", currentPath);
@@ -165,10 +191,10 @@ export default function HomePage() {
 			{/* Content Container */}
 			<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
 				{/* Main Content */}
-				<div className="w-full h-auto flex flex-col">
+				<div className="w-full md:w-1/2 h-auto flex flex-col relative">
 					{/* Logo and Title */}
-					<div className="relative pl-0 py-0">
-						<div className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] relative opacity-60">
+					<div className="relative pl-0 py-0 flex justify-center md:justify-start">
+						<div className="w-[500px] h-[500px] sm:w-[560px] sm:h-[560px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px] relative opacity-40 slow-rotate">
 							<Image
 								src="/logo-green-transparent.png"
 								alt="Folle Logo"
@@ -177,30 +203,35 @@ export default function HomePage() {
 								priority
 							/>
 						</div>
-						<h1 className="absolute left-[180px] sm:left-[200px] md:left-[260px] lg:left-[300px] top-1/2 -translate-y-1/2 text-3xl sm:text-5xl md:text-3xl lg:text-4xl font-bold text-white whitespace-nowrap [text-shadow:0_0_10px_rgba(255,255,255,0.5)]">
-							Orchestra più Folle
-						</h1>
-					</div>
 
-					{/* News Section */}
-					<div className="mt-8 px-8">
-						<h2 className="text-2xl font-bold text-white mb-4">
-							What&apos;s New
-						</h2>
-						<div className="space-y-3 max-w-2xl">
-							{newsItems.map((item, index) => (
-								<div
-									key={index}
-									className="bg-white/20 backdrop-blur-md rounded-lg p-5"
-								>
-									<div className="flex items-center space-x-4">
-										<span className="text-[var(--accent-green)] font-mono text-sm">
-											{item.date}
-										</span>
-										<h3 className="text-white font-medium">{item.title}</h3>
+						{/* News Section - Overlapping with Logo */}
+						<div
+							ref={newsRef}
+							className="absolute left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 top-1/2 md:top-auto md:bottom-0 -translate-y-1/2 md:translate-y-0 w-[calc(100%-32px)] md:w-[min(calc(50vw-80px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-96px),calc((100vh-200px)*0.707))]"
+							style={{
+								transform: `translate(${isLgScreen ? "0" : "-50%"}, ${
+									isMdScreen ? `-${newsOffset}px` : "-50%"
+								})`,
+							}}
+						>
+							<h2 className="text-2xl font-bold text-white mb-4">
+								What&apos;s New
+							</h2>
+							<div className="space-y-3">
+								{newsItems.map((item, index) => (
+									<div
+										key={index}
+										className="bg-white/20 backdrop-blur-md rounded-lg p-5"
+									>
+										<div className="flex items-center space-x-4">
+											<span className="text-white font-mono text-sm">
+												{item.date}
+											</span>
+											<h3 className="text-white font-medium">{item.title}</h3>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -208,29 +239,23 @@ export default function HomePage() {
 				{/* Right Side - Upcoming Concert */}
 				<div className="w-full md:w-1/2 h-auto md:h-full p-4 md:p-8 flex items-center justify-center">
 					{upcomingConcert && (
-						<div className="w-full max-w-[360px]">
+						<div className="w-[calc(100%-96px)] md:w-[min(calc(50vw-80px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-96px),calc((100vh-200px)*0.707))] h-full flex flex-col">
 							<h2 className="text-2xl font-bold text-white mb-6">
 								Upcoming Concert
 							</h2>
 							<div
 								onClick={handleConcertClick}
-								className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.98] cursor-pointer"
+								className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.98] cursor-pointer p-5"
+								style={{ aspectRatio: "0.707" }}
 							>
-								<div className="p-5">
-									<div
-										className="relative w-full"
-										style={{ aspectRatio: "0.707" }}
-									>
-										<Image
-											src={
-												upcomingConcert.posterImage?.url || "/placeholder.jpg"
-											}
-											alt={`${upcomingConcert.title} Poster`}
-											fill
-											className="object-cover rounded-lg"
-											priority
-										/>
-									</div>
+								<div className="relative w-full h-full">
+									<Image
+										src={upcomingConcert.posterImage?.url || "/placeholder.jpg"}
+										alt={`${upcomingConcert.title} Poster`}
+										fill
+										className="object-cover rounded-lg"
+										priority
+									/>
 								</div>
 							</div>
 						</div>
