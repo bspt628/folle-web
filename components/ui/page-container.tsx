@@ -14,7 +14,7 @@ export function PageContainer({
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/black_back.jpg"
+					src="/gray_back.jpg"
 					alt="Background"
 					fill
 					className="object-cover"

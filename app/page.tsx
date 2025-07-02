@@ -153,34 +153,41 @@ export default function HomePage() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/black_back.jpg"
+					src="/gray_back.jpg"
 					alt="Orchestra Performance"
 					fill
 					className="object-cover"
 					priority
 				/>
-				<div className="absolute inset-0 bg-black/60" />
+				<div className="absolute inset-0 bg-black/40" />
 			</div>
 
 			{/* Content Container */}
 			<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
-				{/* Left Side */}
-				<div className="w-full md:w-1/2 h-auto md:h-full flex flex-col">
-					{/* Hero Content */}
-					<div className="flex-1 flex items-center justify-center p-8">
-						<div className="text-center">
-							<h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-								Orchestra più Folle
-							</h1>
+				{/* Main Content */}
+				<div className="w-full h-auto flex flex-col">
+					{/* Logo and Title */}
+					<div className="relative pl-0 py-0">
+						<div className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] relative opacity-60 slow-rotate">
+							<Image
+								src="/logo-green-transparent.png"
+								alt="Folle Logo"
+								fill
+								className="object-contain [filter:drop-shadow(0_0_10px_white)_brightness(1.1)]"
+								priority
+							/>
 						</div>
+						<h1 className="absolute left-[180px] sm:left-[200px] md:left-[260px] lg:left-[300px] top-1/2 -translate-y-1/2 text-3xl sm:text-5xl md:text-3xl lg:text-4xl font-bold text-white whitespace-nowrap [text-shadow:0_0_10px_rgba(255,255,255,0.5)]">
+							Orchestra più Folle
+						</h1>
 					</div>
 
 					{/* News Section */}
-					<div className="p-4 md:p-8">
+					<div className="mt-8 px-8">
 						<h2 className="text-2xl font-bold text-white mb-4">
 							What&apos;s New
 						</h2>
-						<div className="space-y-3">
+						<div className="space-y-3 max-w-2xl">
 							{newsItems.map((item, index) => (
 								<div
 									key={index}
