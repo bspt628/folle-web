@@ -165,14 +165,17 @@ export default function HomePage() {
 			{/* オーバーレイ */}
 			{showOverlay && (
 				<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
-					<Image
-						src="/logo.png"
-						alt="Logo"
-						className="logo"
-						width={100}
-						height={100}
-					/>
-					<div className="text text-white text-2xl">Orchestra più Folle</div>
+					<div className="flex items-center">
+						<Image
+							src="/logo.svg"
+							alt="Logo"
+							className="logo w-[200px] h-[200px]"
+							width={200}
+							height={200}
+							priority
+						/>
+						<div className="text text-white text-2xl">Orchestra più Folle</div>
+					</div>
 				</div>
 			)}
 
