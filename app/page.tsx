@@ -242,7 +242,7 @@ export default function HomePage() {
 				{/* Right Side - Upcoming Concert */}
 				<div className="w-full md:w-1/2 h-auto md:h-full p-4 md:p-8 flex items-center justify-center">
 					{upcomingConcert && (
-						<div className="w-[calc(100%-96px)] md:w-[min(calc(50vw-80px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-96px),calc((100vh-200px)*0.707))] h-full flex flex-col">
+						<div className="w-[calc(100%-96px)] md:w-[min(calc(50vw-40px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-36px),calc((100vh-200px)*0.707))] h-full flex flex-col">
 							<h2 className="text-2xl font-bold text-white mb-6">
 								Upcoming Concert
 							</h2>

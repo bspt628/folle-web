@@ -22,7 +22,7 @@ export default function LogoLink({
 		router.push("/");
 	};
 
-	const logoSrc = variant === "footer" ? "/logo-mono.png" : "/logo-mono.png";
+	const logoSrc = variant === "footer" ? "/logo-mono.png" : "/logo-color.png";
 	const logoWidth = 300;
 	const logoHeight = 60;
 
