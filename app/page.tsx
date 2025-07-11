@@ -13,47 +13,9 @@ export default function HomePage() {
 	const [upcomingConcert, setUpcomingConcert] = useState<Concert | null>(null);
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [isFadingOut, setIsFadingOut] = useState(false);
-	const [newsOffset, setNewsOffset] = useState(0);
-	const [isMdScreen, setIsMdScreen] = useState(false);
-	const [isLgScreen, setIsLgScreen] = useState(false);
 	const newsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const pathname = usePathname();
-
-	// 画面サイズの監視
-	useEffect(() => {
-		const checkScreenSize = () => {
-			setIsMdScreen(window.innerWidth >= 768);
-			setIsLgScreen(window.innerWidth >= 1024);
-		};
-
-		checkScreenSize();
-		window.addEventListener("resize", checkScreenSize);
-
-		return () => {
-			window.removeEventListener("resize", checkScreenSize);
-		};
-	}, []);
-
-	// ニュースセクションの位置調整
-	useEffect(() => {
-		const updateNewsPosition = () => {
-			if (isMdScreen && newsRef.current) {
-				const newsHeight = newsRef.current.offsetHeight;
-				const bottomPadding = 32; // フッターからの余白
-				setNewsOffset(newsHeight + bottomPadding);
-			} else {
-				setNewsOffset(0);
-			}
-		};
-
-		updateNewsPosition();
-		window.addEventListener("resize", updateNewsPosition);
-
-		return () => {
-			window.removeEventListener("resize", updateNewsPosition);
-		};
-	}, [newsItems, isMdScreen]);
 
 	// データフェッチを別のuseEffectで管理
 	useEffect(() => {
@@ -194,10 +156,11 @@ export default function HomePage() {
 			{/* Content Container */}
 			<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
 				{/* Main Content */}
-				<div className="w-full md:w-1/2 h-auto flex flex-col relative">
-					{/* Logo and Title */}
-					<div className="relative pl-0 py-0 flex justify-center md:justify-start">
-						<div className="w-[500px] h-[500px] sm:w-[560px] sm:h-[560px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px] relative opacity-40 slow-rotate">
+				<div className="md:w-1/2">
+					{/* Logo and News Container */}
+					<div className="relative w-full">
+						{/* Logo */}
+						<div className="sm:hidden md:block w-[50vw] h-[50vw] opacity-40 slow-rotate absolute translate-y-1/2">
 							<Image
 								src="/logo.svg"
 								alt="Folle Logo"
@@ -207,19 +170,9 @@ export default function HomePage() {
 							/>
 						</div>
 
-						{/* News Section - Overlapping with Logo */}
-						<div
-							ref={newsRef}
-							className="absolute left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 top-1/2 md:top-auto md:bottom-0 -translate-y-1/2 md:translate-y-0 w-[calc(100%-32px)] md:w-[min(calc(50vw-80px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-96px),calc((100vh-200px)*0.707))]"
-							style={{
-								transform: `translate(${isLgScreen ? "0" : "-50%"}, ${
-									isMdScreen ? `-${newsOffset}px` : "-50%"
-								})`,
-							}}
-						>
-							<h2 className="text-2xl font-bold text-white mb-4">
-								What&apos;s New
-							</h2>
+						{/* News Section */}
+						<div ref={newsRef} className="w-full p-8">
+							<h2 className="text-2xl font-bold text-white mb-4">News</h2>
 							<div className="space-y-3">
 								{newsItems.map((item, index) => (
 									<div
@@ -230,7 +183,7 @@ export default function HomePage() {
 											<span className="text-white font-mono text-sm">
 												{item.date}
 											</span>
-											<h3 className="text-white font-medium">{item.title}</h3>
+											<h3 className="text-white font-small">{item.title}</h3>
 										</div>
 									</div>
 								))}
@@ -240,9 +193,9 @@ export default function HomePage() {
 				</div>
 
 				{/* Right Side - Upcoming Concert */}
-				<div className="w-full md:w-1/2 h-auto md:h-full p-4 md:p-8 flex items-center justify-center">
+				<div className="w-full md:w-1/2 h-auto md:h-full p-4 flex items-center justify-center mt-[calc(100vh-5rem)] md:mt-0">
 					{upcomingConcert && (
-						<div className="w-[calc(100%-96px)] md:w-[min(calc(50vw-40px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-36px),calc((100vh-200px)*0.707))] h-full flex flex-col">
+						<div className="w-[calc(100%-96px)] md:w-[min(calc(50vw-60px),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw-64px),calc((100vh-200px)*0.707))] h-full flex flex-col">
 							<h2 className="text-2xl font-bold text-white mb-6">
 								Upcoming Concert
 							</h2>

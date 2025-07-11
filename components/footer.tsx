@@ -16,19 +16,19 @@ export default function Footer() {
 						<nav className="grid grid-cols-1 gap-2">
 							<Link
 								href="/about"
-								className="block hover:text-[var(--accent-green)] transition-colors"
+								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
 								About Us
 							</Link>
 							<Link
 								href="/concerts"
-								className="block hover:text-[var(--accent-green)] transition-colors"
+								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
 								Concerts
 							</Link>
 							<Link
 								href="/contact"
-								className="block hover:text-[var(--accent-green)] transition-colors"
+								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
 								Contact Us
 							</Link>
@@ -42,23 +42,23 @@ export default function Footer() {
 								href="https://x.com/orchpiufolle"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="transition-colors group w-6 h-6 flex items-center justify-center"
+								className="w-6 h-6 flex items-center justify-center hover:scale-95 transition-transform"
 							>
 								<Image
 									src="/x-logo-white.png"
 									alt="X (Twitter)"
 									width={24}
 									height={24}
-									className="transition-all duration-200 group-hover:[filter:brightness(100%)_sepia(100%)_hue-rotate(57deg)_saturate(1100%)]"
+									className="opacity-90"
 								/>
 							</a>
 							<a
 								href="https://www.instagram.com/orchpiufolle/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--accent-green)] transition-colors w-6 h-6 flex items-center justify-center"
+								className="w-6 h-6 flex items-center justify-center hover:scale-95 transition-transform"
 							>
-								<Instagram size={24} />
+								<Instagram size={24} className="opacity-90" />
 							</a>
 						</div>
 						<p className="mt-4 text-white/80">

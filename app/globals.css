@@ -6,7 +6,7 @@
 	:root {
 		/* ▼▼▼ 色の定義を整理 ▼▼▼ */
 		/* 基本色 */
-		--brand: 47 65% 50%;
+		--brand: 43 55% 42%; /* より落ち着いた金色 */
 		--foreground-base: 0 0% 20%;
 		--background-base: 0 0% 100%;
 		--destructive-base: 0 84.2% 60.2%;

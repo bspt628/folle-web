@@ -45,7 +45,7 @@ export default function LogoLink({
 		<Link
 			href="/"
 			onClick={handleLogoClick}
-			className="hover:text-[var(--accent-green)] transition-colors flex items-center"
+			className="hover:scale-95 transition-transform flex items-center"
 		>
 			{imageComponent}
 		</Link>

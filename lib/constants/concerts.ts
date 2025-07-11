@@ -4,6 +4,7 @@ export type Concert = {
 	date: string;
 	openTime: string | null;
 	startTime: string | null;
+	conductor: string | null;
 	venue: {
 		name: string | null;
 	};
@@ -31,6 +32,7 @@ export const CONCERTS: Concert[] = [
 		date: "2025-11-09",
 		openTime: "13:00",
 		startTime: "13:30",
+		conductor: "水戸博之",
 		venue: {
 			name: "所沢市民文化センター ミューズ アークホール",
 		},
@@ -49,7 +51,7 @@ export const CONCERTS: Concert[] = [
 			},
 		],
 		posterImage: {
-			url: "/Fオケ第1回定演_ビラ案(赤色)_微修正2.png",
+			url: "/1stビラ.png",
 			width: 2894,
 			height: 4093,
 		},

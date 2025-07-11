@@ -40,7 +40,7 @@ export default function Header() {
 								<Link
 									key={item.href}
 									href={item.href}
-									className="text-white hover:text-[var(--accent-green)] transition-colors duration-200"
+									className="text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors duration-200"
 								>
 									{item.label}
 								</Link>
@@ -49,7 +49,7 @@ export default function Header() {
 
 						{/* Mobile Menu Button */}
 						<button
-							className="md:hidden p-2 text-white hover:text-[var(--accent-green)] transition-colors duration-200"
+							className="md:hidden p-2 text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors duration-200"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						>
 							{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -64,7 +64,7 @@ export default function Header() {
 									<Link
 										key={item.href}
 										href={item.href}
-										className="text-white hover:text-[var(--accent-green)] transition-colors duration-200 py-2"
+										className="text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors duration-200 py-2"
 										onClick={() => setIsMobileMenuOpen(false)}
 									>
 										{item.label}

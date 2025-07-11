@@ -132,6 +132,12 @@ export default function ConcertDetailPage() {
 														{concert.venue.name}
 													</span>
 												</div>
+												<div className="flex flex-wrap items-baseline gap-x-3">
+													<span className="text-white font-bold w-12">
+														指揮:
+													</span>
+													<span className="break-all">{concert.conductor}</span>
+												</div>
 											</div>
 										</div>
 
@@ -181,7 +187,7 @@ export default function ConcertDetailPage() {
 												>
 													<Button
 														variant="outline"
-														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] border-0 relative py-3 group flex items-center gap-0"
 													>
 														<div className="w-[108px] h-[42px] relative">
 															<Image
@@ -198,7 +204,7 @@ export default function ConcertDetailPage() {
 												<div className="relative group">
 													<Button
 														variant="outline"
-														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[hsl(var(--primary))] hover:brightness-105 text-[hsl(var(--primary-foreground))] border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
 														disabled
 													>
 														<div className="w-[108px] h-[42px] relative">
