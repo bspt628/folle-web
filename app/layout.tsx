@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { roboto, inter } from "@/app/ui/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
 	title: "Orchestra più Folle",
@@ -24,6 +25,7 @@ export default function RootLayout({
 				<Header />
 				<main className="flex-grow">{children}</main>
 				<Footer />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
