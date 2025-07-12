@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { format, parseISO } from "date-fns";
+import { ja } from "date-fns/locale";
 import { useConcert } from "@/lib/hooks/useConcerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -20,7 +22,7 @@ export default function ConcertDetailPage() {
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/60" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -42,7 +44,7 @@ export default function ConcertDetailPage() {
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/60" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -64,7 +66,7 @@ export default function ConcertDetailPage() {
 					className="object-cover"
 					priority
 				/>
-				<div className="absolute inset-0 bg-black/60" />
+				<div className="absolute inset-0 bg-black/50" />
 			</div>
 
 			{/* Content */}
@@ -102,14 +104,9 @@ export default function ConcertDetailPage() {
 														日時:
 													</span>
 													<span className="break-all">
-														{new Date(concert.date)
-															.toLocaleDateString("ja-JP", {
-																year: "numeric",
-																month: "2-digit",
-																day: "2-digit",
-																weekday: "short",
-															})
-															.replace(/\//g, ".")}
+														{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
+															locale: ja,
+														})}
 													</span>
 												</div>
 												<div className="flex flex-wrap items-baseline gap-x-3">
@@ -131,6 +128,12 @@ export default function ConcertDetailPage() {
 													<span className="break-all">
 														{concert.venue.name}
 													</span>
+												</div>
+												<div className="flex flex-wrap items-baseline gap-x-3">
+													<span className="text-white font-bold w-12">
+														指揮:
+													</span>
+													<span className="break-all">{concert.conductor}</span>
 												</div>
 											</div>
 										</div>
@@ -178,10 +181,11 @@ export default function ConcertDetailPage() {
 													href={concert.teketUrl}
 													target="_blank"
 													rel="noopener noreferrer"
+													className="mt-8 flex justify-center"
 												>
 													<Button
 														variant="outline"
-														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] border-0 relative py-3 group flex items-center gap-0"
 													>
 														<div className="w-[108px] h-[42px] relative">
 															<Image
@@ -198,7 +202,7 @@ export default function ConcertDetailPage() {
 												<div className="relative group">
 													<Button
 														variant="outline"
-														className="w-full bg-[#005137] hover:bg-[#006142] text-white border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
+														className="w-full bg-[hsl(var(--primary))] hover:brightness-105 text-[hsl(var(--primary-foreground))] border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
 														disabled
 													>
 														<div className="w-[108px] h-[42px] relative">

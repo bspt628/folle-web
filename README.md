@@ -63,7 +63,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 			},
 		],
 		posterImage: { // ビラ
-			url: "/Fオケ第1回定演_ビラ案(赤色)_微修正2.png",
+			url: "/1stビラ.png",
 			width: 2894,
 			height: 4093,
 		},

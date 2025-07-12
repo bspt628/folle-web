@@ -124,25 +124,29 @@ export default function ContactPage() {
 												href="https://x.com/orchpiufolle"
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex items-center space-x-2 text-white/90 hover:text-[var(--accent-green)] transition-colors group"
+												className="flex items-center space-x-2 group"
 											>
 												<Image
 													src="/x-logo-white.png"
 													alt="X (Twitter)"
 													width={20}
 													height={20}
-													className="transition-all duration-200 group-hover:[filter:brightness(100%)_sepia(100%)_hue-rotate(57deg)_saturate(1100%)]"
+													className="opacity-90"
 												/>
-												<span>X (Twitter)</span>
+												<span className="text-white/90 group-hover:text-[hsl(var(--primary))] group-hover:brightness-150 transition-colors">
+													X (旧Twitter)
+												</span>
 											</a>
 											<a
 												href="https://www.instagram.com/orchpiufolle/"
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex items-center space-x-2 text-white/90 hover:text-[var(--accent-green)] transition-colors"
+												className="flex items-center space-x-2 text-white/90 group"
 											>
-												<Instagram size={20} />
-												<span>Instagram</span>
+												<Instagram size={20} className="opacity-90" />
+												<span className="text-white/90 group-hover:text-[hsl(var(--primary))] group-hover:brightness-150 transition-colors">
+													Instagram
+												</span>
 											</a>
 										</div>
 									</div>
@@ -265,13 +269,13 @@ export default function ContactPage() {
 									/>
 								</div>
 
-								<div className="text-center">
+								<div className="flex justify-center">
 									<Button
 										type="submit"
-										className="bg-[var(--accent-green)] hover:bg-[#006142] text-white px-8"
 										disabled={isSubmitting}
+										className="bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] min-w-[200px]"
 									>
-										{isSubmitting ? "送信中..." : "送信する"}
+										{isSubmitting ? "送信中..." : "送信"}
 									</Button>
 								</div>
 							</form>
