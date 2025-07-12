@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { NewsItem } from "@/lib/types";
 import { Concert } from "@/lib/types";
 import { useRouter, usePathname } from "next/navigation";
-import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
+// import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function HomePage() {
 	const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
@@ -17,7 +17,7 @@ export default function HomePage() {
 	const newsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const pathname = usePathname();
-	const isMdScreen = useMediaQuery("(min-width: 768px)");
+	// const isMdScreen = useMediaQuery("(min-width: 768px)");
 
 	// データフェッチを別のuseEffectで管理
 	useEffect(() => {
@@ -161,8 +161,8 @@ export default function HomePage() {
 				<div className="w-full md:w-1/2">
 					{/* Logo and News Container */}
 					<div className="relative h-full flex flex-col">
-						{/* Logo */}
-						{isMdScreen ? (
+						{/* Logo - temporarily hidden */}
+						{/* {isMdScreen ? (
 							<div className="w-[50vw] h-[50vw] opacity-40 slow-rotate absolute bottom-0">
 								<Image
 									src="/logo.svg"
@@ -172,7 +172,7 @@ export default function HomePage() {
 									priority
 								/>
 							</div>
-						) : null}
+						) : null} */}
 
 						{/* News Section */}
 						<div ref={newsRef} className="px-6 py-8">
