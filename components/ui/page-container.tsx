@@ -20,7 +20,7 @@ export function PageContainer({
 					className="object-cover"
 					priority
 				/>
-				<div className="absolute inset-0 bg-black/60" />
+				<div className="absolute inset-0 bg-black/50" />
 			</div>
 
 			{/* Content */}

@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { format, parseISO } from "date-fns";
+import { ja } from "date-fns/locale";
 import { useConcert } from "@/lib/hooks/useConcerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -20,7 +22,7 @@ export default function ConcertDetailPage() {
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/60" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -42,7 +44,7 @@ export default function ConcertDetailPage() {
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/60" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -64,7 +66,7 @@ export default function ConcertDetailPage() {
 					className="object-cover"
 					priority
 				/>
-				<div className="absolute inset-0 bg-black/60" />
+				<div className="absolute inset-0 bg-black/50" />
 			</div>
 
 			{/* Content */}
@@ -102,14 +104,9 @@ export default function ConcertDetailPage() {
 														日時:
 													</span>
 													<span className="break-all">
-														{new Date(concert.date)
-															.toLocaleDateString("ja-JP", {
-																year: "numeric",
-																month: "2-digit",
-																day: "2-digit",
-																weekday: "short",
-															})
-															.replace(/\//g, ".")}
+														{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
+															locale: ja,
+														})}
 													</span>
 												</div>
 												<div className="flex flex-wrap items-baseline gap-x-3">
@@ -184,6 +181,7 @@ export default function ConcertDetailPage() {
 													href={concert.teketUrl}
 													target="_blank"
 													rel="noopener noreferrer"
+													className="mt-8 flex justify-center"
 												>
 													<Button
 														variant="outline"

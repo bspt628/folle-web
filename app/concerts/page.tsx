@@ -39,7 +39,7 @@ export default function ConcertsPage() {
 												/>
 											)}
 											{new Date(concert.date) > new Date() ? (
-												<div className="absolute top-4 right-4 bg-[var(--accent-green)] text-black px-3 py-1 rounded-full text-sm font-semibold">
+												<div className="absolute top-4 right-4 bg-[#FFD700]/50 text-black px-3 py-1 rounded-full text-sm font-semibold">
 													開催予定
 												</div>
 											) : (
@@ -51,52 +51,15 @@ export default function ConcertsPage() {
 									</div>
 
 									<div className="p-5">
-										<h2 className="text-xl font-bold text-white mb-6 break-words">
-											{concert.title}
-										</h2>
-
-										<div className="space-y-1">
-											<div className="flex flex-wrap items-baseline gap-x-2">
-												<span className="text-white font-bold w-10">日時:</span>
-												<span className="break-all text-white">
-													{format(parseISO(concert.date), "yyyy.MM.dd(E)", {
-														locale: ja,
-													})}
-												</span>
-											</div>
-
-											{concert.openTime && (
-												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-white font-bold w-10">
-														開場:
-													</span>
-													<span className="break-all text-white">
-														{concert.openTime}
-													</span>
-												</div>
-											)}
-
-											{concert.startTime && (
-												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-white font-bold w-10">
-														開演:
-													</span>
-													<span className="break-all text-white">
-														{concert.startTime}
-													</span>
-												</div>
-											)}
-
-											{concert.venue?.name && (
-												<div className="flex flex-wrap items-baseline gap-x-2">
-													<span className="text-white font-bold w-10">
-														場所:
-													</span>
-													<span className="break-all text-white">
-														{concert.venue.name}
-													</span>
-												</div>
-											)}
+										<div className="flex justify-between items-center">
+											<h2 className="text-xl font-bold text-white break-words">
+												{concert.title}
+											</h2>
+											<span className="text-white">
+												{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
+													locale: ja,
+												})}
+											</span>
 										</div>
 									</div>
 								</div>

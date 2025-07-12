@@ -31,7 +31,7 @@ export default function Header() {
 				}`}
 			>
 				<div className="container mx-auto ">
-					<div className="flex items-center justify-between">
+					<div className="flex items-center justify-between py-2">
 						<LogoLink variant="header" />
 
 						{/* Desktop Navigation */}

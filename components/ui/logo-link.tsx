@@ -22,9 +22,9 @@ export default function LogoLink({
 		router.push("/");
 	};
 
-	const logoSrc = variant === "footer" ? "/logo-mono.png" : "/logo-color.png";
-	const logoWidth = 300;
-	const logoHeight = 60;
+	const logoSrc = "/logo-mono.png";
+	const logoWidth = 240;
+	const logoHeight = 48;
 
 	const imageComponent = (
 		<Image
@@ -45,7 +45,7 @@ export default function LogoLink({
 		<Link
 			href="/"
 			onClick={handleLogoClick}
-			className="hover:scale-95 transition-transform flex items-center"
+			className="transition-transform flex items-center"
 		>
 			{imageComponent}
 		</Link>
