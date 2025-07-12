@@ -134,7 +134,7 @@ export default function ContactPage() {
 													className="opacity-90"
 												/>
 												<span className="text-white/90 group-hover:text-[hsl(var(--primary))] group-hover:brightness-150 transition-colors">
-													X (Twitter)
+													X (旧Twitter)
 												</span>
 											</a>
 											<a

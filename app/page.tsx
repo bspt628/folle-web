@@ -197,7 +197,7 @@ export default function HomePage() {
 				</div>
 
 				{/* Right Side - Upcoming Concert */}
-				<div className="w-full md:w-1/2 px-6 py-4 flex items-start justify-center mt-8 md:mt-0">
+				<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
 					{upcomingConcert && (
 						<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
 							<h2 className="text-2xl font-bold text-white mb-6">

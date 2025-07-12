@@ -23,7 +23,7 @@ export default function ConcertsPage() {
 					<div className="max-w-md mx-auto space-y-8">
 						{concerts.map((concert) => (
 							<Link key={concert.id} href={`/concerts/${concert.id}`}>
-								<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 transition-all cursor-pointer">
+								<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 hover:scale-[0.98] transition-all cursor-pointer">
 									<div className="p-5">
 										<div
 											className="relative w-full"
