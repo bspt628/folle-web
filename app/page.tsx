@@ -129,15 +129,17 @@ export default function HomePage() {
 			{/* オーバーレイ */}
 			{showOverlay && (
 				<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
-					<div className="flex items-center">
-						<Image
-							src="/logo.svg"
-							alt="Logo"
-							className="logo w-[200px] h-[200px]"
-							width={200}
-							height={200}
-							priority
-						/>
+					<div className="flex items-center justify-center gap-4">
+						<div className="relative flex items-center justify-center">
+							<Image
+								src="/logo.svg"
+								alt="Logo"
+								className="logo"
+								width={489}
+								height={489}
+								priority
+							/>
+						</div>
 						<div className="text text-white text-2xl">Orchestra più Folle</div>
 					</div>
 				</div>
@@ -207,6 +209,17 @@ export default function HomePage() {
 								onClick={handleConcertClick}
 								className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.97] cursor-pointer p-4"
 								style={{ aspectRatio: "0.707" }}
+								role="button"
+								tabIndex={0}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										e.preventDefault();
+										handleConcertClick();
+									}
+								}}
+								aria-label={`${
+									upcomingConcert?.title || "次回演奏会"
+								}の詳細を見る`}
 							>
 								<div className="relative w-full h-full">
 									<Image
@@ -215,6 +228,8 @@ export default function HomePage() {
 										fill
 										className="object-cover rounded-lg"
 										priority
+										fetchPriority="high"
+										loading="eager"
 									/>
 								</div>
 							</div>

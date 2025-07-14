@@ -29,7 +29,7 @@ export default function LogoLink({
 	const imageComponent = (
 		<Image
 			src={logoSrc}
-			alt="Logo"
+			alt="Orchestra più Folle"
 			width={logoWidth}
 			height={logoHeight}
 			className={`mr-2 ${className}`}
@@ -46,6 +46,7 @@ export default function LogoLink({
 			href="/"
 			onClick={handleLogoClick}
 			className="transition-transform flex items-center"
+			aria-label="トップページに戻る"
 		>
 			{imageComponent}
 		</Link>

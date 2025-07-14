@@ -22,7 +22,11 @@ export default function ConcertsPage() {
 
 					<div className="max-w-md mx-auto space-y-8">
 						{concerts.map((concert) => (
-							<Link key={concert.id} href={`/concerts/${concert.id}`}>
+							<Link
+								key={concert.id}
+								href={`/concerts/${concert.id}`}
+								aria-label={`${concert.title || "演奏会"}の詳細を見る`}
+							>
 								<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 hover:scale-[0.98] transition-all cursor-pointer">
 									<div className="p-5">
 										<div
@@ -36,6 +40,8 @@ export default function ConcertsPage() {
 													fill
 													className="object-cover rounded-lg"
 													priority
+													fetchPriority="high"
+													loading="eager"
 												/>
 											)}
 											{new Date(concert.date) > new Date() ? (

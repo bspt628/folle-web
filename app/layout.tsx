@@ -23,8 +23,16 @@ export default function RootLayout({
 				<link rel="icon" href="/logo.png" />
 			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
+				<a
+					href="#main-content"
+					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black p-4 z-50"
+				>
+					メインコンテンツにスキップ
+				</a>
 				<Header />
-				<main className="flex-grow">{children}</main>
+				<main id="main-content" className="flex-grow" role="main">
+					{children}
+				</main>
 				<Footer />
 				<SpeedInsights />
 				<Analytics />

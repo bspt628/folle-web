@@ -88,6 +88,8 @@ export default function ConcertDetailPage() {
 												fill
 												className="object-cover rounded-lg"
 												priority
+												fetchPriority="high"
+												loading="eager"
 											/>
 										</div>
 									</div>
@@ -182,6 +184,7 @@ export default function ConcertDetailPage() {
 													target="_blank"
 													rel="noopener noreferrer"
 													className="mt-8 flex justify-center"
+													aria-label="Teketで演奏会のチケットを予約する（新しいタブで開きます）"
 												>
 													<Button
 														variant="outline"
@@ -193,6 +196,7 @@ export default function ConcertDetailPage() {
 																alt="Teket Logo"
 																fill
 																className="object-contain"
+																aria-hidden="true"
 															/>
 														</div>
 														<span className="-ml-4">で予約する</span>
@@ -204,6 +208,7 @@ export default function ConcertDetailPage() {
 														variant="outline"
 														className="w-full bg-[hsl(var(--primary))] hover:brightness-105 text-[hsl(var(--primary-foreground))] border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
 														disabled
+														aria-label="チケット予約は近日公開予定です"
 													>
 														<div className="w-[108px] h-[42px] relative">
 															<Image
@@ -211,6 +216,7 @@ export default function ConcertDetailPage() {
 																alt="Teket Logo"
 																fill
 																className="object-contain"
+																aria-hidden="true"
 															/>
 														</div>
 														<span className="-ml-4">で予約する</span>
