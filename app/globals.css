@@ -82,7 +82,31 @@
 	textarea:focus {
 		outline: none;
 		border-color: var(--accent-green);
-		box-shadow: 0 0 0 3px hsla(var(--accent-green), 0.3); /* hslaを使うとアルファ値も変数管理可能 */
+		box-shadow: 0 0 0 3px hsla(var(--accent-green), 0.3);
+	}
+
+	/* インタラクティブ要素のフォーカススタイル */
+	a:focus-visible,
+	button:focus-visible,
+	[role="button"]:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px hsla(var(--accent-green), 0.3);
+		border-radius: 0.25rem;
+	}
+
+	/* インタラクティブ要素のホバースタイル */
+	a:not([aria-disabled="true"]):hover,
+	button:not(:disabled):hover,
+	[role="button"]:not([aria-disabled="true"]):hover {
+		opacity: 0.9;
+		cursor: pointer;
+	}
+
+	/* 無効状態のスタイル */
+	[aria-disabled="true"],
+	button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	body {
@@ -236,6 +260,9 @@
 	width: 100px;
 	height: 100px;
 	object-fit: contain;
+	transform-origin: center center;
+	margin: auto;
+	display: block;
 }
 
 .animate-spin {
@@ -258,5 +285,6 @@
 }
 
 .slow-rotate {
-	animation: slowRotate 30s linear infinite;
+	animation: slowRotate 20s linear infinite;
+	transform-origin: center center;
 }

@@ -13,7 +13,10 @@ export default function Footer() {
 						<div className="flex items-center mb-4">
 							<LogoLink variant="footer" />
 						</div>
-						<nav className="grid grid-cols-1 gap-2">
+						<nav
+							className="grid grid-cols-1 gap-2"
+							aria-label="フッターナビゲーション"
+						>
 							<Link
 								href="/about"
 								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
@@ -43,6 +46,7 @@ export default function Footer() {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="w-6 h-6 flex items-center justify-center hover:scale-95 transition-transform"
+								aria-label="Orchestra più FolleのXアカウントを開く（新しいタブで開きます）"
 							>
 								<Image
 									src="/x-logo-white.png"
@@ -50,6 +54,7 @@ export default function Footer() {
 									width={24}
 									height={24}
 									className="opacity-90"
+									aria-hidden="true"
 								/>
 							</a>
 							<a
@@ -57,8 +62,13 @@ export default function Footer() {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="w-6 h-6 flex items-center justify-center hover:scale-95 transition-transform"
+								aria-label="Orchestra più Folleのインスタグラムを開く（新しいタブで開きます）"
 							>
-								<Instagram size={24} className="opacity-90" />
+								<Instagram
+									size={24}
+									className="opacity-90"
+									aria-hidden="true"
+								/>
 							</a>
 						</div>
 						<p className="mt-4 text-white/80">

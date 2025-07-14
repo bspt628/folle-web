@@ -125,6 +125,7 @@ export default function ContactPage() {
 												target="_blank"
 												rel="noopener noreferrer"
 												className="flex items-center space-x-2 group"
+												aria-label="Orchestra più FolleのXアカウントを開く（新しいタブで開きます）"
 											>
 												<Image
 													src="/x-logo-white.png"
@@ -132,6 +133,7 @@ export default function ContactPage() {
 													width={20}
 													height={20}
 													className="opacity-90"
+													aria-hidden="true"
 												/>
 												<span className="text-white/90 group-hover:text-[hsl(var(--primary))] group-hover:brightness-150 transition-colors">
 													X (旧Twitter)
@@ -142,8 +144,13 @@ export default function ContactPage() {
 												target="_blank"
 												rel="noopener noreferrer"
 												className="flex items-center space-x-2 text-white/90 group"
+												aria-label="Orchestra più Folleのインスタグラムを開く（新しいタブで開きます）"
 											>
-												<Instagram size={20} className="opacity-90" />
+												<Instagram
+													size={20}
+													className="opacity-90"
+													aria-hidden="true"
+												/>
 												<span className="text-white/90 group-hover:text-[hsl(var(--primary))] group-hover:brightness-150 transition-colors">
 													Instagram
 												</span>
