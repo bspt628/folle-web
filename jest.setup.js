@@ -1,22 +1,34 @@
-require("@testing-library/jest-dom");
+import "@testing-library/jest-dom";
 
-// React Hooksのテストに必要な設定
-const React = require("react");
-const { useState: originalUseState } = React;
-
-// useStateのモック
-React.useState = jest.fn().mockImplementation((init) => {
-	return originalUseState(init);
+// Mock window.matchMedia
+Object.defineProperty(window, "matchMedia", {
+	writable: true,
+	value: jest.fn().mockImplementation((query) => ({
+		matches: false,
+		media: query,
+		onchange: null,
+		addListener: jest.fn(),
+		removeListener: jest.fn(),
+		addEventListener: jest.fn(),
+		removeEventListener: jest.fn(),
+		dispatchEvent: jest.fn(),
+	})),
 });
 
-// window.performanceのモック
+// Mock window.performance
 Object.defineProperty(window, "performance", {
+	writable: true,
 	value: {
+		mark: jest.fn(),
+		measure: jest.fn(),
+		clearMarks: jest.fn(),
+		clearMeasures: jest.fn(),
 		getEntriesByType: jest.fn().mockReturnValue([
 			{
-				type: "navigate",
+				type: "navigation",
+				entryType: "navigation",
+				name: "document",
 			},
 		]),
 	},
-	writable: true,
 });

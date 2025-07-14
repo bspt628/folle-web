@@ -1,6 +1,6 @@
-import type { Config } from "next";
+import { NextConfig } from "next";
 
-const nextConfig: Config = {
+const nextConfig: NextConfig = {
 	// Compiler options
 	compiler: {
 		// Remove console.log in production
