@@ -38,11 +38,33 @@ describe("Contact Page", () => {
 		expect(screen.getByRole("button", { name: /送信/i })).toBeInTheDocument();
 	});
 
-	it("validates required fields", async () => {
+	it("initially renders form without validation errors", () => {
 		render(<ContactPage />, { wrapper: TestProvider });
 
-		// 送信ボタンをクリック
-		fireEvent.click(screen.getByRole("button", { name: /送信/i }));
+		// エラーメッセージが表示されていないことを確認
+		const errors = screen.queryAllByRole("alert");
+		expect(errors).toHaveLength(0);
+	});
+
+	it("shows validation errors after fields are touched and empty", async () => {
+		render(<ContactPage />, { wrapper: TestProvider });
+
+		// 各フィールドにフォーカスして離れる（touched状態にする）
+		const nameInput = screen.getByRole("textbox", { name: /お名前/i });
+		const emailInput = screen.getByRole("textbox", { name: /メールアドレス/i });
+		const subjectInput = screen.getByRole("textbox", { name: /件名/i });
+		const messageInput = screen.getByRole("textbox", {
+			name: /お問い合わせ内容/i,
+		});
+
+		fireEvent.focus(nameInput);
+		fireEvent.blur(nameInput);
+		fireEvent.focus(emailInput);
+		fireEvent.blur(emailInput);
+		fireEvent.focus(subjectInput);
+		fireEvent.blur(subjectInput);
+		fireEvent.focus(messageInput);
+		fireEvent.blur(messageInput);
 
 		// エラーメッセージが表示されるか確認
 		await waitFor(() => {
@@ -55,22 +77,51 @@ describe("Contact Page", () => {
 		});
 	});
 
-	it("validates email format", async () => {
+	it("validates email format after field is touched", async () => {
 		render(<ContactPage />, { wrapper: TestProvider });
 
 		// 不正なメールアドレスを入力
 		const emailInput = screen.getByRole("textbox", { name: /メールアドレス/i });
+		fireEvent.focus(emailInput);
 		fireEvent.change(emailInput, { target: { value: "invalid-email" } });
 		fireEvent.blur(emailInput);
 
 		// エラーメッセージが表示されるか確認
 		await waitFor(() => {
 			const errors = screen.getAllByRole("alert");
-			const emailError = errors.find(
-				(error) =>
-					error.textContent === "正しいメールアドレスを入力してください"
+			expect(errors).toHaveLength(1);
+			expect(errors[0]).toHaveTextContent(
+				"正しいメールアドレスを入力してください"
 			);
-			expect(emailError).toBeInTheDocument();
+		});
+
+		// 正しいメールアドレスを入力するとエラーが消える
+		fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+
+		await waitFor(() => {
+			const errors = screen.queryAllByRole("alert");
+			expect(errors).toHaveLength(0);
+		});
+	});
+
+	it("shows validation errors on submit if fields are empty", async () => {
+		render(<ContactPage />, { wrapper: TestProvider });
+
+		// 送信ボタンをクリック
+		fireEvent.click(screen.getByRole("button", { name: /送信/i }));
+
+		// すべてのフィールドがtouchedになり、エラーメッセージが表示される
+		await waitFor(() => {
+			const validationErrors = screen.getAllByRole("alert");
+			expect(validationErrors).toHaveLength(4);
+			expect(validationErrors[0]).toHaveTextContent("お名前を入力してください");
+			expect(validationErrors[1]).toHaveTextContent(
+				"メールアドレスを入力してください"
+			);
+			expect(validationErrors[2]).toHaveTextContent("件名を入力してください");
+			expect(validationErrors[3]).toHaveTextContent(
+				"お問い合わせ内容を入力してください"
+			);
 		});
 	});
 
@@ -141,7 +192,7 @@ describe("Contact Page", () => {
 
 		// エラーメッセージが表示されるか確認
 		await waitFor(() => {
-			const errorMessage = screen.getByRole("alert");
+			const errorMessage = screen.getByRole("error");
 			expect(errorMessage).toHaveTextContent(
 				"お問い合わせの送信に失敗しました"
 			);
