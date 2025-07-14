@@ -7,9 +7,36 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-	title: "Orchestra più Folle",
+	title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
 	description:
-		"Orchestra più Folle（オーケストラ）（通称Fオケ）の公式サイトです。演奏会情報をお届けします。",
+		"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
+	keywords: [
+		"Orchestra più Folle",
+		"オーケストラ ピウ フォーレ",
+		"Fオケ",
+		"ピウフォーレ",
+		"オーケストラ",
+		"クラシック",
+		"東京",
+		"演奏会",
+		"コンサート",
+	],
+	openGraph: {
+		title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
+		description:
+			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
+		type: "website",
+		locale: "ja_JP",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
+		description:
+			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京を中心に活動する若手音楽家によるオーケストラです。",
+	},
+	alternates: {
+		canonical: "https://orchestrapiufolle.com",
+	},
 };
 
 export default function RootLayout({
