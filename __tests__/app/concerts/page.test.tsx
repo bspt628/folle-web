@@ -1,60 +1,48 @@
-import { render, screen } from '@testing-library/react';
-import ConcertsPage from '@/app/concerts/page';
+import { render, screen } from "@testing-library/react";
+import ConcertsPage from "@/app/concerts/page";
 
 // モックデータ
 const mockConcerts = [
-  {
-    id: '1',
-    title: 'テストコンサート1',
-    date: '2024-05-01',
-    venue: 'テスト会場1',
-    posterUrl: '/test-poster-1.jpg',
-    status: 'upcoming',
-  },
-  {
-    id: '2',
-    title: 'テストコンサート2',
-    date: '2024-06-01',
-    venue: 'テスト会場2',
-    posterUrl: '/test-poster-2.jpg',
-    status: 'upcoming',
-  },
+	{
+		id: "1",
+		title: "第1回特別演奏会",
+		date: "2025-11-09T00:00:00+09:00",
+		venue: "テスト会場1",
+		posterUrl: "/1stビラ.png",
+		status: "upcoming",
+	},
 ];
 
 // APIレスポンスのモック
-jest.mock('@/lib/microcms', () => ({
-  client: {
-    get: jest.fn(() => Promise.resolve({ contents: mockConcerts })),
-  },
+jest.mock("@/lib/microcms", () => ({
+	client: {
+		get: jest.fn(() => Promise.resolve({ contents: mockConcerts })),
+	},
 }));
 
-describe('Concerts Page', () => {
-  it('renders concert list', async () => {
-    render(await ConcertsPage());
+describe("Concerts Page", () => {
+	it("renders concert list", async () => {
+		render(await ConcertsPage());
 
-    // コンサートのタイトルが表示されているか確認
-    expect(screen.getByText('テストコンサート1')).toBeInTheDocument();
-    expect(screen.getByText('テストコンサート2')).toBeInTheDocument();
+		// ページタイトルが表示されているか確認
+		expect(screen.getByText("Concerts")).toBeInTheDocument();
 
-    // 会場情報が表示されているか確認
-    expect(screen.getByText('テスト会場1')).toBeInTheDocument();
-    expect(screen.getByText('テスト会場2')).toBeInTheDocument();
+		// コンサートのタイトルが表示されているか確認
+		expect(screen.getByText("第1回特別演奏会")).toBeInTheDocument();
 
-    // ポスター画像が表示されているか確認
-    const posters = screen.getAllByRole('img');
-    expect(posters).toHaveLength(2);
-    expect(posters[0]).toHaveAttribute('src', '/test-poster-1.jpg');
-    expect(posters[1]).toHaveAttribute('src', '/test-poster-2.jpg');
-  });
+		// 日付が表示されているか確認
+		expect(screen.getByText("2025/11/09 (日)")).toBeInTheDocument();
 
-  it('renders concert cards with proper accessibility attributes', async () => {
-    render(await ConcertsPage());
+		// ステータスが表示されているか確認
+		expect(screen.getByText("開催予定")).toBeInTheDocument();
+	});
 
-    // コンサートカードが適切なアクセシビリティ属性を持っているか確認
-    const cards = screen.getAllByRole('button');
-    cards.forEach((card) => {
-      expect(card).toHaveAttribute('tabIndex', '0');
-      expect(card).toHaveAttribute('aria-label');
-    });
-  });
-}); 
+	it("renders concert cards with proper accessibility attributes", async () => {
+		render(await ConcertsPage());
+
+		// コンサートカードが適切なアクセシビリティ属性を持っているか確認
+		const card = screen.getByLabelText("第1回特別演奏会の詳細を見る");
+		expect(card).toBeInTheDocument();
+		expect(card).toHaveAttribute("href", "/concerts/1");
+	});
+});

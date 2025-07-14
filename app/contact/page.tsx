@@ -185,23 +185,34 @@ export default function ContactPage() {
 											? "bg-green-50/90 text-green-800 border border-green-200"
 											: "bg-red-50/90 text-red-800 border border-red-200"
 									}`}
+									role={submitStatus.type === "success" ? "status" : "alert"}
 								>
 									{submitStatus.type === "success" ? (
-										<CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+										<CheckCircle
+											className="h-5 w-5 text-green-500 mt-0.5"
+											aria-hidden="true"
+										/>
 									) : (
-										<AlertCircle className="h-5 w-5 text-red-500 mt-0.5" />
+										<AlertCircle
+											className="h-5 w-5 text-red-500 mt-0.5"
+											aria-hidden="true"
+										/>
 									)}
 									<div className="flex-1">{submitStatus.message}</div>
 								</div>
 							)}
 
-							<form onSubmit={handleSubmit} className="space-y-6">
+							<form onSubmit={handleSubmit} className="space-y-6" noValidate>
 								<div>
 									<label
 										htmlFor="name"
 										className="block text-sm font-medium text-white mb-2"
 									>
-										お名前 <span className="text-red-400">*</span>
+										お名前{" "}
+										<span className="text-red-400" aria-hidden="true">
+											*
+										</span>
+										<span className="sr-only">（必須）</span>
 									</label>
 									<Input
 										id="name"
@@ -213,7 +224,20 @@ export default function ContactPage() {
 										className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 										placeholder="お名前をご記入ください。"
 										disabled={isSubmitting}
+										aria-invalid={formData.name === ""}
+										aria-describedby={
+											formData.name === "" ? "name-error" : undefined
+										}
 									/>
+									{formData.name === "" && (
+										<p
+											id="name-error"
+											className="mt-2 text-sm text-red-400"
+											role="alert"
+										>
+											お名前を入力してください
+										</p>
+									)}
 								</div>
 
 								<div>
@@ -221,7 +245,11 @@ export default function ContactPage() {
 										htmlFor="email"
 										className="block text-sm font-medium text-white mb-2"
 									>
-										メールアドレス <span className="text-red-400">*</span>
+										メールアドレス{" "}
+										<span className="text-red-400" aria-hidden="true">
+											*
+										</span>
+										<span className="sr-only">（必須）</span>
 									</label>
 									<Input
 										id="email"
@@ -234,7 +262,37 @@ export default function ContactPage() {
 										className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 										placeholder="メールアドレスをご記入ください。"
 										disabled={isSubmitting}
+										aria-invalid={
+											formData.email === "" ||
+											!formData.email.match(
+												/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
+											)
+										}
+										aria-describedby={
+											formData.email === "" ? "email-error" : undefined
+										}
 									/>
+									{formData.email === "" && (
+										<p
+											id="email-error"
+											className="mt-2 text-sm text-red-400"
+											role="alert"
+										>
+											メールアドレスを入力してください
+										</p>
+									)}
+									{formData.email !== "" &&
+										!formData.email.match(
+											/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
+										) && (
+											<p
+												id="email-error"
+												className="mt-2 text-sm text-red-400"
+												role="alert"
+											>
+												正しいメールアドレスを入力してください
+											</p>
+										)}
 								</div>
 
 								<div>
@@ -242,18 +300,36 @@ export default function ContactPage() {
 										htmlFor="subject"
 										className="block text-sm font-medium text-white mb-2"
 									>
-										件名
+										件名{" "}
+										<span className="text-red-400" aria-hidden="true">
+											*
+										</span>
+										<span className="sr-only">（必須）</span>
 									</label>
 									<Input
 										id="subject"
 										name="subject"
 										type="text"
+										required
 										value={formData.subject}
 										onChange={handleChange}
 										className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
-										placeholder="お問い合わせの件名をご記入ください。"
+										placeholder="件名をご記入ください。"
 										disabled={isSubmitting}
+										aria-invalid={formData.subject === ""}
+										aria-describedby={
+											formData.subject === "" ? "subject-error" : undefined
+										}
 									/>
+									{formData.subject === "" && (
+										<p
+											id="subject-error"
+											className="mt-2 text-sm text-red-400"
+											role="alert"
+										>
+											件名を入力してください
+										</p>
+									)}
 								</div>
 
 								<div>
@@ -261,7 +337,11 @@ export default function ContactPage() {
 										htmlFor="message"
 										className="block text-sm font-medium text-white mb-2"
 									>
-										お問い合わせ内容 <span className="text-red-400">*</span>
+										お問い合わせ内容{" "}
+										<span className="text-red-400" aria-hidden="true">
+											*
+										</span>
+										<span className="sr-only">（必須）</span>
 									</label>
 									<Textarea
 										id="message"
@@ -270,17 +350,29 @@ export default function ContactPage() {
 										value={formData.message}
 										onChange={handleChange}
 										className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
-										placeholder="お問い合わせの内容をご記入ください。"
-										rows={6}
+										placeholder="お問い合わせ内容をご記入ください。"
 										disabled={isSubmitting}
+										aria-invalid={formData.message === ""}
+										aria-describedby={
+											formData.message === "" ? "message-error" : undefined
+										}
 									/>
+									{formData.message === "" && (
+										<p
+											id="message-error"
+											className="mt-2 text-sm text-red-400"
+											role="alert"
+										>
+											お問い合わせ内容を入力してください
+										</p>
+									)}
 								</div>
 
-								<div className="flex justify-center">
+								<div className="text-center">
 									<Button
 										type="submit"
 										disabled={isSubmitting}
-										className="bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] min-w-[200px]"
+										className="px-8 py-3"
 									>
 										{isSubmitting ? "送信中..." : "送信"}
 									</Button>

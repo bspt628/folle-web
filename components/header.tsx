@@ -26,6 +26,16 @@ export default function Header() {
 		}
 	}, [isMobileMenuOpen]);
 
+	useEffect(() => {
+		const handleEscape = (e: KeyboardEvent) => {
+			if (e.key === "Escape" && isMobileMenuOpen) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+		document.addEventListener("keydown", handleEscape);
+		return () => document.removeEventListener("keydown", handleEscape);
+	}, [isMobileMenuOpen]);
+
 	const handleTabKey = (e: React.KeyboardEvent) => {
 		if (!isMobileMenuOpen) return;
 
