@@ -153,6 +153,8 @@ export default function HomePage() {
 					fill
 					className="object-cover"
 					priority
+					sizes="100vw"
+					quality={75}
 				/>
 				<div className="absolute inset-0 bg-black/50" />
 			</div>
@@ -230,6 +232,7 @@ export default function HomePage() {
 										priority
 										fetchPriority="high"
 										loading="eager"
+										sizes="(max-width: 768px) 100vw, 50vw"
 									/>
 								</div>
 							</div>

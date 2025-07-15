@@ -90,6 +90,7 @@ export default function ConcertDetailPage() {
 												priority
 												fetchPriority="high"
 												loading="eager"
+												sizes="(max-width: 1024px) 100vw, 360px"
 											/>
 										</div>
 									</div>
