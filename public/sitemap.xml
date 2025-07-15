@@ -3,28 +3,35 @@
   <!-- トップページ -->
   <url>
     <loc>https://piufolle.com</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- コンサート一覧ページ -->
   <url>
     <loc>https://piufolle.com/concerts</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>always</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- コンサート詳細ページ -->
+  <url>
+    <loc>https://piufolle.com/concerts/1</loc>
+    <changefreq>always</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- アバウトページ -->
   <url>
     <loc>https://piufolle.com/about</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>always</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- コンタクトページ -->
   <url>
     <loc>https://piufolle.com/contact</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>always</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset> 
