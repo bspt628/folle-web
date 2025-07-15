@@ -31,7 +31,6 @@ const nextConfig: NextConfig = {
 			// Configure output for client-side bundles
 			config.output = {
 				...config.output,
-				chunkFormat: "module",
 				environment: {
 					arrowFunction: true,
 					bigIntLiteral: false,
