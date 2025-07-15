@@ -28,8 +28,22 @@ const nextConfig: NextConfig = {
 				"regenerator-runtime/runtime": false,
 			});
 
-			// Configure target for client-side bundles
-			config.target = "es2020";
+			// Configure output for client-side bundles
+			config.output = {
+				...config.output,
+				chunkFormat: "module",
+				environment: {
+					arrowFunction: true,
+					bigIntLiteral: false,
+					const: true,
+					destructuring: true,
+					dynamicImport: false,
+					forOf: true,
+					module: true,
+					optionalChaining: true,
+					templateLiteral: true,
+				},
+			};
 		}
 		return config;
 	},
