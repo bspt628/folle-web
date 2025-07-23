@@ -159,8 +159,23 @@ export default function ConcertDetailPage() {
 											</div>
 										)}
 
+										{/* 演奏会詳細 */}
+										{concert.description && (
+											<div className="mb-8">
+												<h4 className="text-lg font-bold text-white mb-4">
+													演奏会詳細
+												</h4>
+												<p className="text-white/90 leading-relaxed">
+													{concert.description}
+												</p>
+											</div>
+										)}
+
 										{/* チケット情報 */}
 										<div className="space-y-4">
+											<h4 className="text-lg font-bold text-white mb-4">
+												チケット情報
+											</h4>
 											{concert.ticketPrice &&
 												concert.ticketPrice.length > 0 && (
 													<div className="space-y-2">
