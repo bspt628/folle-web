@@ -67,7 +67,7 @@ export default function Header() {
 				}`}
 				role="banner"
 			>
-				<div className="container mx-auto">
+				<div className="w-full px-4">
 					<div className="flex items-center justify-between py-2">
 						<LogoLink variant="header" />
 
