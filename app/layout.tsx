@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
 		description:
-			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京を中心に活動する若手音楽家によるオーケストラです。",
+			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
 	},
 	alternates: {
 		canonical: "https://orchestrapiufolle.com",
