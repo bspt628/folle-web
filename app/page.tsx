@@ -185,13 +185,55 @@ export default function HomePage() {
 								{newsItems.map((item, index) => (
 									<div
 										key={index}
-										className="bg-white/20 backdrop-blur-md rounded-lg p-5"
+										onClick={
+											item.hasDetailPage
+												? () => router.push(`/news/${item.id}`)
+												: undefined
+										}
+										className={`bg-white/20 backdrop-blur-md rounded-lg p-5 ${
+											item.hasDetailPage
+												? "cursor-pointer transition-all duration-300 hover:bg-white/30 hover:scale-[0.98]"
+												: ""
+										}`}
+										{...(item.hasDetailPage && {
+											role: "button",
+											tabIndex: 0,
+											onKeyDown: (e) => {
+												if (e.key === "Enter" || e.key === " ") {
+													e.preventDefault();
+													router.push(`/news/${item.id}`);
+												}
+											},
+											"aria-label": `${item.title}の詳細を見る`,
+										})}
 									>
-										<div className="flex items-center space-x-4">
-											<span className="text-white font-mono text-sm">
-												{item.date}
-											</span>
-											<h3 className="text-white">{item.title}</h3>
+										<div className="flex items-center justify-between">
+											<div className="flex items-center space-x-4 flex-1">
+												<span className="text-white font-mono text-sm">
+													{item.date}
+												</span>
+												<h3 className="text-white">{item.title}</h3>
+											</div>
+											{item.hasDetailPage && (
+												<div className="ml-4 text-white">
+													<svg
+														width="16"
+														height="16"
+														viewBox="0 0 16 16"
+														fill="none"
+														xmlns="http://www.w3.org/2000/svg"
+														className="transition-transform duration-300 group-hover:translate-x-1"
+													>
+														<path
+															d="M6 12L10 8L6 4"
+															stroke="currentColor"
+															strokeWidth="2"
+															strokeLinecap="round"
+															strokeLinejoin="round"
+														/>
+													</svg>
+												</div>
+											)}
 										</div>
 									</div>
 								))}

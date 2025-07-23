@@ -1,6 +1,13 @@
 export type NewsItem = {
+	id: string;
 	date: string;
 	title: string;
+	content?: string;
+	hasDetailPage?: boolean;
+	links?: {
+		title: string;
+		url: string;
+	}[];
 };
 
 export interface Venue {
