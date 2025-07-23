@@ -141,15 +141,25 @@ export default function NewsDetailPage() {
 								</div>
 
 								{/* Title */}
-								<h1 className="text-2xl lg:text-3xl font-bold text-white mb-8 break-words">
+								<h1
+									className="text-2xl lg:text-3xl font-bold text-white mb-8 break-words"
+									style={{ wordBreak: "break-all", overflowWrap: "anywhere" }}
+								>
 									{newsItem.title}
 								</h1>
 
 								{/* Content */}
 								{newsItem.content && (
 									<div className="text-white/90 leading-relaxed mb-8">
-										{newsItem.content.split('\n').map((paragraph, index) => (
-											<p key={index} className="mb-4 last:mb-0">
+										{newsItem.content.split("\n").map((paragraph, index) => (
+											<p
+												key={index}
+												className="mb-4 last:mb-0"
+												style={{
+													wordBreak: "break-all",
+													overflowWrap: "anywhere",
+												}}
+											>
 												{paragraph}
 											</p>
 										))}
@@ -159,7 +169,13 @@ export default function NewsDetailPage() {
 								{/* External Links */}
 								{newsItem.links && newsItem.links.length > 0 && (
 									<div>
-										<h4 className="text-lg font-bold text-white mb-4">
+										<h4
+											className="text-lg font-bold text-white mb-4"
+											style={{
+												wordBreak: "break-all",
+												overflowWrap: "anywhere",
+											}}
+										>
 											関連リンク
 										</h4>
 										<div className="space-y-3">
@@ -174,22 +190,39 @@ export default function NewsDetailPage() {
 													<Button
 														variant="outline"
 														className="w-full bg-white/20 hover:bg-white/30 text-white border-white/30 justify-start text-left h-auto py-3 px-4"
+														style={{
+															wordBreak: "break-all",
+															overflowWrap: "anywhere",
+															whiteSpace: "normal",
+														}}
 													>
-														<div className="flex items-center justify-between w-full">
-															<span className="break-words text-left">{link.title}</span>
-															<svg 
-																width="16" 
-																height="16" 
-																viewBox="0 0 16 16" 
-																fill="none" 
-																xmlns="http://www.w3.org/2000/svg"
-																className="ml-2 flex-shrink-0"
+														<div
+															className="flex items-start justify-between w-full gap-3"
+															style={{ minWidth: 0 }}
+														>
+															<span
+																className="break-words text-left flex-1 leading-relaxed"
+																style={{
+																	wordBreak: "break-all",
+																	overflowWrap: "anywhere",
+																	minWidth: 0,
+																}}
 															>
-																<path 
-																	d="M12 4L4 12M12 4H8M12 4V8" 
-																	stroke="currentColor" 
-																	strokeWidth="2" 
-																	strokeLinecap="round" 
+																{link.title}
+															</span>
+															<svg
+																width="16"
+																height="16"
+																viewBox="0 0 16 16"
+																fill="none"
+																xmlns="http://www.w3.org/2000/svg"
+																className="flex-shrink-0 mt-0.5"
+															>
+																<path
+																	d="M12 4L4 12M12 4H8M12 4V8"
+																	stroke="currentColor"
+																	strokeWidth="2"
+																	strokeLinecap="round"
 																	strokeLinejoin="round"
 																/>
 															</svg>
