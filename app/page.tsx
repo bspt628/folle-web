@@ -115,7 +115,7 @@ export default function HomePage() {
 			setTimeout(() => {
 				setShowOverlay(false);
 			}, 1000);
-		}, 3500);
+		}, 5500);
 	}, [pathname]);
 
 	const handleConcertClick = () => {
@@ -135,8 +135,8 @@ export default function HomePage() {
 								src="/logo.svg"
 								alt="Logo"
 								className="logo"
-								width={489}
-								height={489}
+								width={487}
+								height={488}
 								priority
 							/>
 						</div>
