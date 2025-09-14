@@ -132,10 +132,10 @@ export default function HomePage() {
 					<div className="flex items-center justify-center gap-4">
 						<div className="relative flex items-center justify-center">
 							<Image
-								src="/logo.svg"
+								src="/567993919410012183.jpg"
 								alt="Logo"
 								className="logo"
-								width={487}
+								width={488}
 								height={488}
 								priority
 							/>

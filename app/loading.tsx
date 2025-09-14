@@ -4,7 +4,7 @@ export default function Loading() {
 	return (
 		<div className="overlay">
 			<Image
-				src="/logo.png"
+				src="/567993919410012183.jpg"
 				alt="Logo"
 				className="logo animate-spin"
 				width={487}
