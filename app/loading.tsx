@@ -4,11 +4,11 @@ export default function Loading() {
 	return (
 		<div className="overlay">
 			<Image
-				src="/logo.png"
+				src="/567993919410012183.jpg"
 				alt="Logo"
 				className="logo animate-spin"
-				width={100}
-				height={100}
+				width={487}
+				height={488}
 			/>
 			<div className="text text-fade-in">Orchestra più Folle</div>
 		</div>
