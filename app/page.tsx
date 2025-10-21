@@ -32,27 +32,27 @@ export default function HomePage() {
 
 	useEffect(() => {
 		// セッションストレージから前回のパスを取得
-		// const prevPath = sessionStorage.getItem("prevPath");
+		const prevPath = sessionStorage.getItem("prevPath");
 		const currentPath = pathname;
 
-		// const getNavigationType = () => {
-		// 	const navEntry = window.performance.getEntriesByType(
-		// 		"navigation"
-		// 	)[0] as PerformanceNavigationTiming;
-		// 	return navEntry.type;
-		// };
+		const getNavigationType = () => {
+			const navEntry = window.performance.getEntriesByType(
+				"navigation"
+			)[0] as PerformanceNavigationTiming;
+			return navEntry.type;
+		};
 
 		// デバッグ情報の出力
-		// const navigationType = getNavigationType();
-		// const isInternalNavigation = prevPath !== null;
+		const navigationType = getNavigationType();
+		const isInternalNavigation = prevPath !== null;
 
 		// 現在のパスをセッションストレージに保存
 		sessionStorage.setItem("prevPath", currentPath);
 
 		// リロードまたは直接URLアクセスの場合のみオーバーレイを表示
-		const shouldShowOverlay = true
-			// (navigationType === "reload" && !isInternalNavigation) ||
-			// (navigationType === "navigate" && !isInternalNavigation);
+		const shouldShowOverlay = 
+			(navigationType === "reload" && !isInternalNavigation) ||
+			(navigationType === "navigate" && !isInternalNavigation);
 
 		// 内部ナビゲーションの場合は即座にオーバーレイをフェードアウト
 		if (!shouldShowOverlay) {
@@ -115,7 +115,7 @@ export default function HomePage() {
 			setTimeout(() => {
 				setShowOverlay(false);
 			}, 1000);
-		}, 5500);
+		}, 3000);
 	}, [pathname]);
 
 	const handleConcertClick = () => {
