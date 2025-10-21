@@ -36,4 +36,8 @@ export interface Concert {
 	}[];
 	teketUrl: string | null;
 	description?: string;
+	youtubeVideos?: {
+		title: string;
+		url: string;
+	}[];
 }

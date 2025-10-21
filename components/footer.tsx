@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import Image from "next/image";
 import LogoLink from "@/components/ui/logo-link";
 
@@ -69,6 +69,15 @@ export default function Footer() {
 									className="opacity-90"
 									aria-hidden="true"
 								/>
+							</a>
+							<a
+								href="https://youtube.com/@orchestrapiufolle?si=GTmkw8O13XGF5LYu"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-6 h-6 flex items-center justify-center hover:scale-95 transition-transform"
+								aria-label="Orchestra più FolleのYouTubeチャンネルを開く（新しいタブで開きます）"
+							>
+								<Youtube size={24} className="opacity-90" aria-hidden="true" />
 							</a>
 						</div>
 						<p className="mt-4 text-white/80">
