@@ -27,6 +27,16 @@ export const metadata: Metadata = {
 			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
 		type: "website",
 		locale: "ja_JP",
+		siteName: "Orchestra più Folle",
+		url: "https://orchestrapiufolle.com",
+		images: [
+			{
+				url: "https://orchestrapiufolle.com/567993919410012183.jpg",
+				width: 1200,
+				height: 630,
+				alt: "Orchestra più Folle - オーケストラ ピウ フォーレ",
+			},
+		],
 	},
 	twitter: {
 		card: "summary_large_image",
