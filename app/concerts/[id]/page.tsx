@@ -243,38 +243,38 @@ export default function ConcertDetailPage() {
 												</div>
 											)}
 
-										{/* 演奏動画をチラ見せ */}
-										{concert.youtubeVideos &&
-											concert.youtubeVideos.length > 0 && (
-												<div className="mb-8">
-													<h4 className="text-lg font-bold text-white mb-4">
-														演奏動画をチラ見せ👀
-													</h4>
-													<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
-														{concert.youtubeVideos.map((video, index) => (
-															<div key={index} className="space-y-3">
-																<h5 className="text-sm font-medium text-white/90 text-center">
-																	{video.title}
-																</h5>
-																<div className="flex justify-center">
-																	<div
-																		className="relative w-full max-w-[280px]"
-																		style={{ aspectRatio: "9/16" }}
-																	>
-																		<iframe
-																			src={video.url}
-																			title={video.title}
-																			className="absolute inset-0 w-full h-full rounded-lg"
-																			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-																			allowFullScreen
-																		/>
+											{/* 演奏動画をチラ見せ */}
+											{concert.youtubeVideos &&
+												concert.youtubeVideos.length > 0 && (
+													<div className="mb-8">
+														<h4 className="text-lg font-bold text-white mb-4">
+															演奏動画をチラ見せ👀
+														</h4>
+														<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+															{concert.youtubeVideos.map((video, index) => (
+																<div key={index} className="space-y-3">
+																	<h5 className="text-sm font-medium text-white/90 text-center">
+																		{video.title}
+																	</h5>
+																	<div className="flex justify-center">
+																		<div
+																			className="relative w-full max-w-[280px]"
+																			style={{ aspectRatio: "9/16" }}
+																		>
+																			<iframe
+																				src={video.url}
+																				title={video.title}
+																				className="absolute inset-0 w-full h-full rounded-lg"
+																				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+																				allowFullScreen
+																			/>
+																		</div>
 																	</div>
 																</div>
-															</div>
-														))}
+															))}
+														</div>
 													</div>
-												</div>
-											)}
+												)}
 										</div>
 									</div>
 								</div>
