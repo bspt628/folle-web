@@ -39,5 +39,6 @@ export interface Concert {
 	youtubeVideos?: {
 		title: string;
 		url: string;
+		publishDate?: string; // ISO 8601 format (YYYY-MM-DDTHH:mm:ss)
 	}[];
 }
