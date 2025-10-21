@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { NewsItem } from "@/lib/types";
 import { Concert } from "@/lib/types";
 import { useRouter, usePathname } from "next/navigation";
+import Head from "next/head";
 // import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function HomePage() {
@@ -50,7 +51,7 @@ export default function HomePage() {
 		sessionStorage.setItem("prevPath", currentPath);
 
 		// リロードまたは直接URLアクセスの場合のみオーバーレイを表示
-		const shouldShowOverlay = 
+		const shouldShowOverlay =
 			(navigationType === "reload" && !isInternalNavigation) ||
 			(navigationType === "navigate" && !isInternalNavigation);
 
@@ -125,48 +126,86 @@ export default function HomePage() {
 	};
 
 	return (
-		<div className="h-screen relative">
-			{/* オーバーレイ */}
-			{showOverlay && (
-				<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
-					<div className="flex items-center justify-center gap-4">
-						<div className="relative flex items-center justify-center">
-							<Image
-								src="/567993919410012183.jpg"
-								alt="Logo"
-								className="logo"
-								width={488}
-								height={488}
-								priority
-							/>
-						</div>
-						<div className="text text-white text-2xl">Orchestra più Folle</div>
-					</div>
-				</div>
-			)}
-
-			{/* Background Image */}
-			<div className="absolute inset-0 z-0">
-				<Image
-					src="/gray_back.jpg"
-					alt="Orchestra Performance"
-					fill
-					className="object-cover"
-					priority
-					sizes="100vw"
-					quality={75}
+		<>
+			<Head>
+				<title>Orchestra più Folle | オーケストラ ピウ フォーレ</title>
+				<meta
+					name="description"
+					content="Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。"
 				/>
-				<div className="absolute inset-0 bg-black/50" />
-			</div>
+				<meta
+					property="og:title"
+					content="Orchestra più Folle | オーケストラ ピウ フォーレ"
+				/>
+				<meta
+					property="og:description"
+					content="Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。"
+				/>
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content="https://orchestrapiufolle.com" />
+				<meta property="og:site_name" content="Orchestra più Folle" />
+				<meta
+					property="og:image"
+					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+				/>
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta
+					name="twitter:title"
+					content="Orchestra più Folle | オーケストラ ピウ フォーレ"
+				/>
+				<meta
+					name="twitter:description"
+					content="Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。"
+				/>
+				<meta
+					name="twitter:image"
+					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+				/>
+			</Head>
+			<div className="h-screen relative">
+				{/* オーバーレイ */}
+				{showOverlay && (
+					<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
+						<div className="flex items-center justify-center gap-4">
+							<div className="relative flex items-center justify-center">
+								<Image
+									src="/567993919410012183.jpg"
+									alt="Logo"
+									className="logo"
+									width={488}
+									height={488}
+									priority
+								/>
+							</div>
+							<div className="text text-white text-2xl">
+								Orchestra più Folle
+							</div>
+						</div>
+					</div>
+				)}
 
-			{/* Content Container */}
-			<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
-				{/* Main Content */}
-				<div className="w-full md:w-1/2">
-					{/* Logo and News Container */}
-					<div className="relative h-full flex flex-col">
-						{/* Logo - temporarily hidden */}
-						{/* {isMdScreen ? (
+				{/* Background Image */}
+				<div className="absolute inset-0 z-0">
+					<Image
+						src="/gray_back.jpg"
+						alt="Orchestra Performance"
+						fill
+						className="object-cover"
+						priority
+						sizes="100vw"
+						quality={75}
+					/>
+					<div className="absolute inset-0 bg-black/50" />
+				</div>
+
+				{/* Content Container */}
+				<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
+					{/* Main Content */}
+					<div className="w-full md:w-1/2">
+						{/* Logo and News Container */}
+						<div className="relative h-full flex flex-col">
+							{/* Logo - temporarily hidden */}
+							{/* {isMdScreen ? (
 							<div className="w-[50vw] h-[50vw] opacity-40 slow-rotate absolute bottom-0">
 								<Image
 									src="/logo.svg"
@@ -178,110 +217,113 @@ export default function HomePage() {
 							</div>
 						) : null} */}
 
-						{/* News Section */}
-						<div ref={newsRef} className="px-6 py-8">
-							<h2 className="text-2xl font-bold text-white mb-4">News</h2>
-							<div className="space-y-3">
-								{newsItems.map((item, index) => (
-									<div
-										key={index}
-										onClick={
-											item.hasDetailPage
-												? () => router.push(`/news/${item.id}`)
-												: undefined
-										}
-										className={`bg-white/20 backdrop-blur-md rounded-lg p-5 ${
-											item.hasDetailPage
-												? "cursor-pointer transition-all duration-300 hover:bg-white/30 hover:scale-[0.98]"
-												: ""
-										}`}
-										{...(item.hasDetailPage && {
-											role: "button",
-											tabIndex: 0,
-											onKeyDown: (e) => {
-												if (e.key === "Enter" || e.key === " ") {
-													e.preventDefault();
-													router.push(`/news/${item.id}`);
-												}
-											},
-											"aria-label": `${item.title}の詳細を見る`,
-										})}
-									>
-										<div className="flex items-center justify-between">
-											<div className="flex items-center space-x-4 flex-1">
-												<span className="text-white font-mono text-sm">
-													{item.date}
-												</span>
-												<h3 className="text-white">{item.title}</h3>
-											</div>
-											{item.hasDetailPage && (
-												<div className="ml-4 text-white">
-													<svg
-														width="16"
-														height="16"
-														viewBox="0 0 16 16"
-														fill="none"
-														xmlns="http://www.w3.org/2000/svg"
-														className="transition-transform duration-300 group-hover:translate-x-1"
-													>
-														<path
-															d="M6 12L10 8L6 4"
-															stroke="currentColor"
-															strokeWidth="2"
-															strokeLinecap="round"
-															strokeLinejoin="round"
-														/>
-													</svg>
+							{/* News Section */}
+							<div ref={newsRef} className="px-6 py-8">
+								<h2 className="text-2xl font-bold text-white mb-4">News</h2>
+								<div className="space-y-3">
+									{newsItems.map((item, index) => (
+										<div
+											key={index}
+											onClick={
+												item.hasDetailPage
+													? () => router.push(`/news/${item.id}`)
+													: undefined
+											}
+											className={`bg-white/20 backdrop-blur-md rounded-lg p-5 ${
+												item.hasDetailPage
+													? "cursor-pointer transition-all duration-300 hover:bg-white/30 hover:scale-[0.98]"
+													: ""
+											}`}
+											{...(item.hasDetailPage && {
+												role: "button",
+												tabIndex: 0,
+												onKeyDown: (e) => {
+													if (e.key === "Enter" || e.key === " ") {
+														e.preventDefault();
+														router.push(`/news/${item.id}`);
+													}
+												},
+												"aria-label": `${item.title}の詳細を見る`,
+											})}
+										>
+											<div className="flex items-center justify-between">
+												<div className="flex items-center space-x-4 flex-1">
+													<span className="text-white font-mono text-sm">
+														{item.date}
+													</span>
+													<h3 className="text-white">{item.title}</h3>
 												</div>
-											)}
+												{item.hasDetailPage && (
+													<div className="ml-4 text-white">
+														<svg
+															width="16"
+															height="16"
+															viewBox="0 0 16 16"
+															fill="none"
+															xmlns="http://www.w3.org/2000/svg"
+															className="transition-transform duration-300 group-hover:translate-x-1"
+														>
+															<path
+																d="M6 12L10 8L6 4"
+																stroke="currentColor"
+																strokeWidth="2"
+																strokeLinecap="round"
+																strokeLinejoin="round"
+															/>
+														</svg>
+													</div>
+												)}
+											</div>
 										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				{/* Right Side - Upcoming Concert */}
-				<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
-					{upcomingConcert && (
-						<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
-							<h2 className="text-2xl font-bold text-white mb-6">
-								Upcoming Concert
-							</h2>
-							<div
-								onClick={handleConcertClick}
-								className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.97] cursor-pointer p-4"
-								style={{ aspectRatio: "0.707" }}
-								role="button"
-								tabIndex={0}
-								onKeyDown={(e) => {
-									if (e.key === "Enter" || e.key === " ") {
-										e.preventDefault();
-										handleConcertClick();
-									}
-								}}
-								aria-label={`${
-									upcomingConcert?.title || "次回演奏会"
-								}の詳細を見る`}
-							>
-								<div className="relative w-full h-full">
-									<Image
-										src={upcomingConcert.posterImage?.url || "/placeholder.jpg"}
-										alt={`${upcomingConcert.title} Poster`}
-										fill
-										className="object-cover rounded-lg"
-										priority
-										fetchPriority="high"
-										loading="eager"
-										sizes="(max-width: 768px) 100vw, 50vw"
-									/>
+									))}
 								</div>
 							</div>
 						</div>
-					)}
+					</div>
+
+					{/* Right Side - Upcoming Concert */}
+					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
+						{upcomingConcert && (
+							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
+								<h2 className="text-2xl font-bold text-white mb-6">
+									Upcoming Concert
+								</h2>
+								<div
+									onClick={handleConcertClick}
+									className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.97] cursor-pointer p-4"
+									style={{ aspectRatio: "0.707" }}
+									role="button"
+									tabIndex={0}
+									onKeyDown={(e) => {
+										if (e.key === "Enter" || e.key === " ") {
+											e.preventDefault();
+											handleConcertClick();
+										}
+									}}
+									aria-label={`${
+										upcomingConcert?.title || "次回演奏会"
+									}の詳細を見る`}
+								>
+									<div className="relative w-full h-full">
+										<Image
+											src={
+												upcomingConcert.posterImage?.url || "/placeholder.jpg"
+											}
+											alt={`${upcomingConcert.title} Poster`}
+											fill
+											className="object-cover rounded-lg"
+											priority
+											fetchPriority="high"
+											loading="eager"
+											sizes="(max-width: 768px) 100vw, 50vw"
+										/>
+									</div>
+								</div>
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
