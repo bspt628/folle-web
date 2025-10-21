@@ -26,6 +26,7 @@ export type Concert = {
 	youtubeVideos?: {
 		title: string;
 		url: string;
+		publishDate?: string; // ISO 8601 format (YYYY-MM-DDTHH:mm:ss)
 	}[];
 };
 
@@ -76,10 +77,12 @@ export const CONCERTS: Concert[] = [
 			{
 				title: "交響曲第4番「イタリア」",
 				url: "https://www.youtube.com/embed/SGKVD9mlQ0s",
+				publishDate: "2025-10-24T18:00:00+09:00", // 日本時間2025/10/24 18:00
 			},
 			{
 				title: "交響曲第5番「宗教改革」",
 				url: "https://www.youtube.com/embed/NvzbDV8WKYE",
+				publishDate: "2025-10-23T18:00:00+09:00", // 日本時間2025/10/23 18:00
 			},
 		],
 	},

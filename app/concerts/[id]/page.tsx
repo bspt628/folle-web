@@ -6,6 +6,7 @@ import { ja } from "date-fns/locale";
 import { useConcert } from "@/lib/hooks/useConcerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { isVideoPublished } from "@/lib/utils";
 
 export default function ConcertDetailPage() {
 	const params = useParams();
@@ -251,27 +252,31 @@ export default function ConcertDetailPage() {
 															演奏動画をチラ見せ👀
 														</h4>
 														<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
-															{concert.youtubeVideos.map((video, index) => (
-																<div key={index} className="space-y-3">
-																	<h5 className="text-sm font-medium text-white/90 text-center">
-																		{video.title}
-																	</h5>
-																	<div className="flex justify-center">
-																		<div
-																			className="relative w-full max-w-[280px]"
-																			style={{ aspectRatio: "9/16" }}
-																		>
-																			<iframe
-																				src={video.url}
-																				title={video.title}
-																				className="absolute inset-0 w-full h-full rounded-lg"
-																				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-																				allowFullScreen
-																			/>
+															{concert.youtubeVideos
+																.filter((video) =>
+																	isVideoPublished(video.publishDate)
+																)
+																.map((video, index) => (
+																	<div key={index} className="space-y-3">
+																		<h5 className="text-sm font-medium text-white/90 text-center">
+																			{video.title}
+																		</h5>
+																		<div className="flex justify-center">
+																			<div
+																				className="relative w-full max-w-[280px]"
+																				style={{ aspectRatio: "9/16" }}
+																			>
+																				<iframe
+																					src={video.url}
+																					title={video.title}
+																					className="absolute inset-0 w-full h-full rounded-lg"
+																					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+																					allowFullScreen
+																				/>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															))}
+																))}
 														</div>
 													</div>
 												)}
