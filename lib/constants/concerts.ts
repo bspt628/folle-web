@@ -23,6 +23,10 @@ export type Concert = {
 	}[];
 	teketUrl: string | null;
 	description?: string;
+	youtubeVideos?: {
+		title: string;
+		url: string;
+	}[];
 };
 
 export const CONCERTS: Concert[] = [
@@ -64,6 +68,20 @@ export const CONCERTS: Concert[] = [
 		teketUrl: "https://teket.jp/14035/53069",
 		description:
 			"第1回特別演奏会は、指揮に水戸博之氏を迎え、「有名作曲家の名曲で熱狂の渦を起こす」ことをテーマにした演奏会を開催いたします。演奏機会は比較的少ないものの、威厳と緊迫感をあわせ持つ華やかなベートーヴェン / 《シュテファン王》序曲に始まり、メンデルスゾーンの著名な交響曲を2つ、それぞれのドラマを感じながらお届けいたします。演奏者個々人が各々の個性や情熱をぶつけ、考え抜いた音楽を奏で、それを味わっていただける演奏会です。",
+		youtubeVideos: [
+			{
+				title: "「シュテファン王」序曲",
+				url: "https://www.youtube.com/embed/wtRehmh0lJM",
+			},
+			{
+				title: "交響曲第4番「イタリア」",
+				url: "https://www.youtube.com/embed/SGKVD9mlQ0s",
+			},
+			{
+				title: "交響曲第5番「宗教改革」",
+				url: "https://www.youtube.com/embed/NvzbDV8WKYE",
+			},
+		],
 	},
 ];
 
