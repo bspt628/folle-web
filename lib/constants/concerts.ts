@@ -84,6 +84,32 @@ export const CONCERTS: Concert[] = [
 			},
 		],
 	},
+	{
+		id: "2",
+		title: "第2回演奏会",
+		date: "2026-10-24",
+		openTime: null,
+		startTime: "夜公演",
+		conductor: "水戸博之",
+		venue: {
+			name: "パルテノン多摩 大ホール",
+		},
+		program: [
+			{
+				composer: null,
+				title: "未定",
+			},
+		],
+		posterImage: {
+			url: "/coming-soon-poster.svg",
+			width: 2894,
+			height: 4093,
+		},
+		ticketPrice: [],
+		teketUrl: null,
+		description:
+			"Orchestra più Folle 第2回演奏会を開催いたします。詳細は後日発表いたします。",
+	},
 ];
 
 export function getAllConcerts(): Concert[] {
