@@ -169,22 +169,26 @@ export default function ConcertDetailPage() {
 															)}
 														</span>
 													</div>
-													<div className="flex flex-wrap items-baseline gap-x-3">
-														<span className="text-white font-bold w-12">
-															開場:
-														</span>
-														<span className="break-all">
-															{concert.openTime}
-														</span>
-													</div>
-													<div className="flex flex-wrap items-baseline gap-x-3">
-														<span className="text-white font-bold w-12">
-															開演:
-														</span>
-														<span className="break-all">
-															{concert.startTime}
-														</span>
-													</div>
+													{concert.openTime && (
+														<div className="flex flex-wrap items-baseline gap-x-3">
+															<span className="text-white font-bold w-12">
+																開場:
+															</span>
+															<span className="break-all">
+																{concert.openTime}
+															</span>
+														</div>
+													)}
+													{concert.startTime && (
+														<div className="flex flex-wrap items-baseline gap-x-3">
+															<span className="text-white font-bold w-12">
+																開演:
+															</span>
+															<span className="break-all">
+																{concert.startTime}
+															</span>
+														</div>
+													)}
 													<div className="flex flex-wrap items-baseline gap-x-3">
 														<span className="text-white font-bold w-12">
 															場所:
@@ -214,7 +218,9 @@ export default function ConcertDetailPage() {
 														{concert.program.map((item, index) => (
 															<li key={index} className="text-white/90">
 																<span className="font-medium">
-																	{item.composer}: {item.title}
+																	{item.composer && item.title
+																		? `${item.composer}: ${item.title}`
+																		: item.composer || item.title}
 																</span>
 															</li>
 														))}

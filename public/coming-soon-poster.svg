@@ -1,0 +1,33 @@
+<svg width="2894" height="4093" viewBox="0 0 2894 4093" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景: 灰色で半透明 -->
+  <rect width="2894" height="4093" fill="#E5E7EB" fill-opacity="0.7"/>
+
+  <!-- 枠線 -->
+  <rect x="50" y="50" width="2794" height="3993" stroke="#9CA3AF" stroke-width="4" fill="none" stroke-dasharray="20 10"/>
+
+  <!-- タイトル領域の背景 -->
+  <rect x="200" y="1800" width="2494" height="500" fill="#D1D5DB" fill-opacity="0.5" rx="20"/>
+
+  <!-- "Coming Soon..." テキスト -->
+  <text x="1447" y="2050" font-family="Arial, sans-serif" font-size="180" font-weight="300" fill="#6B7280" text-anchor="middle" opacity="0.8">
+    Coming Soon...
+  </text>
+
+  <!-- 装飾的な音符記号 -->
+  <text x="1447" y="1500" font-family="serif" font-size="300" fill="#9CA3AF" text-anchor="middle" opacity="0.3">
+    ♪
+  </text>
+
+  <text x="800" y="2800" font-family="serif" font-size="200" fill="#9CA3AF" text-anchor="middle" opacity="0.2">
+    ♫
+  </text>
+
+  <text x="2100" y="2900" font-family="serif" font-size="250" fill="#9CA3AF" text-anchor="middle" opacity="0.2">
+    ♩
+  </text>
+
+  <!-- 下部の説明テキスト -->
+  <text x="1447" y="2600" font-family="Arial, sans-serif" font-size="80" font-weight="400" fill="#6B7280" text-anchor="middle" opacity="0.6">
+    詳細は後日発表いたします
+  </text>
+</svg>
