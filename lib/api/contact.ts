@@ -1,5 +1,3 @@
-import { supabase } from "../supabase/client";
-
 export async function submitContactForm(data: {
 	name: string;
 	email: string;
@@ -7,20 +5,8 @@ export async function submitContactForm(data: {
 	message: string;
 }) {
 	try {
-		const { error } = await supabase.from("contact_forms").insert([
-			{
-				name: data.name,
-				email: data.email,
-				subject: data.subject || null,
-				message: data.message,
-				status: "unread",
-			},
-		]);
-
-		if (error) throw error;
-
 		// Slack通知を送信
-		await fetch("/api/notify-slack", {
+		const response = await fetch("/api/notify-slack", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,6 +18,10 @@ export async function submitContactForm(data: {
 				message: data.message,
 			}),
 		});
+
+		if (!response.ok) {
+			throw new Error("Failed to send notification");
+		}
 
 		return { success: true };
 	} catch (error) {
