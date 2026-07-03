@@ -1,5 +1,3 @@
-import { supabase } from "../supabase/client";
-
 export async function submitContactForm(data: {
 	name: string;
 	email: string;
@@ -7,20 +5,8 @@ export async function submitContactForm(data: {
 	message: string;
 }) {
 	try {
-		const { error } = await supabase.from("contact_forms").insert([
-			{
-				name: data.name,
-				email: data.email,
-				subject: data.subject || null,
-				message: data.message,
-				status: "unread",
-			},
-		]);
-
-		if (error) throw error;
-
-		// Slack通知を送信
-		await fetch("/api/notify-slack", {
+		// メール送信（データベースには保存しない）
+		const response = await fetch("/api/contact", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,6 +18,28 @@ export async function submitContactForm(data: {
 				message: data.message,
 			}),
 		});
+
+		if (!response.ok) {
+			throw new Error("メール送信に失敗しました");
+		}
+
+		// Slack通知を送信（失敗してもお問い合わせ自体は成功扱いにする）
+		try {
+			await fetch("/api/notify-slack", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: data.name,
+					email: data.email,
+					subject: data.subject,
+					message: data.message,
+				}),
+			});
+		} catch (slackError) {
+			console.error("Error sending Slack notification:", slackError);
+		}
 
 		return { success: true };
 	} catch (error) {
