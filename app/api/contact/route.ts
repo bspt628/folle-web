@@ -82,9 +82,15 @@ export async function POST(req: NextRequest) {
 			);
 		}
 
+		// 受信先。CONTACT_TO_EMAIL が未設定なら送信認証アカウント(EMAIL_ADDRESS)へ届く。
+		const toEmail =
+			process.env.CONTACT_TO_EMAIL ||
+			process.env.EMAIL_ADDRESS ||
+			"orchestrapiufolle@gmail.com";
+
 		const emailData = {
 			from: process.env.EMAIL_ADDRESS,
-			to: process.env.EMAIL_ADDRESS,
+			to: toEmail,
 			subject: `【お問い合わせ】${body.subject || "（件名なし）"} | ${body.name} 様`,
 			text: buildText(body),
 			html: buildHtml(body),
