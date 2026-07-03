@@ -166,7 +166,15 @@ export default function HomePage() {
 				{/* オーバーレイ */}
 				{showOverlay && (
 					<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
-						<div className="flex items-center justify-center gap-4">
+						{/* 背景の光の玉アニメーション */}
+						<div className="overlay-bg" aria-hidden="true">
+							<span className="orb orb-1" />
+							<span className="orb orb-2" />
+							<span className="orb orb-3" />
+							<span className="orb orb-4" />
+							<span className="orb orb-5" />
+						</div>
+						<div className="relative z-10 flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">
 								<Image
 									src="/567993919410012183.jpg"
