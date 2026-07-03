@@ -166,6 +166,37 @@ describe("Contact Page", () => {
 		});
 	});
 
+	it("does not show validation errors after successful submit", async () => {
+		const mockSubmitContactForm = submitContactForm as jest.Mock;
+		mockSubmitContactForm.mockResolvedValueOnce({ success: true });
+
+		render(<ContactPage />, { wrapper: TestProvider });
+
+		fireEvent.change(screen.getByRole("textbox", { name: /お名前/i }), {
+			target: { value: "テスト太郎" },
+		});
+		fireEvent.change(screen.getByRole("textbox", { name: /メールアドレス/i }), {
+			target: { value: "test@example.com" },
+		});
+		fireEvent.change(screen.getByRole("textbox", { name: /件名/i }), {
+			target: { value: "テストの件" },
+		});
+		fireEvent.change(
+			screen.getByRole("textbox", { name: /お問い合わせ内容/i }),
+			{ target: { value: "テストメッセージ" } }
+		);
+
+		fireEvent.click(screen.getByRole("button", { name: /送信/i }));
+
+		// 送信完了モーダルが表示される
+		await waitFor(() => {
+			expect(screen.getByRole("dialog")).toBeInTheDocument();
+		});
+
+		// フォームがリセットされてもバリデーションエラー（alert）は表示されない
+		expect(screen.queryAllByRole("alert")).toHaveLength(0);
+	});
+
 	it("handles submission error", async () => {
 		const mockSubmitContactForm = submitContactForm as jest.Mock;
 		mockSubmitContactForm.mockRejectedValueOnce(new Error("送信エラー"));

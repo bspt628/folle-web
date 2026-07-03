@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,6 +39,22 @@ export default function ContactPage() {
 		type: "success" | "error" | null;
 		message: string | null;
 	}>({ type: null, message: null });
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+	// モーダル表示中は Esc キーで閉じ、背面のスクロールを固定する
+	useEffect(() => {
+		if (!showSuccessModal) return;
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setShowSuccessModal(false);
+		};
+		document.addEventListener("keydown", handleKeyDown);
+		const prevOverflow = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown);
+			document.body.style.overflow = prevOverflow;
+		};
+	}, [showSuccessModal]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -56,17 +72,22 @@ export default function ContactPage() {
 		try {
 			const result = await submitContactForm(formData);
 			if (result.success) {
-				setSubmitStatus({
-					type: "success",
-					message:
-						"お問い合わせを送信いたしました。内容を確認次第、担当者よりご連絡させていただきます。",
-				});
+				// フォームと同時に touched 状態もリセットし、
+				// 空欄バリデーションエラーが表示されないようにする
 				setFormData({
 					name: "",
 					email: "",
 					subject: "",
 					message: "",
 				});
+				setTouchedFields({
+					name: false,
+					email: false,
+					subject: false,
+					message: false,
+				});
+				setSubmitStatus({ type: null, message: null });
+				setShowSuccessModal(true);
 			} else {
 				throw new Error("送信に失敗しました");
 			}
@@ -471,6 +492,51 @@ export default function ContactPage() {
 					</div>
 				</section>
 			</PageContainer>
+
+			{/* 送信完了モーダル */}
+			{showSuccessModal && (
+				<div
+					className="fixed inset-0 z-50 flex items-center justify-center p-4"
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby="success-modal-title"
+				>
+					{/* オーバーレイ */}
+					<button
+						type="button"
+						className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default"
+						aria-label="閉じる"
+						onClick={() => setShowSuccessModal(false)}
+					/>
+
+					{/* モーダル本体 */}
+					<div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-in fade-in zoom-in duration-200">
+						<div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+							<CheckCircle className="h-9 w-9 text-green-600" aria-hidden="true" />
+						</div>
+						<h2
+							id="success-modal-title"
+							className="text-xl font-bold text-gray-900 mb-3"
+							role="status"
+						>
+							お問い合わせを送信いたしました
+						</h2>
+						<p className="text-sm text-gray-600 leading-relaxed mb-2">
+							内容を確認次第、担当者よりご連絡させていただきます。
+						</p>
+						<p className="text-sm text-gray-600 leading-relaxed mb-6">
+							ご入力いただいたメールアドレス宛に、受付確認の自動返信メールをお送りしました。数分経っても届かない場合は、迷惑メールフォルダもご確認ください。
+						</p>
+						<Button
+							type="button"
+							onClick={() => setShowSuccessModal(false)}
+							className="px-8 py-3"
+						>
+							閉じる
+						</Button>
+					</div>
+				</div>
+			)}
 		</>
 	);
 }
