@@ -183,7 +183,7 @@ export default function HomePage() {
 						<div className="relative z-10 flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">
 								<Image
-									src="/567993919410012183.jpg"
+									src="/logo-transparent.png"
 									alt="Logo"
 									className="logo"
 									width={488}
@@ -210,6 +210,15 @@ export default function HomePage() {
 						quality={75}
 					/>
 					<div className="absolute inset-0 bg-black/50" />
+					{/* 緑の光の玉（オープニングから継続して背景で浮遊し続ける） */}
+					<div className="page-orbs" aria-hidden="true">
+						<span className="page-orb page-orb-1" />
+						<span className="page-orb page-orb-2" />
+						<span className="page-orb page-orb-3" />
+						<span className="page-orb page-orb-4" />
+						<span className="page-orb page-orb-5" />
+						<span className="page-orb page-orb-6" />
+					</div>
 				</div>
 
 				{/* Content Container */}
