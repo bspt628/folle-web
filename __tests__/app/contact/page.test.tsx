@@ -46,10 +46,10 @@ describe("Contact Page", () => {
 		expect(errors).toHaveLength(0);
 	});
 
-	it("shows validation errors after fields are touched and empty", async () => {
+	it("does not show validation errors on blur (only on submit)", async () => {
 		render(<ContactPage />, { wrapper: TestProvider });
 
-		// 各フィールドにフォーカスして離れる（touched状態にする）
+		// 各フィールドにフォーカスして離れても、送信前はエラーを出さない
 		const nameInput = screen.getByRole("textbox", { name: /お名前/i });
 		const emailInput = screen.getByRole("textbox", { name: /メールアドレス/i });
 		const subjectInput = screen.getByRole("textbox", { name: /件名/i });
@@ -66,41 +66,25 @@ describe("Contact Page", () => {
 		fireEvent.focus(messageInput);
 		fireEvent.blur(messageInput);
 
-		// エラーメッセージが表示されるか確認
-		await waitFor(() => {
-			const errors = screen.getAllByRole("alert");
-			expect(errors).toHaveLength(4);
-			expect(errors[0]).toHaveTextContent("お名前を入力してください");
-			expect(errors[1]).toHaveTextContent("メールアドレスを入力してください");
-			expect(errors[2]).toHaveTextContent("件名を入力してください");
-			expect(errors[3]).toHaveTextContent("お問い合わせ内容を入力してください");
-		});
+		// blur だけではバリデーションエラーは表示されない
+		expect(screen.queryAllByRole("alert")).toHaveLength(0);
 	});
 
-	it("validates email format after field is touched", async () => {
+	it("validates email format only after submit", async () => {
 		render(<ContactPage />, { wrapper: TestProvider });
 
-		// 不正なメールアドレスを入力
+		// 不正なメールアドレスを入力しても、送信前はエラーを出さない
 		const emailInput = screen.getByRole("textbox", { name: /メールアドレス/i });
-		fireEvent.focus(emailInput);
 		fireEvent.change(emailInput, { target: { value: "invalid-email" } });
 		fireEvent.blur(emailInput);
+		expect(screen.queryAllByRole("alert")).toHaveLength(0);
 
-		// エラーメッセージが表示されるか確認
+		// 送信すると形式エラーが表示される
+		fireEvent.click(screen.getByRole("button", { name: /送信/i }));
 		await waitFor(() => {
-			const errors = screen.getAllByRole("alert");
-			expect(errors).toHaveLength(1);
-			expect(errors[0]).toHaveTextContent(
-				"正しいメールアドレスを入力してください"
-			);
-		});
-
-		// 正しいメールアドレスを入力するとエラーが消える
-		fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-
-		await waitFor(() => {
-			const errors = screen.queryAllByRole("alert");
-			expect(errors).toHaveLength(0);
+			expect(
+				screen.getByText("正しいメールアドレスを入力してください")
+			).toBeInTheDocument();
 		});
 	});
 
@@ -164,6 +148,37 @@ describe("Contact Page", () => {
 			subject: "テストの件",
 			message: "テストメッセージ",
 		});
+	});
+
+	it("does not show validation errors after successful submit", async () => {
+		const mockSubmitContactForm = submitContactForm as jest.Mock;
+		mockSubmitContactForm.mockResolvedValueOnce({ success: true });
+
+		render(<ContactPage />, { wrapper: TestProvider });
+
+		fireEvent.change(screen.getByRole("textbox", { name: /お名前/i }), {
+			target: { value: "テスト太郎" },
+		});
+		fireEvent.change(screen.getByRole("textbox", { name: /メールアドレス/i }), {
+			target: { value: "test@example.com" },
+		});
+		fireEvent.change(screen.getByRole("textbox", { name: /件名/i }), {
+			target: { value: "テストの件" },
+		});
+		fireEvent.change(
+			screen.getByRole("textbox", { name: /お問い合わせ内容/i }),
+			{ target: { value: "テストメッセージ" } }
+		);
+
+		fireEvent.click(screen.getByRole("button", { name: /送信/i }));
+
+		// 送信完了モーダルが表示される
+		await waitFor(() => {
+			expect(screen.getByRole("dialog")).toBeInTheDocument();
+		});
+
+		// フォームがリセットされてもバリデーションエラー（alert）は表示されない
+		expect(screen.queryAllByRole("alert")).toHaveLength(0);
 	});
 
 	it("handles submission error", async () => {
