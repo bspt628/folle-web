@@ -27,12 +27,8 @@ export default function ContactPage() {
 		message: "",
 	});
 
-	const [touchedFields, setTouchedFields] = useState({
-		name: false,
-		email: false,
-		subject: false,
-		message: false,
-	});
+	// バリデーションは送信ボタンを押したときにのみ走らせる
+	const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitStatus, setSubmitStatus] = useState<{
@@ -61,18 +57,25 @@ export default function ContactPage() {
 		setIsSubmitting(true);
 		setSubmitStatus({ type: null, message: null });
 
-		// 全フィールドをtouched状態にする
-		setTouchedFields({
-			name: true,
-			email: true,
-			subject: true,
-			message: true,
-		});
+		// 送信を試みたのでバリデーションを有効化する
+		setHasAttemptedSubmit(true);
+
+		// 必須項目が未入力の場合はここで中断（メール送信は行わない）
+		if (
+			formData.name === "" ||
+			formData.email === "" ||
+			!formData.email.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/) ||
+			formData.subject === "" ||
+			formData.message === ""
+		) {
+			setIsSubmitting(false);
+			return;
+		}
 
 		try {
 			const result = await submitContactForm(formData);
 			if (result.success) {
-				// フォームと同時に touched 状態もリセットし、
+				// フォームとバリデーション状態をリセットし、
 				// 空欄バリデーションエラーが表示されないようにする
 				setFormData({
 					name: "",
@@ -80,12 +83,7 @@ export default function ContactPage() {
 					subject: "",
 					message: "",
 				});
-				setTouchedFields({
-					name: false,
-					email: false,
-					subject: false,
-					message: false,
-				});
+				setHasAttemptedSubmit(false);
 				setSubmitStatus({ type: null, message: null });
 				setShowSuccessModal(true);
 			} else {
@@ -110,20 +108,6 @@ export default function ContactPage() {
 		setFormData({
 			...formData,
 			[name]: value,
-		});
-		setTouchedFields({
-			...touchedFields,
-			[name]: true,
-		});
-	};
-
-	const handleBlur = (
-		e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		const { name } = e.target;
-		setTouchedFields({
-			...touchedFields,
-			[name]: true,
 		});
 	};
 
@@ -308,18 +292,17 @@ export default function ContactPage() {
 											required
 											value={formData.name}
 											onChange={handleChange}
-											onBlur={handleBlur}
 											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 											placeholder="お名前をご記入ください。"
 											disabled={isSubmitting}
-											aria-invalid={touchedFields.name && formData.name === ""}
+											aria-invalid={hasAttemptedSubmit && formData.name === ""}
 											aria-describedby={
-												touchedFields.name && formData.name === ""
+												hasAttemptedSubmit && formData.name === ""
 													? "name-error"
 													: undefined
 											}
 										/>
-										{touchedFields.name && formData.name === "" && (
+										{hasAttemptedSubmit && formData.name === "" && (
 											<p
 												id="name-error"
 												className="mt-2 text-sm text-red-400"
@@ -349,19 +332,18 @@ export default function ContactPage() {
 											pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 											value={formData.email}
 											onChange={handleChange}
-											onBlur={handleBlur}
 											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 											placeholder="メールアドレスをご記入ください。"
 											disabled={isSubmitting}
 											aria-invalid={
-												touchedFields.email &&
+												hasAttemptedSubmit &&
 												(formData.email === "" ||
 													!formData.email.match(
 														/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
 													))
 											}
 											aria-describedby={
-												touchedFields.email &&
+												hasAttemptedSubmit &&
 												(formData.email === "" ||
 													!formData.email.match(
 														/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
@@ -370,7 +352,7 @@ export default function ContactPage() {
 													: undefined
 											}
 										/>
-										{touchedFields.email && formData.email === "" && (
+										{hasAttemptedSubmit && formData.email === "" && (
 											<p
 												id="email-error"
 												className="mt-2 text-sm text-red-400"
@@ -379,7 +361,7 @@ export default function ContactPage() {
 												メールアドレスを入力してください
 											</p>
 										)}
-										{touchedFields.email &&
+										{hasAttemptedSubmit &&
 											formData.email !== "" &&
 											!formData.email.match(
 												/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
@@ -412,20 +394,19 @@ export default function ContactPage() {
 											required
 											value={formData.subject}
 											onChange={handleChange}
-											onBlur={handleBlur}
 											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 											placeholder="件名をご記入ください。"
 											disabled={isSubmitting}
 											aria-invalid={
-												touchedFields.subject && formData.subject === ""
+												hasAttemptedSubmit && formData.subject === ""
 											}
 											aria-describedby={
-												touchedFields.subject && formData.subject === ""
+												hasAttemptedSubmit && formData.subject === ""
 													? "subject-error"
 													: undefined
 											}
 										/>
-										{touchedFields.subject && formData.subject === "" && (
+										{hasAttemptedSubmit && formData.subject === "" && (
 											<p
 												id="subject-error"
 												className="mt-2 text-sm text-red-400"
@@ -453,20 +434,19 @@ export default function ContactPage() {
 											required
 											value={formData.message}
 											onChange={handleChange}
-											onBlur={handleBlur}
 											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
 											placeholder="お問い合わせ内容をご記入ください。"
 											disabled={isSubmitting}
 											aria-invalid={
-												touchedFields.message && formData.message === ""
+												hasAttemptedSubmit && formData.message === ""
 											}
 											aria-describedby={
-												touchedFields.message && formData.message === ""
+												hasAttemptedSubmit && formData.message === ""
 													? "message-error"
 													: undefined
 											}
 										/>
-										{touchedFields.message && formData.message === "" && (
+										{hasAttemptedSubmit && formData.message === "" && (
 											<p
 												id="message-error"
 												className="mt-2 text-sm text-red-400"
