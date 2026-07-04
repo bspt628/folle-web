@@ -278,8 +278,8 @@
 	height: 340px;
 	top: 8%;
 	left: 10%;
-	/* 中間のフォレストグリーン */
-	background: radial-gradient(circle at 30% 30%, #3a9d56, rgba(58, 157, 86, 0));
+	/* 明るいグリーン */
+	background: radial-gradient(circle at 30% 30%, #6cd05a, rgba(108, 208, 90, 0));
 	--orb-dx: 40px;
 	--orb-dy: 30px;
 	--orb-dur: 10s;
@@ -291,8 +291,8 @@
 	height: 420px;
 	bottom: 5%;
 	right: 8%;
-	/* ディープグリーン（濃いめ） */
-	background: radial-gradient(circle at 30% 30%, #1c5f3f, rgba(28, 95, 63, 0));
+	/* ミディアムの明るい緑 */
+	background: radial-gradient(circle at 30% 30%, #4fc16d, rgba(79, 193, 109, 0));
 	--orb-dx: -50px;
 	--orb-dy: -40px;
 	--orb-dur: 13s;
@@ -304,8 +304,8 @@
 	height: 260px;
 	top: 45%;
 	left: 42%;
-	/* 明るいリーフグリーン */
-	background: radial-gradient(circle at 30% 30%, #5fbf4d, rgba(95, 191, 77, 0));
+	/* 淡いライトグリーン */
+	background: radial-gradient(circle at 30% 30%, #a9e6b0, rgba(169, 230, 176, 0));
 	--orb-dx: 30px;
 	--orb-dy: -55px;
 	--orb-dur: 11s;
@@ -317,8 +317,8 @@
 	height: 300px;
 	top: 15%;
 	right: 22%;
-	/* ディープグリーン */
-	background: radial-gradient(circle at 30% 30%, #206b45, rgba(32, 107, 69, 0));
+	/* 明るいリーフグリーン */
+	background: radial-gradient(circle at 30% 30%, #7ed957, rgba(126, 217, 87, 0));
 	--orb-dx: -35px;
 	--orb-dy: 45px;
 	--orb-dur: 12s;
@@ -330,8 +330,8 @@
 	height: 240px;
 	bottom: 12%;
 	left: 18%;
-	/* フォレストグリーン */
-	background: radial-gradient(circle at 30% 30%, #2b7d48, rgba(43, 125, 72, 0));
+	/* 明るいグリーン */
+	background: radial-gradient(circle at 30% 30%, #5ecb74, rgba(94, 203, 116, 0));
 	--orb-dx: 45px;
 	--orb-dy: -30px;
 	--orb-dur: 14s;
@@ -344,8 +344,8 @@
 	height: 560px;
 	top: -180px;
 	left: -160px;
-	/* ディープグリーン */
-	background: radial-gradient(circle at 40% 40%, #1f6640, rgba(31, 102, 64, 0));
+	/* 明るいリーフグリーン */
+	background: radial-gradient(circle at 40% 40%, #86d97a, rgba(134, 217, 122, 0));
 	--orb-dx: 60px;
 	--orb-dy: 50px;
 	--orb-dur: 16s;
@@ -357,8 +357,8 @@
 	height: 620px;
 	bottom: -220px;
 	right: -180px;
-	/* 中間〜ディープのフォレストグリーン（大きいので濃すぎないように） */
-	background: radial-gradient(circle at 40% 40%, #2b8a58, rgba(43, 138, 88, 0));
+	/* 淡いライトグリーン（大きいので明るめに） */
+	background: radial-gradient(circle at 40% 40%, #9ee89f, rgba(158, 232, 159, 0));
 	--orb-dx: -55px;
 	--orb-dy: -45px;
 	--orb-dur: 18s;
@@ -370,8 +370,8 @@
 	height: 300px;
 	top: 30%;
 	right: -120px;
-	/* 明るいリーフグリーン */
-	background: radial-gradient(circle at 40% 40%, #57b84f, rgba(87, 184, 79, 0));
+	/* ビビッドな明るい緑 */
+	background: radial-gradient(circle at 40% 40%, #63c74f, rgba(99, 199, 79, 0));
 	--orb-dx: -50px;
 	--orb-dy: 40px;
 	--orb-dur: 12s;
@@ -383,8 +383,8 @@
 	height: 200px;
 	bottom: -90px;
 	left: 38%;
-	/* 中間のフォレストグリーン */
-	background: radial-gradient(circle at 40% 40%, #349a5a, rgba(52, 154, 90, 0));
+	/* とても淡いライトミント */
+	background: radial-gradient(circle at 40% 40%, #bdf0c4, rgba(189, 240, 196, 0));
 	--orb-dx: 30px;
 	--orb-dy: -60px;
 	--orb-dur: 13s;
@@ -397,8 +397,8 @@
 	height: 130px;
 	top: 22%;
 	left: 30%;
-	/* 明るいリーフグリーン（アクセント） */
-	background: radial-gradient(circle at 35% 35%, #6cc94f, rgba(108, 201, 79, 0));
+	/* ビビッドな明るい緑（アクセント） */
+	background: radial-gradient(circle at 35% 35%, #52c04a, rgba(82, 192, 74, 0));
 	--orb-dx: 55px;
 	--orb-dy: -35px;
 	--orb-dur: 9s;
@@ -410,8 +410,8 @@
 	height: 110px;
 	bottom: 28%;
 	right: 32%;
-	/* ダークティール（黒は差し色として小さな玉1つのみ） */
-	background: radial-gradient(circle at 35% 35%, #163a38, rgba(22, 58, 56, 0));
+	/* 明るいグリーン（アクセント） */
+	background: radial-gradient(circle at 35% 35%, #74d45f, rgba(116, 212, 95, 0));
 	--orb-dx: -40px;
 	--orb-dy: -45px;
 	--orb-dur: 8s;
