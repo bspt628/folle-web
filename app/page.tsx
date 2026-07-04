@@ -173,6 +173,12 @@ export default function HomePage() {
 							<span className="orb orb-3" />
 							<span className="orb orb-4" />
 							<span className="orb orb-5" />
+							<span className="orb orb-6" />
+							<span className="orb orb-7" />
+							<span className="orb orb-8" />
+							<span className="orb orb-9" />
+							<span className="orb orb-10" />
+							<span className="orb orb-11" />
 						</div>
 						<div className="relative z-10 flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">

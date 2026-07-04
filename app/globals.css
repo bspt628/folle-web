@@ -334,6 +334,80 @@
 	--orb-delay: 1s;
 }
 
+/* 画面外にはみ出す大きな玉 */
+.orb-6 {
+	width: 560px;
+	height: 560px;
+	top: -180px;
+	left: -160px;
+	background: radial-gradient(circle at 40% 40%, #43c78d, rgba(67, 199, 141, 0));
+	--orb-dx: 60px;
+	--orb-dy: 50px;
+	--orb-dur: 16s;
+	--orb-delay: 0.4s;
+}
+
+.orb-7 {
+	width: 620px;
+	height: 620px;
+	bottom: -220px;
+	right: -180px;
+	background: radial-gradient(circle at 40% 40%, #6fdca2, rgba(111, 220, 162, 0));
+	--orb-dx: -55px;
+	--orb-dy: -45px;
+	--orb-dur: 18s;
+	--orb-delay: 2s;
+}
+
+.orb-8 {
+	width: 300px;
+	height: 300px;
+	top: 30%;
+	right: -120px;
+	background: radial-gradient(circle at 40% 40%, #8ceeb0, rgba(140, 238, 176, 0));
+	--orb-dx: -50px;
+	--orb-dy: 40px;
+	--orb-dur: 12s;
+	--orb-delay: 1.3s;
+}
+
+.orb-9 {
+	width: 200px;
+	height: 200px;
+	bottom: -90px;
+	left: 38%;
+	background: radial-gradient(circle at 40% 40%, #b6f2c7, rgba(182, 242, 199, 0));
+	--orb-dx: 30px;
+	--orb-dy: -60px;
+	--orb-dur: 13s;
+	--orb-delay: 0.9s;
+}
+
+/* 小さめの玉でメリハリ */
+.orb-10 {
+	width: 130px;
+	height: 130px;
+	top: 22%;
+	left: 30%;
+	background: radial-gradient(circle at 35% 35%, #5fd3a0, rgba(95, 211, 160, 0));
+	--orb-dx: 55px;
+	--orb-dy: -35px;
+	--orb-dur: 9s;
+	--orb-delay: 1.7s;
+}
+
+.orb-11 {
+	width: 110px;
+	height: 110px;
+	bottom: 28%;
+	right: 32%;
+	background: radial-gradient(circle at 35% 35%, #34c98a, rgba(52, 201, 138, 0));
+	--orb-dx: -40px;
+	--orb-dy: -45px;
+	--orb-dur: 8s;
+	--orb-delay: 0.5s;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.orb {
 		animation: none;
