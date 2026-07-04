@@ -18,13 +18,13 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/bg-green.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/50" />
+					<div className="absolute inset-0 bg-black/40" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -40,13 +40,13 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/bg-green.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/50" />
+					<div className="absolute inset-0 bg-black/40" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -113,13 +113,13 @@ export default function ConcertDetailPage() {
 				{/* Background Image */}
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/bg-green.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/50" />
+					<div className="absolute inset-0 bg-black/40" />
 				</div>
 
 				{/* Content */}

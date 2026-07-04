@@ -202,7 +202,7 @@ export default function HomePage() {
 				{/* Background Image */}
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/bg-green.jpg"
 						alt="Orchestra Performance"
 						fill
 						className="object-cover"
@@ -210,7 +210,7 @@ export default function HomePage() {
 						sizes="100vw"
 						quality={75}
 					/>
-					<div className="absolute inset-0 bg-black/50" />
+					<div className="absolute inset-0 bg-black/40" />
 				</div>
 
 				{/* Content Container */}
