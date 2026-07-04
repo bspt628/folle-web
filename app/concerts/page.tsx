@@ -54,14 +54,15 @@ export default function ConcertsPage() {
 							Concerts
 						</h1>
 
-						<div className="max-w-md mx-auto space-y-8">
+						<div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
 							{concerts.map((concert) => (
 								<Link
 									key={concert.id}
 									href={`/concerts/${concert.id}`}
 									aria-label={`${concert.title || "演奏会"}の詳細を見る`}
+									className="block h-full"
 								>
-									<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 hover:scale-[0.98] transition-all cursor-pointer">
+									<div className="flex h-full flex-col bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 hover:scale-[0.98] transition-all cursor-pointer">
 										<div className="p-5">
 											<div
 												className="relative w-full"
