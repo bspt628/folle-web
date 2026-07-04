@@ -317,8 +317,8 @@
 	height: 300px;
 	top: 15%;
 	right: 22%;
-	/* ダークティール（ロゴの最も濃い部分） */
-	background: radial-gradient(circle at 30% 30%, #163a38, rgba(22, 58, 56, 0));
+	/* ディープグリーン */
+	background: radial-gradient(circle at 30% 30%, #206b45, rgba(32, 107, 69, 0));
 	--orb-dx: -35px;
 	--orb-dy: 45px;
 	--orb-dur: 12s;
@@ -357,8 +357,8 @@
 	height: 620px;
 	bottom: -220px;
 	right: -180px;
-	/* ダークティール（ロゴの最も濃い部分） */
-	background: radial-gradient(circle at 40% 40%, #14383a, rgba(20, 56, 58, 0));
+	/* 中間〜ディープのフォレストグリーン（大きいので濃すぎないように） */
+	background: radial-gradient(circle at 40% 40%, #2b8a58, rgba(43, 138, 88, 0));
 	--orb-dx: -55px;
 	--orb-dy: -45px;
 	--orb-dur: 18s;
@@ -410,8 +410,8 @@
 	height: 110px;
 	bottom: 28%;
 	right: 32%;
-	/* ディープグリーン（アクセント） */
-	background: radial-gradient(circle at 35% 35%, #1c5738, rgba(28, 87, 56, 0));
+	/* ダークティール（黒は差し色として小さな玉1つのみ） */
+	background: radial-gradient(circle at 35% 35%, #163a38, rgba(22, 58, 56, 0));
 	--orb-dx: -40px;
 	--orb-dy: -45px;
 	--orb-dur: 8s;

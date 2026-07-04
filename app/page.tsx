@@ -95,7 +95,8 @@ export default function HomePage() {
 				textContent.split("").forEach((char) => {
 					const span = document.createElement("span");
 					span.textContent = char;
-					span.style.color = "white";
+					// 表示前は完全に透明にして、背景色に関わらず見えないようにする
+					span.style.color = "transparent";
 					text.appendChild(span);
 				});
 
