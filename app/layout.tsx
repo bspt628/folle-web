@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { roboto, inter } from "@/app/ui/fonts";
+import { roboto, inter, archivo } from "@/app/ui/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -55,7 +55,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="ja" className={`${roboto.variable} ${inter.variable}`}>
+		<html
+			lang="ja"
+			className={`${roboto.variable} ${inter.variable} ${archivo.variable}`}
+		>
 			<head>
 				<link rel="icon" href="/logo.png" />
 			</head>

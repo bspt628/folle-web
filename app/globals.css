@@ -253,10 +253,10 @@
 .text {
 	display: inline-block;
 	opacity: 0;
-	/* DIN Alternate（Apple）/ Bahnschrift（Windows, DIN 1451 ベース）を優先し、
-	   無い環境でも DIN に近い工業系グロテスクにフォールバックする */
-	font-family: "DIN Alternate", "DIN Condensed", "Bahnschrift", "Oswald",
-		"Archivo", "Helvetica Neue", Arial, sans-serif;
+	/* next/font でセルフホストした Archivo(--font-din) を全端末で使用。
+	   DIN Alternate に近い標準幅グロテスク。以降は保険のフォールバック */
+	font-family: var(--font-din), "DIN Alternate", "Bahnschrift", "Helvetica Neue",
+		Arial, sans-serif;
 	letter-spacing: 0.06em;
 }
 
