@@ -107,8 +107,7 @@ export const CONCERTS: Concert[] = [
 		},
 		ticketPrice: [],
 		teketUrl: null,
-		description:
-			"Orchestra più Folle 第2回演奏会を開催いたします。詳細は後日発表いたします。",
+		description: "未定",
 	},
 ];
 
