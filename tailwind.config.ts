@@ -65,10 +65,8 @@ const config = {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			fontFamily: {
-				// orch-canvas.tokyo と同系統: 英語=Futura、日本語=游ゴシック体（システムフォント）
+				// 日本語・英語ともに游ゴシック体（システムフォント）で統一
 				sans: [
-					"'Futura Medium'",
-					"Futura",
 					"'游ゴシック体'",
 					"YuGothic",
 					"'游ゴシック Medium'",

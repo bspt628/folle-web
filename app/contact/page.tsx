@@ -156,9 +156,6 @@ export default function ContactPage() {
 						<div className="max-w-4xl mx-auto">
 							{/* Contact Form（カードレス・背景に直接） */}
 							<div>
-								<h2 className="text-2xl font-bold text-white text-center mb-8">
-									お問い合わせフォーム
-								</h2>
 								{submitStatus.type && (
 									<div
 										className={`mb-6 p-4 rounded-lg flex items-start space-x-3 ${
