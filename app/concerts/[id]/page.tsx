@@ -110,19 +110,7 @@ export default function ConcertDetailPage() {
 				</Head>
 			)}
 			<div className="min-h-screen relative">
-				{/* Background Image */}
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/gray_back.jpg"
-						alt="Background"
-						fill
-						className="object-cover"
-						priority
-					/>
-					<div className="absolute inset-0 bg-black/50" />
-				</div>
-
-				{/* Content */}
+				{/* Content（背景はレイアウトの固定背景を使用） */}
 				<div className="relative z-10 pt-20">
 					<section className="py-16">
 						<div className="container mx-auto px-4">
