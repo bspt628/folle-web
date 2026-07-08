@@ -148,12 +148,9 @@ export default function ContactPage() {
 			<PageContainer>
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<div className="mb-14 text-center">
-							<span className="eyebrow mb-3">Get in Touch</span>
-							<h1 className="heading-accent text-4xl font-bold tracking-tight text-white">
-								Contact Us
-							</h1>
-						</div>
+						<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
+							Contact Us
+						</h1>
 
 						<div className="max-w-4xl mx-auto">
 							{/* Contact Information */}

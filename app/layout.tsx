@@ -66,8 +66,10 @@ export default function RootLayout({
 			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
 				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設。
-				    ページ全体(絶対配置)を覆うことでモバイルでも下部が白くならない。 */}
-				<div className="absolute inset-0 -z-10">
+				    fixed でビューポート基準に固定し、画像を常にくっきり全体表示する。
+				    モバイルでアドレスバー可変分の隙間が出ても、下地(html/body)を
+				    暗い緑基調にしているため白くならない。 */}
+				<div className="fixed inset-0 -z-10">
 					<Image
 						src="/bg-green.jpg"
 						alt=""

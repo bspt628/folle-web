@@ -50,12 +50,9 @@ export default function ConcertsPage() {
 			<PageContainer>
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<div className="mb-14 text-center">
-							<span className="eyebrow mb-3">Performances</span>
-							<h1 className="heading-accent text-4xl font-bold tracking-tight text-white">
-								Concerts
-							</h1>
-						</div>
+						<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
+							Concerts
+						</h1>
 
 						<div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
 							{concerts.map((concert) => (

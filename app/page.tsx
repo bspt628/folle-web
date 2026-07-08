@@ -205,7 +205,6 @@ export default function HomePage() {
 
 							{/* News Section */}
 							<div ref={newsRef} className="px-6 py-8">
-								<span className="eyebrow mb-2">Latest</span>
 								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
 									News
 								</h2>
@@ -276,7 +275,6 @@ export default function HomePage() {
 					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
 						{upcomingConcert && (
 							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
-								<span className="eyebrow mb-2">Next</span>
 								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 									Upcoming Concert
 								</h2>

@@ -1,5 +1,4 @@
 import { PageContainer } from "@/components/ui/page-container";
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Head from "next/head";
 
@@ -40,30 +39,26 @@ export default function AboutPage() {
 				<section className="py-16">
 					<div className="container mx-auto px-4">
 						<div className="max-w-4xl mx-auto">
-							<div className="mb-14 text-center">
-								<span className="eyebrow mb-3">Who We Are</span>
-								<h1 className="heading-accent text-4xl font-bold tracking-tight text-white">
-									About Us
-								</h1>
-							</div>
+							<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
+								About Us
+							</h1>
 
-							<Card className="overflow-hidden rounded-3xl border-0 bg-black/25 shadow-2xl shadow-black/40 ring-1 ring-white/10 backdrop-blur-xl">
-								<div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 md:items-start">
-									{/* Logo - web版では左 */}
-									<div className="w-2/3 mx-auto md:w-1/3 md:mx-0 shrink-0">
-										<Image
-											src="/567993919410012183.jpg"
-											alt="Orchestra più Folle Logo"
-											width={0}
-											height={0}
-											sizes="(min-width: 768px) 33vw, 66vw"
-											className="w-full h-auto object-contain rounded-2xl"
-											priority
-										/>
-									</div>
+							<div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+								{/* Logo - web版では左 */}
+								<div className="w-2/3 mx-auto md:w-1/3 md:mx-0 shrink-0">
+									<Image
+										src="/567993919410012183.jpg"
+										alt="Orchestra più Folle Logo"
+										width={0}
+										height={0}
+										sizes="(min-width: 768px) 33vw, 66vw"
+										className="w-full h-auto object-contain rounded-2xl shadow-2xl shadow-black/40"
+										priority
+									/>
+								</div>
 
-									{/* Content - web版では右 */}
-									<div className="flex-1 space-y-4">
+								{/* Content - web版では右 */}
+								<div className="flex-1 space-y-4">
 										<p className="text-lg text-white leading-[1.8] jp-text-optimize indent-4">
 											「Orchestra più Folle
 											(Fオケ)」は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。
@@ -79,7 +74,6 @@ export default function AboutPage() {
 										</p>
 									</div>
 								</div>
-							</Card>
 						</div>
 					</div>
 				</section>
