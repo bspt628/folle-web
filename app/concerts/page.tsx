@@ -51,7 +51,7 @@ export default function ConcertsPage() {
 				<section className="py-16">
 					<div className="container mx-auto px-4">
 						<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
-							Concerts
+							演奏会
 						</h1>
 
 						<div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
@@ -64,7 +64,7 @@ export default function ConcertsPage() {
 								>
 									<article className="flex h-full flex-col">
 										<div
-											className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-black/70 group-hover:ring-[hsl(var(--brand)/0.6)]"
+											className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-black/70"
 											style={{ aspectRatio: "0.707" }}
 										>
 											{concert.posterImage?.url && (

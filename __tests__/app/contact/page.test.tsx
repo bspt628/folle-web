@@ -19,7 +19,7 @@ describe("Contact Page", () => {
 
 		// 見出しが表示されているか確認
 		expect(
-			screen.getByRole("heading", { name: /Contact Us/i })
+			screen.getByRole("heading", { level: 1, name: /お問い合わせ/i })
 		).toBeInTheDocument();
 
 		// フォームフィールドが表示されているか確認

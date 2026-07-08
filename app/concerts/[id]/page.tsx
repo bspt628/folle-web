@@ -115,19 +115,18 @@ export default function ConcertDetailPage() {
 					<section className="py-16">
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
-								<div className="surface overflow-hidden">
-									<div className="flex flex-col lg:flex-row">
+								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
 										{/* ポスター画像 */}
-										<div className="w-full lg:w-auto p-5">
+										<div className="w-full lg:w-auto shrink-0">
 											<div
-												className="relative w-full lg:w-[360px] mx-auto"
+												className="relative mx-auto w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:w-[360px]"
 												style={{ aspectRatio: "0.707" }}
 											>
 												<Image
 													src={concert.posterImage?.url || "/placeholder.jpg"}
 													alt={`${concert.title} Poster`}
 													fill
-													className="object-cover rounded-lg"
+													className="object-cover"
 													priority
 													fetchPriority="high"
 													loading="eager"
@@ -137,7 +136,7 @@ export default function ConcertDetailPage() {
 										</div>
 
 										{/* コンサート情報 */}
-										<div className="p-4 lg:p-8 flex-1">
+										<div className="flex-1">
 											<h1 className="text-xl font-bold text-white mb-6 break-words">
 												{concert.title}
 											</h1>
@@ -340,7 +339,6 @@ export default function ConcertDetailPage() {
 										</div>
 									</div>
 								</div>
-							</div>
 						</div>
 					</section>
 				</div>

@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PageTransition from "@/components/page-transition";
-import { roboto, inter, archivo } from "@/app/ui/fonts";
+import { roboto, inter, archivo, notoSansJp } from "@/app/ui/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -59,7 +59,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="ja"
-			className={`${roboto.variable} ${inter.variable} ${archivo.variable}`}
+			className={`${roboto.variable} ${inter.variable} ${archivo.variable} ${notoSansJp.variable}`}
 		>
 			<head>
 				<link rel="icon" href="/logo.png" />

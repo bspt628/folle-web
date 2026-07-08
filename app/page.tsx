@@ -1,7 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { getUpcomingConcert } from "@/lib/constants/concerts";
+import {
+	getUpcomingConcert,
+	getLatestPastConcert,
+	isComingSoonConcert,
+} from "@/lib/constants/concerts";
 import { getNewsItems } from "@/lib/constants/news";
 import { useEffect, useState, useRef } from "react";
 import { NewsItem } from "@/lib/types";
@@ -119,9 +123,16 @@ export default function HomePage() {
 		}, 3000);
 	}, [pathname]);
 
+	// 次回演奏会がポスター未定(coming soon)の場合は、直近の過去演奏会を表示する
+	const comingSoon = isComingSoonConcert(upcomingConcert);
+	const featuredConcert = comingSoon
+		? (getLatestPastConcert() as Concert | null)
+		: upcomingConcert;
+	const featuredLabel = comingSoon ? "直近の演奏会" : "次回の演奏会";
+
 	const handleConcertClick = () => {
-		if (upcomingConcert) {
-			router.push(`/concerts/${upcomingConcert.id}`);
+		if (featuredConcert) {
+			router.push(`/concerts/${featuredConcert.id}`);
 		}
 	};
 
@@ -206,7 +217,7 @@ export default function HomePage() {
 							{/* News Section */}
 							<div ref={newsRef} className="px-6 py-8">
 								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
-									News
+									ニュース
 								</h2>
 								<div className="divide-y divide-white/10 border-t border-white/10">
 									{newsItems.map((item, index) => (
@@ -271,16 +282,16 @@ export default function HomePage() {
 						</div>
 					</div>
 
-					{/* Right Side - Upcoming Concert */}
+					{/* Right Side - 次回 / 直近の演奏会 */}
 					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
-						{upcomingConcert && (
+						{featuredConcert && (
 							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
 								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
-									Upcoming Concert
+									{featuredLabel}
 								</h2>
 								<div
 									onClick={handleConcertClick}
-									className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-black/70 hover:ring-[hsl(var(--brand)/0.6)]"
+									className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-black/70"
 									style={{ aspectRatio: "0.707" }}
 									role="button"
 									tabIndex={0}
@@ -291,15 +302,15 @@ export default function HomePage() {
 										}
 									}}
 									aria-label={`${
-										upcomingConcert?.title || "次回演奏会"
+										featuredConcert?.title || featuredLabel
 									}の詳細を見る`}
 								>
 									<div className="relative w-full h-full">
 										<Image
 											src={
-												upcomingConcert.posterImage?.url || "/placeholder.jpg"
+												featuredConcert.posterImage?.url || "/placeholder.jpg"
 											}
-											alt={`${upcomingConcert.title} Poster`}
+											alt={`${featuredConcert.title} Poster`}
 											fill
 											className="object-cover transition-transform duration-500 group-hover:scale-105"
 											priority

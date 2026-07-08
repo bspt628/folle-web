@@ -113,8 +113,8 @@ export default function NewsDetailPage() {
 								</Button>
 							</div>
 
-							{/* News Content */}
-							<div className="surface p-8">
+							{/* News Content（カードレス・背景に直接） */}
+							<div>
 								{/* Date */}
 								<div className="mb-4">
 									<span className="text-white/70 font-mono text-sm">

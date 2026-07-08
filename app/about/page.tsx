@@ -40,7 +40,7 @@ export default function AboutPage() {
 					<div className="container mx-auto px-4">
 						<div className="max-w-4xl mx-auto">
 							<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
-								About Us
+								団体紹介
 							</h1>
 
 							<div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
