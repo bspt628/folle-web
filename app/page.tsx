@@ -184,21 +184,7 @@ export default function HomePage() {
 					</div>
 				)}
 
-				{/* Background Image */}
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/gray_back.jpg"
-						alt="Orchestra Performance"
-						fill
-						className="object-cover"
-						priority
-						sizes="100vw"
-						quality={75}
-					/>
-					<div className="absolute inset-0 bg-black/50" />
-				</div>
-
-				{/* Content Container */}
+				{/* Content Container（背景はレイアウトの固定背景を使用） */}
 				<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
 					{/* Main Content */}
 					<div className="w-full md:w-1/2">

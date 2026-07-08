@@ -79,15 +79,6 @@ export default function ConcertsPage() {
 														loading="eager"
 													/>
 												)}
-												{new Date(concert.date) > new Date() ? (
-													<div className="absolute top-4 right-4 bg-[#FFD700]/50 text-black px-3 py-1 rounded-full text-sm font-semibold">
-														開催予定
-													</div>
-												) : (
-													<div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm font-semibold">
-														終演
-													</div>
-												)}
 											</div>
 										</div>
 

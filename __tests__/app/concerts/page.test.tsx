@@ -32,9 +32,6 @@ describe("Concerts Page", () => {
 
 		// 日付が表示されているか確認
 		expect(screen.getByText("2025/11/09 (日)")).toBeInTheDocument();
-
-		// ステータスが表示されているか確認
-		expect(screen.getByText("開催予定")).toBeInTheDocument();
 	});
 
 	it("renders concert cards with proper accessibility attributes", async () => {
