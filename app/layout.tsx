@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -64,6 +65,20 @@ export default function RootLayout({
 				<link rel="icon" href="/logo.png" />
 			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
+				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設 */}
+				<div className="fixed inset-0 -z-10">
+					<Image
+						src="/gray_back.jpg"
+						alt=""
+						aria-hidden="true"
+						fill
+						className="object-cover"
+						priority
+						sizes="100vw"
+						quality={75}
+					/>
+					<div className="absolute inset-0 bg-black/50" />
+				</div>
 				<a
 					href="#main-content"
 					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black p-4 z-50"
