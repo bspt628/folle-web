@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import PageTransition from "@/components/page-transition";
 import { roboto, inter, archivo } from "@/app/ui/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -71,7 +72,7 @@ export default function RootLayout({
 				</a>
 				<Header />
 				<main id="main-content" className="flex-grow" role="main">
-					{children}
+					<PageTransition>{children}</PageTransition>
 				</main>
 				<Footer />
 				<SpeedInsights />
