@@ -68,7 +68,7 @@ export default function RootLayout({
 				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設 */}
 				<div className="fixed inset-0 -z-10">
 					<Image
-						src="/gray_back.jpg"
+						src="/bg-green.jpg"
 						alt=""
 						aria-hidden="true"
 						fill
