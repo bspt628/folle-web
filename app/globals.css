@@ -121,10 +121,12 @@
 
 	body {
 		@apply text-[hsl(var(--foreground))];
-		/* Latin=Inter / 日本語=Noto Sans JP のモダンな組み合わせ */
-		font-family: var(--font-inter), var(--font-jp), system-ui, sans-serif;
+		/* orch-canvas.tokyo と同系統: 英語=Futura / 日本語=游ゴシック体 */
+		font-family: "Futura Medium", Futura, "游ゴシック体", YuGothic,
+			"游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic",
+			sans-serif;
 		line-height: 1.8;
-		letter-spacing: 0.01em;
+		letter-spacing: 0.05em;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
 		overscroll-behavior-x: auto;

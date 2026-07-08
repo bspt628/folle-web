@@ -65,7 +65,18 @@ const config = {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			fontFamily: {
-				sans: ["var(--font-roboto)"],
+				// orch-canvas.tokyo と同系統: 英語=Futura、日本語=游ゴシック体（システムフォント）
+				sans: [
+					"'Futura Medium'",
+					"Futura",
+					"'游ゴシック体'",
+					"YuGothic",
+					"'游ゴシック Medium'",
+					"'Yu Gothic Medium'",
+					"'游ゴシック'",
+					"'Yu Gothic'",
+					"sans-serif",
+				],
 			},
 			keyframes: {
 				"accordion-down": {
