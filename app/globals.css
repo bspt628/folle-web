@@ -6,7 +6,7 @@
 	:root {
 		/* ▼▼▼ 色の定義を整理 ▼▼▼ */
 		/* 基本色 */
-		--brand: 43 55% 42%; /* より落ち着いた金色 */
+		--brand: 132 67% 38%; /* ロゴの緑 #20a139 */
 		--foreground-base: 0 0% 20%;
 		--background-base: 0 0% 100%;
 		--destructive-base: 0 84.2% 60.2%;
@@ -46,7 +46,7 @@
 
 	.dark {
 		/* ダークモードの基本色（例）*/
-		--brand: 47 65% 60%;
+		--brand: 132 67% 38%; /* ロゴの緑 #20a139（ダーク） */
 		--foreground-base: 0 0% 98%;
 		--background-base: 0 0% 9%;
 		--destructive-base: 0 62.8% 30.6%;
