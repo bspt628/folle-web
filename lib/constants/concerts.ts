@@ -133,3 +133,24 @@ export function getConcert(id: string): Concert | null {
 export function getLatestConcert(): Concert | null {
 	return CONCERTS[0] || null;
 }
+
+// coming-soon（ポスター未定）のプレースホルダー画像パス
+export const COMING_SOON_POSTER = "/coming-soon-poster.svg";
+
+export function isComingSoonConcert(
+	concert: { posterImage?: { url?: string | null } | null } | null | undefined
+): boolean {
+	return !concert || concert.posterImage?.url === COMING_SOON_POSTER;
+}
+
+// すでに開催済みの中で最も直近の演奏会（ポスター未定のものは除く）
+export function getLatestPastConcert(): Concert | null {
+	const today = new Date().toISOString().split("T")[0];
+	return (
+		getAllConcerts().find(
+			(concert) =>
+				concert.date < today &&
+				concert.posterImage?.url !== COMING_SOON_POSTER
+		) || null
+	);
+}
