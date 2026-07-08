@@ -21,13 +21,13 @@ describe("Header Component", () => {
 		const mainNav = screen.getByLabelText("メインナビゲーション");
 		expect(mainNav).toBeInTheDocument();
 		expect(mainNav.querySelector('a[href="/about"]')).toHaveTextContent(
-			"About Us"
+			"団体紹介"
 		);
 		expect(mainNav.querySelector('a[href="/concerts"]')).toHaveTextContent(
-			"Concerts"
+			"演奏会"
 		);
 		expect(mainNav.querySelector('a[href="/contact"]')).toHaveTextContent(
-			"Contact Us"
+			"お問い合わせ"
 		);
 	});
 

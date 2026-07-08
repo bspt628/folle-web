@@ -112,6 +112,8 @@
 	/*
 	 * 固定背景画像(/bg-green.jpg)がモバイルのアドレスバー可変分などで
 	 * 覆いきれない領域が出ても白くならないよう、下地を暗い緑基調にする。
+	 * 下地色は html(canvas) のみに置く。body に不透明背景を置くと、
+	 * 負の z-index(-z-10) の固定背景画像が body 背景に隠れてしまうため。
 	 */
 	html {
 		background-color: #0e1a13;
@@ -119,11 +121,13 @@
 
 	body {
 		@apply text-[hsl(var(--foreground))];
-		background-color: #0e1a13;
-		/* ページ全体を覆う固定背景(absolute inset-0)の位置基準にする */
-		position: relative;
-		font-family: "Roboto", sans-serif; /* var(--font-roboto)より直接指定を推奨 */
+		/* 日本語・英語ともに游ゴシック体で統一 */
+		font-family: "游ゴシック体", YuGothic, "游ゴシック Medium",
+			"Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 		line-height: 1.8;
+		letter-spacing: 0.05em;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
 		overscroll-behavior-x: auto;
 	}
 

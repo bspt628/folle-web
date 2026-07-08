@@ -50,51 +50,47 @@ export default function ConcertsPage() {
 			<PageContainer>
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<h1 className="text-4xl font-bold text-white text-center mb-12">
-							Concerts
+						<h1 className="mb-14 text-center text-4xl font-bold tracking-tight text-white">
+							演奏会
 						</h1>
 
-						<div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
+						<div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
 							{concerts.map((concert) => (
 								<Link
 									key={concert.id}
 									href={`/concerts/${concert.id}`}
 									aria-label={`${concert.title || "演奏会"}の詳細を見る`}
-									className="block h-full"
+									className="group block h-full"
 								>
-									<div className="flex h-full flex-col bg-white/10 backdrop-blur-md rounded-lg overflow-hidden hover:bg-white/20 hover:scale-[0.98] transition-all cursor-pointer">
-										<div className="p-5">
-											<div
-												className="relative w-full"
-												style={{ aspectRatio: "0.707" }}
-											>
-												{concert.posterImage?.url && (
-													<Image
-														src={concert.posterImage.url}
-														alt={concert.title || ""}
-														fill
-														className="object-cover rounded-lg"
-														priority
-														fetchPriority="high"
-														loading="eager"
-													/>
-												)}
-											</div>
+									<article className="flex h-full flex-col">
+										<div
+											className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-black/70"
+											style={{ aspectRatio: "0.707" }}
+										>
+											{concert.posterImage?.url && (
+												<Image
+													src={concert.posterImage.url}
+													alt={concert.title || ""}
+													fill
+													className="object-cover transition-transform duration-500 group-hover:scale-105"
+													priority
+													fetchPriority="high"
+													loading="eager"
+												/>
+											)}
 										</div>
 
-										<div className="p-5">
-											<div className="flex justify-between items-center">
-												<h2 className="text-xl font-bold text-white break-words">
-													{concert.title}
-												</h2>
-												<span className="text-white">
-													{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
-														locale: ja,
-													})}
-												</span>
-											</div>
+										<div className="mt-5 border-l-2 border-[hsl(var(--brand))] pl-4">
+											<span className="block font-mono text-sm text-white/70">
+												{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
+													locale: ja,
+												})}
+											</span>
+											<h2 className="mt-1 text-lg font-bold text-white break-words transition-colors group-hover:text-[hsl(var(--brand))]">
+												{concert.title}
+											</h2>
 										</div>
-									</div>
+									</article>
 								</Link>
 							))}
 						</div>

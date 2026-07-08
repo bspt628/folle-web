@@ -65,7 +65,16 @@ const config = {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			fontFamily: {
-				sans: ["var(--font-roboto)"],
+				// 日本語・英語ともに游ゴシック体（システムフォント）で統一
+				sans: [
+					"'游ゴシック体'",
+					"YuGothic",
+					"'游ゴシック Medium'",
+					"'Yu Gothic Medium'",
+					"'游ゴシック'",
+					"'Yu Gothic'",
+					"sans-serif",
+				],
 			},
 			keyframes: {
 				"accordion-down": {

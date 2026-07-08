@@ -54,9 +54,9 @@ export default function Header() {
 	};
 
 	const navItems = [
-		{ href: "/about", label: "About Us" },
-		{ href: "/concerts", label: "Concerts" },
-		{ href: "/contact", label: "Contact Us" },
+		{ href: "/about", label: "団体紹介" },
+		{ href: "/concerts", label: "演奏会" },
+		{ href: "/contact", label: "お問い合わせ" },
 	];
 
 	return (

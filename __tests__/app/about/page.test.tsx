@@ -7,7 +7,7 @@ describe("About Page", () => {
 
 		// メインの見出しが表示されているか確認
 		expect(
-			screen.getByRole("heading", { name: /About Us/i })
+			screen.getByRole("heading", { name: /団体紹介/i })
 		).toBeInTheDocument();
 
 		// 団体紹介のテキストが表示されているか確認
