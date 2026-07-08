@@ -69,7 +69,7 @@ export default function NewsDetailPage() {
 							<Button
 								onClick={() => router.push("/")}
 								variant="outline"
-								className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+								className="border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)]"
 							>
 								ホームに戻る
 							</Button>
@@ -92,7 +92,7 @@ export default function NewsDetailPage() {
 								<Button
 									onClick={() => router.back()}
 									variant="outline"
-									className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex items-center gap-2"
+									className="border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)] flex items-center gap-2"
 								>
 									<svg
 										width="16"
@@ -114,7 +114,7 @@ export default function NewsDetailPage() {
 							</div>
 
 							{/* News Content */}
-							<div className="bg-white/10 backdrop-blur-md rounded-lg p-8">
+							<div className="surface p-8">
 								{/* Date */}
 								<div className="mb-4">
 									<span className="text-white/70 font-mono text-sm">
@@ -177,7 +177,7 @@ export default function NewsDetailPage() {
 												>
 													<Button
 														variant="outline"
-														className="w-full bg-white/20 hover:bg-white/30 text-white border-white/30 justify-start text-left h-auto py-3 px-4"
+														className="w-full border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)] justify-start text-left h-auto py-3 px-4"
 														style={{
 															wordBreak: "break-all",
 															overflowWrap: "anywhere",

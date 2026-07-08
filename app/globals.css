@@ -167,6 +167,30 @@
 	.btn-secondary {
 		@apply bg-transparent text-[hsl(var(--primary))] border border-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/0.1)] transition-colors;
 	}
+
+	/*
+	 * モダンな「面」。従来の灰色ガラス箱(bg-white/10 + border)を刷新し、
+	 * 枠線をなくして濃色ガラス・大きな角丸・柔らかい影でまとめる。
+	 * 長文や情報のまとまりに背景が必要な箇所だけに使う。
+	 */
+	.surface {
+		@apply rounded-3xl bg-black/25 ring-1 ring-white/10 shadow-2xl shadow-black/40 backdrop-blur-xl;
+	}
+
+	/* クリック可能な面のホバー: 浮き上がり + 縁と影を強調 */
+	.surface-interactive {
+		@apply transition-all duration-300 hover:-translate-y-1 hover:shadow-black/60 hover:ring-white/25;
+	}
+
+	/* 見出しの上に置く小さなアクセントラベル（緑・全角トラッキング） */
+	.eyebrow {
+		@apply inline-block text-xs font-semibold uppercase tracking-[0.25em] text-[hsl(var(--brand))];
+	}
+
+	/* 大見出し: 中央に緑のアンダーラインを添える */
+	.heading-accent {
+		@apply relative inline-block pb-4 after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-12 after:-translate-x-1/2 after:rounded-full after:bg-[hsl(var(--brand))] after:content-[''];
+	}
 }
 
 /* --- アニメーション関連 (変更なし、ただし未定義のキーフレームを修正) --- */

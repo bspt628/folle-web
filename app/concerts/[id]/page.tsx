@@ -115,7 +115,7 @@ export default function ConcertDetailPage() {
 					<section className="py-16">
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
-								<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden">
+								<div className="surface overflow-hidden">
 									<div className="flex flex-col lg:flex-row">
 										{/* ポスター画像 */}
 										<div className="w-full lg:w-auto p-5">

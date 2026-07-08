@@ -205,8 +205,11 @@ export default function HomePage() {
 
 							{/* News Section */}
 							<div ref={newsRef} className="px-6 py-8">
-								<h2 className="text-2xl font-bold text-white mb-4">News</h2>
-								<div className="space-y-3">
+								<span className="eyebrow mb-2">Latest</span>
+								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
+									News
+								</h2>
+								<div className="divide-y divide-white/10 border-t border-white/10">
 									{newsItems.map((item, index) => (
 										<div
 											key={index}
@@ -215,9 +218,9 @@ export default function HomePage() {
 													? () => router.push(`/news/${item.id}`)
 													: undefined
 											}
-											className={`bg-white/20 backdrop-blur-md rounded-lg p-5 ${
+											className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
 												item.hasDetailPage
-													? "cursor-pointer transition-all duration-300 hover:bg-white/30 hover:scale-[0.98]"
+													? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
 													: ""
 											}`}
 											{...(item.hasDetailPage && {
@@ -234,13 +237,15 @@ export default function HomePage() {
 										>
 											<div className="flex items-center justify-between">
 												<div className="flex items-center space-x-4 flex-1">
-													<span className="text-white font-mono text-sm">
+													<span className="font-mono text-sm text-white/60">
 														{item.date}
 													</span>
-													<h3 className="text-white">{item.title}</h3>
+													<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
+														{item.title}
+													</h3>
 												</div>
 												{item.hasDetailPage && (
-													<div className="ml-4 text-white">
+													<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
 														<svg
 															width="16"
 															height="16"
@@ -271,12 +276,13 @@ export default function HomePage() {
 					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
 						{upcomingConcert && (
 							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
-								<h2 className="text-2xl font-bold text-white mb-6">
+								<span className="eyebrow mb-2">Next</span>
+								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 									Upcoming Concert
 								</h2>
 								<div
 									onClick={handleConcertClick}
-									className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.97] cursor-pointer p-4"
+									className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-black/70 hover:ring-[hsl(var(--brand)/0.6)]"
 									style={{ aspectRatio: "0.707" }}
 									role="button"
 									tabIndex={0}
@@ -297,7 +303,7 @@ export default function HomePage() {
 											}
 											alt={`${upcomingConcert.title} Poster`}
 											fill
-											className="object-cover rounded-lg"
+											className="object-cover transition-transform duration-500 group-hover:scale-105"
 											priority
 											fetchPriority="high"
 											loading="eager"

@@ -40,11 +40,14 @@ export default function AboutPage() {
 				<section className="py-16">
 					<div className="container mx-auto px-4">
 						<div className="max-w-4xl mx-auto">
-							<h1 className="text-4xl font-bold text-white mb-12 text-center">
-								About Us
-							</h1>
+							<div className="mb-14 text-center">
+								<span className="eyebrow mb-3">Who We Are</span>
+								<h1 className="heading-accent text-4xl font-bold tracking-tight text-white">
+									About Us
+								</h1>
+							</div>
 
-							<Card className="bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden">
+							<Card className="overflow-hidden rounded-3xl border-0 bg-black/25 shadow-2xl shadow-black/40 ring-1 ring-white/10 backdrop-blur-xl">
 								<div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 md:items-start">
 									{/* Logo - web版では左 */}
 									<div className="w-2/3 mx-auto md:w-1/3 md:mx-0 shrink-0">

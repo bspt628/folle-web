@@ -148,13 +148,16 @@ export default function ContactPage() {
 			<PageContainer>
 				<section className="py-16">
 					<div className="container mx-auto px-4">
-						<h1 className="text-4xl font-bold text-white text-center mb-12">
-							Contact Us
-						</h1>
+						<div className="mb-14 text-center">
+							<span className="eyebrow mb-3">Get in Touch</span>
+							<h1 className="heading-accent text-4xl font-bold tracking-tight text-white">
+								Contact Us
+							</h1>
+						</div>
 
 						<div className="max-w-4xl mx-auto">
 							{/* Contact Information */}
-							<div className="bg-white/10 backdrop-blur-md rounded-lg p-6 mb-12">
+							<div className="surface mb-12 p-6 md:p-8">
 								<h2 className="text-2xl font-bold text-white text-center mb-8">
 									お問い合わせ先
 								</h2>
@@ -245,7 +248,7 @@ export default function ContactPage() {
 							</div>
 
 							{/* Contact Form */}
-							<div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
+							<div className="surface p-6 md:p-8">
 								<h2 className="text-2xl font-bold text-white text-center mb-8">
 									お問い合わせフォーム
 								</h2>
