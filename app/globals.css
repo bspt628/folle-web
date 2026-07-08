@@ -109,8 +109,19 @@
 		cursor: not-allowed;
 	}
 
+	/*
+	 * 固定背景画像(/bg-green.jpg)がモバイルのアドレスバー可変分などで
+	 * 覆いきれない領域が出ても白くならないよう、下地を暗い緑基調にする。
+	 */
+	html {
+		background-color: #0e1a13;
+	}
+
 	body {
-		@apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+		@apply text-[hsl(var(--foreground))];
+		background-color: #0e1a13;
+		/* ページ全体を覆う固定背景(absolute inset-0)の位置基準にする */
+		position: relative;
 		font-family: "Roboto", sans-serif; /* var(--font-roboto)より直接指定を推奨 */
 		line-height: 1.8;
 		overscroll-behavior-x: auto;

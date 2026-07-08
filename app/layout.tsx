@@ -65,8 +65,9 @@ export default function RootLayout({
 				<link rel="icon" href="/logo.png" />
 			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
-				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設 */}
-				<div className="fixed inset-0 -z-10">
+				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設。
+				    ページ全体(絶対配置)を覆うことでモバイルでも下部が白くならない。 */}
+				<div className="absolute inset-0 -z-10">
 					<Image
 						src="/bg-green.jpg"
 						alt=""
