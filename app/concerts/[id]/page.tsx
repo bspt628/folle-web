@@ -241,7 +241,7 @@ export default function ConcertDetailPage() {
 													>
 														<Button
 															size="lg"
-															className="w-full py-3 group flex items-center gap-0"
+															className="w-full max-w-sm group gap-0"
 														>
 															<div className="w-[108px] h-[42px] relative">
 																<Image
@@ -256,10 +256,10 @@ export default function ConcertDetailPage() {
 														</Button>
 													</a>
 												) : (
-													<div className="relative group">
+													<div className="relative group flex justify-center">
 														<Button
 															size="lg"
-															className="w-full py-3 group flex items-center gap-0 cursor-not-allowed opacity-80"
+															className="w-full max-w-sm group gap-0 cursor-not-allowed opacity-80"
 															disabled
 															aria-label="チケット予約は近日公開予定です"
 														>
