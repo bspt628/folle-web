@@ -11,11 +11,11 @@ const buttonVariants = cva(
       // 通常は白枠+透明、ホバーで左から緑が埋まる（背景を左基準で 0%→100% に拡大）
       variant: {
         default:
-          "border border-white/80 text-white bg-gradient-to-r from-[hsl(var(--brand))] to-[hsl(var(--brand))] bg-left bg-no-repeat bg-[length:0%_100%] hover:bg-[length:100%_100%] hover:border-[hsl(var(--brand))]",
+          "border border-[hsl(var(--brand))] text-[hsl(var(--brand))] bg-gradient-to-r from-[hsl(var(--brand))] to-[hsl(var(--brand))] bg-left bg-no-repeat bg-[length:0%_100%] hover:bg-[length:100%_100%] hover:text-white",
         destructive:
           "bg-destructive text-white hover:brightness-110 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border border-white/50 text-white bg-gradient-to-r from-[hsl(var(--brand))] to-[hsl(var(--brand))] bg-left bg-no-repeat bg-[length:0%_100%] hover:bg-[length:100%_100%] hover:border-[hsl(var(--brand))]",
+          "border border-[hsl(var(--brand))] text-[hsl(var(--brand))] bg-gradient-to-r from-[hsl(var(--brand))] to-[hsl(var(--brand))] bg-left bg-no-repeat bg-[length:0%_100%] hover:bg-[length:100%_100%] hover:text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:brightness-110",
         ghost: "text-white hover:bg-white/10",
