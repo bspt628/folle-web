@@ -366,11 +366,12 @@ export default function ContactPage() {
 										)}
 									</div>
 
-									<div className="text-center">
+									<div className="flex justify-center">
 										<Button
 											type="submit"
+											size="lg"
 											disabled={isSubmitting}
-											className="px-8 py-3"
+											className="w-full max-w-sm tracking-widest"
 										>
 											{isSubmitting ? "送信中..." : "送信"}
 										</Button>
