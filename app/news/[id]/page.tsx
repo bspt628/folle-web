@@ -69,7 +69,6 @@ export default function NewsDetailPage() {
 							<Button
 								onClick={() => router.push("/")}
 								variant="outline"
-								className="border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)]"
 							>
 								ホームに戻る
 							</Button>
@@ -92,7 +91,7 @@ export default function NewsDetailPage() {
 								<Button
 									onClick={() => router.back()}
 									variant="outline"
-									className="border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)] flex items-center gap-2"
+									className="flex items-center gap-2"
 								>
 									<svg
 										width="16"
@@ -177,7 +176,7 @@ export default function NewsDetailPage() {
 												>
 													<Button
 														variant="outline"
-														className="w-full border-0 bg-white/5 text-white ring-1 ring-white/15 transition-all hover:bg-[hsl(var(--brand)/0.2)] hover:ring-[hsl(var(--brand)/0.5)] justify-start text-left h-auto py-3 px-4"
+														className="w-full justify-start text-left h-auto py-3 px-4"
 														style={{
 															wordBreak: "break-all",
 															overflowWrap: "anywhere",
