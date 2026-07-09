@@ -240,8 +240,8 @@ export default function ConcertDetailPage() {
 														aria-label="Teketで演奏会のチケットを予約する（新しいタブで開きます）"
 													>
 														<Button
-															variant="outline"
-															className="w-full bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] border-0 relative py-3 group flex items-center gap-0"
+															size="lg"
+															className="w-full py-3 group flex items-center gap-0"
 														>
 															<div className="w-[108px] h-[42px] relative">
 																<Image
@@ -258,8 +258,8 @@ export default function ConcertDetailPage() {
 												) : (
 													<div className="relative group">
 														<Button
-															variant="outline"
-															className="w-full bg-[hsl(var(--primary))] hover:brightness-105 text-[hsl(var(--primary-foreground))] border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
+															size="lg"
+															className="w-full py-3 group flex items-center gap-0 cursor-not-allowed opacity-80"
 															disabled
 															aria-label="チケット予約は近日公開予定です"
 														>

@@ -369,8 +369,9 @@ export default function ContactPage() {
 									<div className="text-center">
 										<Button
 											type="submit"
+											size="lg"
 											disabled={isSubmitting}
-											className="px-8 py-3"
+											className="min-w-[12rem] tracking-widest"
 										>
 											{isSubmitting ? "送信中..." : "送信"}
 										</Button>
