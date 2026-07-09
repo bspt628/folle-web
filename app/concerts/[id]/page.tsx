@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
-import { useConcert } from "@/lib/hooks/useConcerts";
+import { getConcert } from "@/lib/constants/concerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { isVideoPublished } from "@/lib/utils";
@@ -11,29 +11,10 @@ import Head from "next/head";
 
 export default function ConcertDetailPage() {
 	const params = useParams();
-	const { concert, isLoading } = useConcert(params.id as string);
-
-	if (isLoading) {
-		return (
-			<div className="h-screen relative">
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/gray_back.jpg"
-						alt="Background"
-						fill
-						className="object-cover"
-						priority
-					/>
-					<div className="absolute inset-0 bg-black/50" />
-				</div>
-				<div className="relative z-10 pt-20">
-					<div className="container mx-auto px-4 py-16">
-						<div className="text-center text-white">Loading...</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+	// データは静的な定数のため同期的に取得する。
+	// クライアント専用の loading ゲートに依存すると、hydration に失敗した際に
+	// 「Loading...」のまま固まることがあるため、サーバ/クライアント両方で描画する。
+	const concert = getConcert(params.id as string);
 
 	if (!concert) {
 		return (
