@@ -310,3 +310,27 @@
 	animation: slowRotate 20s linear infinite;
 	transform-origin: center center;
 }
+
+/* モバイルのヒーロー画像を左右にゆっくりパン（トリミング位置を移動、10秒で往復） */
+@keyframes heroPan {
+	0% {
+		object-position: 0% 50%;
+	}
+	50% {
+		object-position: 100% 50%;
+	}
+	100% {
+		object-position: 0% 50%;
+	}
+}
+
+.hero-pan {
+	animation: heroPan 10s ease-in-out infinite;
+	will-change: object-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-pan {
+		animation: none;
+	}
+}
