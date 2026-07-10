@@ -80,7 +80,7 @@ export default function RootLayout({
 						sizes="100vw"
 						quality={75}
 					/>
-					<div className="absolute inset-0 bg-black/50" />
+					<div className="absolute inset-0 bg-black/60" />
 				</div>
 				<a
 					href="#main-content"

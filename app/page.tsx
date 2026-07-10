@@ -201,6 +201,19 @@ export default function HomePage() {
 					<div className="w-full md:w-1/2">
 						{/* Logo and News Container */}
 						<div className="relative h-full flex flex-col">
+							{/* 演奏風景の写真（画面左上〜チラシ手前まで大きく表示） */}
+							<div className="relative flex-1 min-h-[40vh] overflow-hidden md:min-h-0 md:rounded-br-[2rem]">
+								<Image
+									src="/orchestra-hall.jpg"
+									alt="Orchestra più Folle の演奏風景"
+									fill
+									className="object-cover object-center"
+									priority
+									sizes="(max-width: 768px) 100vw, 50vw"
+								/>
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black/30" />
+							</div>
+
 							{/* Logo - temporarily hidden */}
 							{/* {isMdScreen ? (
 							<div className="w-[50vw] h-[50vw] opacity-40 slow-rotate absolute bottom-0">

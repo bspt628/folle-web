@@ -80,8 +80,23 @@ export default function ConcertsPage() {
 											)}
 										</div>
 
-										<div className="mt-5 border-l-2 border-[hsl(var(--brand))] pl-4">
-											<span className="block font-mono text-sm text-white/70">
+										<div className="relative mt-5 pl-5">
+											{/* 装飾アクセント: グラデーションの縦バー＋グロウする起点ノード */}
+											<span
+												aria-hidden="true"
+												className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-full bg-gradient-to-b from-[hsl(var(--brand))] via-[hsl(var(--brand))]/60 to-transparent transition-all duration-300 group-hover:top-0 group-hover:bottom-0"
+											/>
+											<span
+												aria-hidden="true"
+												className="absolute -left-[3px] top-0.5 h-2.5 w-2.5 rounded-full bg-[hsl(var(--brand))] ring-2 ring-[hsl(var(--brand))]/25 shadow-[0_0_10px_hsl(var(--brand))] transition-transform duration-300 group-hover:scale-125"
+											/>
+											<span
+												className="block text-sm tracking-wider text-white/70"
+												style={{
+													fontFamily:
+														'"游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", sans-serif',
+												}}
+											>
 												{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
 													locale: ja,
 												})}

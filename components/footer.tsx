@@ -21,19 +21,19 @@ export default function Footer() {
 								href="/about"
 								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
-								About Us
+								団体紹介
 							</Link>
 							<Link
 								href="/concerts"
 								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
-								Concerts
+								演奏会
 							</Link>
 							<Link
 								href="/contact"
 								className="block text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors"
 							>
-								Contact Us
+								お問い合わせ
 							</Link>
 						</nav>
 					</div>
