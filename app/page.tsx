@@ -173,7 +173,7 @@ export default function HomePage() {
 					content="https://orchestrapiufolle.com/567993919410012183.jpg"
 				/>
 			</Head>
-			<div className="h-screen relative">
+			<div className="min-h-screen relative">
 				{/* オーバーレイ */}
 				{showOverlay && (
 					<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
@@ -196,22 +196,23 @@ export default function HomePage() {
 				)}
 
 				{/* Content Container（背景はレイアウトの固定背景を使用） */}
-				<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
+				<div className="relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10">
 					{/* Main Content */}
-					<div className="w-full md:w-1/2">
+					<div className="w-full md:flex-1 md:min-w-0">
 						{/* Logo and News Container */}
-						<div className="relative h-full flex flex-col">
-							{/* 演奏風景の写真（画面左上〜チラシ手前まで大きく表示） */}
-							<div className="relative flex-1 min-h-[40vh] overflow-hidden md:min-h-0 md:rounded-br-[2rem]">
-								<Image
-									src="/orchestra-hall.jpg"
-									alt="Orchestra più Folle の演奏風景"
-									fill
-									className="object-cover object-center"
-									priority
-									sizes="(max-width: 768px) 100vw, 50vw"
-								/>
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black/30" />
+						<div className="relative flex flex-col">
+							{/* 演奏風景の写真（左右に均等な余白を持たせ、Welcome表記付き） */}
+							<div className="pt-6 pl-6 pr-4 md:pt-10 md:pl-10 md:pr-6">
+								<div className="relative w-full aspect-[1999/1330] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
+									<Image
+										src="/orchestra-hall.webp"
+										alt="Orchestra più Folle の演奏風景"
+										fill
+										className="object-cover object-center"
+										priority
+										sizes="(max-width: 768px) 100vw, 55vw"
+									/>
+								</div>
 							</div>
 
 							{/* Logo - temporarily hidden */}
@@ -296,9 +297,9 @@ export default function HomePage() {
 					</div>
 
 					{/* Right Side - 次回 / 直近の演奏会 */}
-					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
+					<div className="w-full md:w-auto md:shrink-0 pl-6 pr-6 md:pr-14 py-8 flex items-start justify-center mt-8 md:mt-0">
 						{featuredConcert && (
-							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
+							<div className="w-full md:w-[calc((100vh-220px)*0.707)] flex flex-col">
 								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 									{featuredLabel}
 								</h2>
