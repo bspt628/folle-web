@@ -206,7 +206,7 @@ export default function HomePage() {
 						<div className="relative flex flex-col">
 							{/* 演奏風景の写真（左右に均等な余白を持たせ、Welcome表記付き） */}
 							<div className="pt-6 pl-6 pr-4 md:pt-10 md:pl-10 md:pr-6">
-								<div className="relative w-full aspect-[1999/1330] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
+								<div className="relative w-full aspect-[1999/1330] max-h-[calc(100dvh-19rem)] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
 									<Image
 										src="/orchestra-hall.webp"
 										alt="Orchestra più Folle の演奏風景"
