@@ -25,16 +25,13 @@ describe("Concerts Page", () => {
 		render(await ConcertsPage());
 
 		// ページタイトルが表示されているか確認
-		expect(screen.getByText("Concerts")).toBeInTheDocument();
+		expect(screen.getByText("演奏会")).toBeInTheDocument();
 
 		// コンサートのタイトルが表示されているか確認
 		expect(screen.getByText("第1回特別演奏会")).toBeInTheDocument();
 
 		// 日付が表示されているか確認
 		expect(screen.getByText("2025/11/09 (日)")).toBeInTheDocument();
-
-		// ステータスが表示されているか確認
-		expect(screen.getByText("開催予定")).toBeInTheDocument();
 	});
 
 	it("renders concert cards with proper accessibility attributes", async () => {

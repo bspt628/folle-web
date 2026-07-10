@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
-import { useConcert } from "@/lib/hooks/useConcerts";
+import { getConcert } from "@/lib/constants/concerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { isVideoPublished } from "@/lib/utils";
@@ -11,42 +11,23 @@ import Head from "next/head";
 
 export default function ConcertDetailPage() {
 	const params = useParams();
-	const { concert, isLoading } = useConcert(params.id as string);
-
-	if (isLoading) {
-		return (
-			<div className="h-screen relative">
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/bg-green.jpg"
-						alt="Background"
-						fill
-						className="object-cover"
-						priority
-					/>
-					<div className="absolute inset-0 bg-black/40" />
-				</div>
-				<div className="relative z-10 pt-20">
-					<div className="container mx-auto px-4 py-16">
-						<div className="text-center text-white">Loading...</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+	// データは静的な定数のため同期的に取得する。
+	// クライアント専用の loading ゲートに依存すると、hydration に失敗した際に
+	// 「Loading...」のまま固まることがあるため、サーバ/クライアント両方で描画する。
+	const concert = getConcert(params.id as string);
 
 	if (!concert) {
 		return (
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/bg-green.jpg"
+						src="/gray_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/40" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -110,36 +91,23 @@ export default function ConcertDetailPage() {
 				</Head>
 			)}
 			<div className="min-h-screen relative">
-				{/* Background Image */}
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/bg-green.jpg"
-						alt="Background"
-						fill
-						className="object-cover"
-						priority
-					/>
-					<div className="absolute inset-0 bg-black/40" />
-				</div>
-
-				{/* Content */}
+				{/* Content（背景はレイアウトの固定背景を使用） */}
 				<div className="relative z-10 pt-20">
 					<section className="py-16">
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
-								<div className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden">
-									<div className="flex flex-col lg:flex-row">
+								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
 										{/* ポスター画像 */}
-										<div className="w-full lg:w-auto p-5">
+										<div className="w-full lg:w-auto shrink-0">
 											<div
-												className="relative w-full lg:w-[360px] mx-auto"
+												className="relative mx-auto w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:w-[360px]"
 												style={{ aspectRatio: "0.707" }}
 											>
 												<Image
 													src={concert.posterImage?.url || "/placeholder.jpg"}
 													alt={`${concert.title} Poster`}
 													fill
-													className="object-cover rounded-lg"
+													className="object-cover"
 													priority
 													fetchPriority="high"
 													loading="eager"
@@ -149,7 +117,7 @@ export default function ConcertDetailPage() {
 										</div>
 
 										{/* コンサート情報 */}
-										<div className="p-4 lg:p-8 flex-1">
+										<div className="flex-1">
 											<h1 className="text-xl font-bold text-white mb-6 break-words">
 												{concert.title}
 											</h1>
@@ -272,8 +240,8 @@ export default function ConcertDetailPage() {
 														aria-label="Teketで演奏会のチケットを予約する（新しいタブで開きます）"
 													>
 														<Button
-															variant="outline"
-															className="w-full bg-[hsl(var(--primary))] hover:brightness-110 text-[hsl(var(--primary-foreground))] border-0 relative py-3 group flex items-center gap-0"
+															size="lg"
+															className="w-full max-w-sm group gap-0"
 														>
 															<div className="w-[108px] h-[42px] relative">
 																<Image
@@ -288,10 +256,10 @@ export default function ConcertDetailPage() {
 														</Button>
 													</a>
 												) : (
-													<div className="relative group">
+													<div className="relative group flex justify-center">
 														<Button
-															variant="outline"
-															className="w-full bg-[hsl(var(--primary))] hover:brightness-105 text-[hsl(var(--primary-foreground))] border-0 cursor-not-allowed opacity-80 relative py-3 group flex items-center gap-0"
+															size="lg"
+															className="w-full max-w-sm group gap-0 cursor-not-allowed opacity-80"
 															disabled
 															aria-label="チケット予約は近日公開予定です"
 														>
@@ -352,7 +320,6 @@ export default function ConcertDetailPage() {
 										</div>
 									</div>
 								</div>
-							</div>
 						</div>
 					</section>
 				</div>

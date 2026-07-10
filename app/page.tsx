@@ -1,7 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { getUpcomingConcert } from "@/lib/constants/concerts";
+import {
+	getUpcomingConcert,
+	getLatestPastConcert,
+	isComingSoonConcert,
+} from "@/lib/constants/concerts";
 import { getNewsItems } from "@/lib/constants/news";
 import { useEffect, useState, useRef } from "react";
 import { NewsItem } from "@/lib/types";
@@ -120,9 +124,16 @@ export default function HomePage() {
 		}, 3000);
 	}, [pathname]);
 
+	// 次回演奏会がポスター未定(coming soon)の場合は、直近の過去演奏会を表示する
+	const comingSoon = isComingSoonConcert(upcomingConcert);
+	const featuredConcert = comingSoon
+		? (getLatestPastConcert() as Concert | null)
+		: upcomingConcert;
+	const featuredLabel = comingSoon ? "直近の演奏会" : "次回の演奏会";
+
 	const handleConcertClick = () => {
-		if (upcomingConcert) {
-			router.push(`/concerts/${upcomingConcert.id}`);
+		if (featuredConcert) {
+			router.push(`/concerts/${featuredConcert.id}`);
 		}
 	};
 
@@ -199,21 +210,7 @@ export default function HomePage() {
 					</div>
 				)}
 
-				{/* Background Image */}
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/bg-green.jpg"
-						alt="Orchestra Performance"
-						fill
-						className="object-cover"
-						priority
-						sizes="100vw"
-						quality={75}
-					/>
-					<div className="absolute inset-0 bg-black/40" />
-				</div>
-
-				{/* Content Container */}
+				{/* Content Container（背景はレイアウトの固定背景を使用） */}
 				<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
 					{/* Main Content */}
 					<div className="w-full md:w-1/2">
@@ -234,8 +231,10 @@ export default function HomePage() {
 
 							{/* News Section */}
 							<div ref={newsRef} className="px-6 py-8">
-								<h2 className="text-2xl font-bold text-white mb-4">News</h2>
-								<div className="space-y-3">
+								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
+									ニュース
+								</h2>
+								<div className="divide-y divide-white/10 border-t border-white/10">
 									{newsItems.map((item, index) => (
 										<div
 											key={index}
@@ -244,9 +243,9 @@ export default function HomePage() {
 													? () => router.push(`/news/${item.id}`)
 													: undefined
 											}
-											className={`bg-white/20 backdrop-blur-md rounded-lg p-5 ${
+											className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
 												item.hasDetailPage
-													? "cursor-pointer transition-all duration-300 hover:bg-white/30 hover:scale-[0.98]"
+													? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
 													: ""
 											}`}
 											{...(item.hasDetailPage && {
@@ -263,13 +262,15 @@ export default function HomePage() {
 										>
 											<div className="flex items-center justify-between">
 												<div className="flex items-center space-x-4 flex-1">
-													<span className="text-white font-mono text-sm">
+													<span className="font-mono text-sm text-white/60">
 														{item.date}
 													</span>
-													<h3 className="text-white">{item.title}</h3>
+													<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
+														{item.title}
+													</h3>
 												</div>
 												{item.hasDetailPage && (
-													<div className="ml-4 text-white">
+													<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
 														<svg
 															width="16"
 															height="16"
@@ -296,16 +297,16 @@ export default function HomePage() {
 						</div>
 					</div>
 
-					{/* Right Side - Upcoming Concert */}
+					{/* Right Side - 次回 / 直近の演奏会 */}
 					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
-						{upcomingConcert && (
+						{featuredConcert && (
 							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
-								<h2 className="text-2xl font-bold text-white mb-6">
-									Upcoming Concert
+								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
+									{featuredLabel}
 								</h2>
 								<div
 									onClick={handleConcertClick}
-									className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-[0.97] cursor-pointer p-4"
+									className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-black/70"
 									style={{ aspectRatio: "0.707" }}
 									role="button"
 									tabIndex={0}
@@ -316,17 +317,17 @@ export default function HomePage() {
 										}
 									}}
 									aria-label={`${
-										upcomingConcert?.title || "次回演奏会"
+										featuredConcert?.title || featuredLabel
 									}の詳細を見る`}
 								>
 									<div className="relative w-full h-full">
 										<Image
 											src={
-												upcomingConcert.posterImage?.url || "/placeholder.jpg"
+												featuredConcert.posterImage?.url || "/placeholder.jpg"
 											}
-											alt={`${upcomingConcert.title} Poster`}
+											alt={`${featuredConcert.title} Poster`}
 											fill
-											className="object-cover rounded-lg"
+											className="object-cover transition-transform duration-500 group-hover:scale-105"
 											priority
 											fetchPriority="high"
 											loading="eager"

@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
 	// Image optimization
 	images: {
 		domains: ["images.microcms-assets.io"],
+		// coming-soon プレースホルダー等の SVG を next/image で表示するため許可。
+		// スクリプトは CSP で無効化し、サンドボックス下でのみ描画する。
+		dangerouslyAllowSVG: true,
+		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 	},
 
 	// Modern JavaScript and build optimization

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { roboto, inter } from "@/app/ui/fonts";
+import PageTransition from "@/components/page-transition";
+import { archivo } from "@/app/ui/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -55,11 +57,31 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="ja" className={`${roboto.variable} ${inter.variable}`}>
+		<html
+			lang="ja"
+			className={archivo.variable}
+		>
 			<head>
 				<link rel="icon" href="/logo.png" />
 			</head>
 			<body className="font-sans antialiased min-h-screen flex flex-col">
+				{/* 遷移中に一瞬白くならないよう、背景画像をレイアウト側に常設。
+				    fixed でビューポート基準に固定し、画像を常にくっきり全体表示する。
+				    モバイルでアドレスバー可変分の隙間が出ても、下地(html/body)を
+				    暗い緑基調にしているため白くならない。 */}
+				<div className="fixed inset-0 -z-10">
+					<Image
+						src="/bg-green.jpg"
+						alt=""
+						aria-hidden="true"
+						fill
+						className="object-cover"
+						priority
+						sizes="100vw"
+						quality={75}
+					/>
+					<div className="absolute inset-0 bg-black/50" />
+				</div>
 				<a
 					href="#main-content"
 					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black p-4 z-50"
@@ -68,7 +90,7 @@ export default function RootLayout({
 				</a>
 				<Header />
 				<main id="main-content" className="flex-grow" role="main">
-					{children}
+					<PageTransition>{children}</PageTransition>
 				</main>
 				<Footer />
 				<SpeedInsights />

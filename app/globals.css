@@ -6,7 +6,7 @@
 	:root {
 		/* ▼▼▼ 色の定義を整理 ▼▼▼ */
 		/* 基本色 */
-		--brand: 43 55% 42%; /* より落ち着いた金色 */
+		--brand: 132 67% 38%; /* ロゴの緑 #20a139 */
 		--foreground-base: 0 0% 20%;
 		--background-base: 0 0% 100%;
 		--destructive-base: 0 84.2% 60.2%;
@@ -46,7 +46,7 @@
 
 	.dark {
 		/* ダークモードの基本色（例）*/
-		--brand: 47 65% 60%;
+		--brand: 132 67% 38%; /* ロゴの緑 #20a139（ダーク） */
 		--foreground-base: 0 0% 98%;
 		--background-base: 0 0% 9%;
 		--destructive-base: 0 62.8% 30.6%;
@@ -109,10 +109,25 @@
 		cursor: not-allowed;
 	}
 
+	/*
+	 * 固定背景画像(/bg-green.jpg)がモバイルのアドレスバー可変分などで
+	 * 覆いきれない領域が出ても白くならないよう、下地を暗い緑基調にする。
+	 * 下地色は html(canvas) のみに置く。body に不透明背景を置くと、
+	 * 負の z-index(-z-10) の固定背景画像が body 背景に隠れてしまうため。
+	 */
+	html {
+		background-color: #0e1a13;
+	}
+
 	body {
-		@apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
-		font-family: "Roboto", sans-serif; /* var(--font-roboto)より直接指定を推奨 */
+		@apply text-[hsl(var(--foreground))];
+		/* 日本語・英語ともに游ゴシック体で統一 */
+		font-family: "游ゴシック体", YuGothic, "游ゴシック Medium",
+			"Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 		line-height: 1.8;
+		letter-spacing: 0.05em;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
 		overscroll-behavior-x: auto;
 	}
 
@@ -437,6 +452,13 @@
 .text {
 	display: inline-block;
 	opacity: 0;
+	/* next/font でセルフホストした Archivo(--font-din) を全端末で使用。
+	   DIN Alternate に近い標準幅グロテスク。以降は保険のフォールバック */
+	font-family: var(--font-din), "DIN Alternate", "Bahnschrift", "Helvetica Neue",
+		Arial, sans-serif;
+	letter-spacing: 0.06em;
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	font-weight: 700;
 }
 
 .logo {

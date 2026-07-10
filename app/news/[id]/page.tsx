@@ -30,13 +30,13 @@ export default function NewsDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/bg-green.jpg"
+						src="/gray_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/40" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -52,13 +52,13 @@ export default function NewsDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/bg-green.jpg"
+						src="/gray_back.jpg"
 						alt="Background"
 						fill
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-black/40" />
+					<div className="absolute inset-0 bg-black/50" />
 				</div>
 				<div className="relative z-10 pt-20">
 					<div className="container mx-auto px-4 py-16">
@@ -69,7 +69,6 @@ export default function NewsDetailPage() {
 							<Button
 								onClick={() => router.push("/")}
 								variant="outline"
-								className="bg-white/20 hover:bg-white/30 text-white border-white/30"
 							>
 								ホームに戻る
 							</Button>
@@ -82,19 +81,7 @@ export default function NewsDetailPage() {
 
 	return (
 		<div className="min-h-screen relative">
-			{/* Background Image */}
-			<div className="absolute inset-0 z-0">
-				<Image
-					src="/bg-green.jpg"
-					alt="Background"
-					fill
-					className="object-cover"
-					priority
-				/>
-				<div className="absolute inset-0 bg-black/40" />
-			</div>
-
-			{/* Content */}
+			{/* Content（背景はレイアウトの固定背景を使用） */}
 			<div className="relative z-10 pt-20">
 				<section className="py-16">
 					<div className="container mx-auto px-4">
@@ -104,7 +91,7 @@ export default function NewsDetailPage() {
 								<Button
 									onClick={() => router.back()}
 									variant="outline"
-									className="bg-white/20 hover:bg-white/30 text-white border-white/30 flex items-center gap-2"
+									className="flex items-center gap-2"
 								>
 									<svg
 										width="16"
@@ -125,8 +112,8 @@ export default function NewsDetailPage() {
 								</Button>
 							</div>
 
-							{/* News Content */}
-							<div className="bg-white/10 backdrop-blur-md rounded-lg p-8">
+							{/* News Content（カードレス・背景に直接） */}
+							<div>
 								{/* Date */}
 								<div className="mb-4">
 									<span className="text-white/70 font-mono text-sm">
@@ -189,7 +176,7 @@ export default function NewsDetailPage() {
 												>
 													<Button
 														variant="outline"
-														className="w-full bg-white/20 hover:bg-white/30 text-white border-white/30 justify-start text-left h-auto py-3 px-4"
+														className="w-full justify-start text-left h-auto py-3 px-4"
 														style={{
 															wordBreak: "break-all",
 															overflowWrap: "anywhere",
