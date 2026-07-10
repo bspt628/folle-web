@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
 	getUpcomingConcert,
 	getLatestPastConcert,
@@ -19,6 +20,8 @@ export default function HomePage() {
 	const [upcomingConcert, setUpcomingConcert] = useState<Concert | null>(null);
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [isFadingOut, setIsFadingOut] = useState(false);
+	// ニュースは1件ずつ表示。index 0 が最新（配列は新しい順）。
+	const [newsIndex, setNewsIndex] = useState(0);
 	const newsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const pathname = usePathname();
@@ -228,70 +231,107 @@ export default function HomePage() {
 							</div>
 						) : null} */}
 
-							{/* News Section */}
+							{/* News Section（1件ずつ表示。< > で前後のニュースへ） */}
 							<div ref={newsRef} className="px-6 py-8">
-								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
-									ニュース
-								</h2>
-								<div className="divide-y divide-white/10 border-t border-white/10">
-									{newsItems.map((item, index) => (
-										<div
-											key={index}
-											onClick={
-												item.hasDetailPage
-													? () => router.push(`/news/${item.id}`)
-													: undefined
-											}
-											className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
-												item.hasDetailPage
-													? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
-													: ""
-											}`}
-											{...(item.hasDetailPage && {
-												role: "button",
-												tabIndex: 0,
-												onKeyDown: (e) => {
-													if (e.key === "Enter" || e.key === " ") {
-														e.preventDefault();
-														router.push(`/news/${item.id}`);
-													}
-												},
-												"aria-label": `${item.title}の詳細を見る`,
-											})}
-										>
-											<div className="flex items-center justify-between">
-												<div className="flex items-center space-x-4 flex-1">
-													<span className="font-mono text-sm text-white/60">
-														{item.date}
-													</span>
-													<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
-														{item.title}
-													</h3>
-												</div>
-												{item.hasDetailPage && (
-													<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
-														<svg
-															width="16"
-															height="16"
-															viewBox="0 0 16 16"
-															fill="none"
-															xmlns="http://www.w3.org/2000/svg"
-															className="transition-transform duration-300 group-hover:translate-x-1"
-														>
-															<path
-																d="M6 12L10 8L6 4"
-																stroke="currentColor"
-																strokeWidth="2"
-																strokeLinecap="round"
-																strokeLinejoin="round"
-															/>
-														</svg>
+								<div className="mb-5 flex items-center justify-between gap-4">
+									<h2 className="text-2xl font-bold tracking-tight text-white">
+										ニュース
+									</h2>
+									{newsItems.length > 1 && (
+										<div className="flex items-center gap-2">
+											<button
+												type="button"
+												aria-label="新しいニュースを見る"
+												onClick={() =>
+													setNewsIndex((i) => Math.max(i - 1, 0))
+												}
+												disabled={newsIndex === 0}
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))] disabled:pointer-events-none disabled:opacity-30"
+											>
+												<ChevronLeft size={18} aria-hidden="true" />
+											</button>
+											<span className="min-w-[3rem] text-center text-xs tabular-nums text-white/60 select-none">
+												{newsIndex + 1} / {newsItems.length}
+											</span>
+											<button
+												type="button"
+												aria-label="過去のニュースを見る"
+												onClick={() =>
+													setNewsIndex((i) =>
+														Math.min(i + 1, newsItems.length - 1)
+													)
+												}
+												disabled={newsIndex >= newsItems.length - 1}
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))] disabled:pointer-events-none disabled:opacity-30"
+											>
+												<ChevronRight size={18} aria-hidden="true" />
+											</button>
+										</div>
+									)}
+								</div>
+								{(() => {
+									const item = newsItems[newsIndex];
+									if (!item) return null;
+									return (
+										<div className="border-t border-white/10">
+											<div
+												key={item.id}
+												onClick={
+													item.hasDetailPage
+														? () => router.push(`/news/${item.id}`)
+														: undefined
+												}
+												className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
+													item.hasDetailPage
+														? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
+														: ""
+												}`}
+												{...(item.hasDetailPage && {
+													role: "button",
+													tabIndex: 0,
+													onKeyDown: (e) => {
+														if (e.key === "Enter" || e.key === " ") {
+															e.preventDefault();
+															router.push(`/news/${item.id}`);
+														}
+													},
+													"aria-label": `${item.title}の詳細を見る`,
+												})}
+											>
+												<div className="flex items-center justify-between">
+													<div className="flex items-center space-x-4 flex-1">
+														<span className="font-mono text-sm text-white/60">
+															{item.date}
+														</span>
+														<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
+															{item.title}
+														</h3>
 													</div>
-												)}
+													{item.hasDetailPage && (
+														<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
+															<svg
+																width="16"
+																height="16"
+																viewBox="0 0 16 16"
+																fill="none"
+																xmlns="http://www.w3.org/2000/svg"
+																className="transition-transform duration-300 group-hover:translate-x-1"
+															>
+																<path
+																	d="M6 12L10 8L6 4"
+																	stroke="currentColor"
+																	strokeWidth="2"
+																	strokeLinecap="round"
+																	strokeLinejoin="round"
+																/>
+															</svg>
+														</div>
+													)}
+												</div>
 											</div>
 										</div>
-									))}
-								</div>
+									);
+								})()}
 							</div>
 						</div>
 					</div>

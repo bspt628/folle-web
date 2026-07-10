@@ -12,6 +12,12 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
 	{
+		id: "4",
+		date: "2026.07.11",
+		title: "第2回演奏会の演奏会情報を公開しました",
+		hasDetailPage: false,
+	},
+	{
 		id: "3",
 		date: "2025.07.23",
 		title: "第1回特別演奏会が所沢市「音楽のあるまちづくり」音まち推奨イベントに認定されました",
