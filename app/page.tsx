@@ -226,7 +226,7 @@ export default function HomePage() {
 				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
 				<div
 					className={`relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10 ${
-						showOverlay ? "invisible" : ""
+						showOverlay ? "invisible" : "content-reveal"
 					}`}
 				>
 					{/* Main Content */}

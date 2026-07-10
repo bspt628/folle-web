@@ -266,6 +266,11 @@ body.opening-active footer {
 	display: none;
 }
 
+/* オープニング終了後、コンテンツが現れる瞬間のフェードイン */
+.content-reveal {
+	animation: fadeIn 0.8s ease-in-out;
+}
+
 .hidden {
 	opacity: 0;
 	pointer-events: none;
@@ -292,9 +297,9 @@ body.opening-active footer {
 	transform-origin: center center;
 	margin: auto;
 	display: block;
-	/* 輪郭がほんのり光るグロー */
-	filter: drop-shadow(0 0 6px rgba(126, 235, 160, 0.75))
-		drop-shadow(0 0 18px rgba(60, 190, 110, 0.45));
+	/* 輪郭がほんのり光る白いグロー */
+	filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
+		drop-shadow(0 0 18px rgba(255, 255, 255, 0.5));
 }
 
 .animate-spin {
