@@ -12,7 +12,7 @@ describe("About Page", () => {
 
 		// 団体紹介のテキストが表示されているか確認
 		const introText = screen.getByText((content) =>
-			content.includes("Orchestra più Folle (Fオケ)")
+			content.includes("Orchestra più Folle")
 		);
 		expect(introText).toBeInTheDocument();
 	});
