@@ -244,7 +244,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: white;
+	/* 白背景をやめ、サイトの背景（暗い緑）をそのまま見せて白フラッシュを解消 */
+	background-color: transparent;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -285,6 +286,9 @@
 	transform-origin: center center;
 	margin: auto;
 	display: block;
+	/* 輪郭がほんのり光るグロー */
+	filter: drop-shadow(0 0 6px rgba(126, 235, 160, 0.75))
+		drop-shadow(0 0 18px rgba(60, 190, 110, 0.45));
 }
 
 .animate-spin {

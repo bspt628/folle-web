@@ -102,14 +102,15 @@ export default function HomePage() {
 				textContent.split("").forEach((char) => {
 					const span = document.createElement("span");
 					span.textContent = char;
-					span.style.color = "white";
+					// 背景の上に白抜きで表示（確定前は透明）
+					span.style.color = "transparent";
 					text.appendChild(span);
 				});
 
 				let index = 0;
 				const interval = setInterval(() => {
 					if (index < text.children.length) {
-						(text.children[index] as HTMLElement).style.color = "black";
+						(text.children[index] as HTMLElement).style.color = "white";
 						index++;
 					} else {
 						clearInterval(interval);
@@ -183,8 +184,8 @@ export default function HomePage() {
 						<div className="flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">
 								<Image
-									src="/567993919410012183.jpg"
-									alt="Logo"
+									src="/logo.svg"
+									alt="Orchestra più Folle"
 									className="logo"
 									width={488}
 									height={488}
