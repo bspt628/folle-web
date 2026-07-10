@@ -17,6 +17,12 @@ export type Concert = {
 		width: number | null;
 		height: number | null;
 	} | null;
+	// チラシ裏面（表面 = posterImage）。両面が揃うと詳細ページでめくって切り替えできる。
+	posterImageBack?: {
+		url: string | null;
+		width: number | null;
+		height: number | null;
+	} | null;
 	ticketPrice?: {
 		category: string;
 		price: number | null;
@@ -88,26 +94,43 @@ export const CONCERTS: Concert[] = [
 		id: "2",
 		title: "第2回演奏会",
 		date: "2026-10-24",
-		openTime: null,
-		startTime: "夜公演",
+		openTime: "17:30",
+		startTime: "18:00",
 		conductor: "水戸博之",
 		venue: {
 			name: "パルテノン多摩 大ホール",
 		},
 		program: [
 			{
-				composer: null,
-				title: "未定",
+				composer: "ワーグナー",
+				title: "「さまよえるオランダ人」序曲",
+			},
+			{
+				composer: "ワーグナー",
+				title: "「トリスタンとイゾルデ」より 前奏曲と愛の死",
+			},
+			{
+				composer: "ベートーヴェン",
+				title: "交響曲第6番「田園」",
 			},
 		],
 		posterImage: {
-			url: "/coming-soon-poster.svg",
-			width: 2894,
-			height: 4093,
+			url: "/flyer-2nd-front.jpg",
+			width: 2552,
+			height: 3580,
 		},
-		ticketPrice: [],
-		teketUrl: null,
-		description: "未定",
+		posterImageBack: {
+			url: "/flyer-2nd-back.jpg",
+			width: 2552,
+			height: 3580,
+		},
+		ticketPrice: [
+			{
+				category: "入場無料・全席自由",
+				price: null,
+			},
+		],
+		teketUrl: "https://teket.jp/14035/72751",
 	},
 ];
 
