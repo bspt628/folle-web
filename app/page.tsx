@@ -204,8 +204,19 @@ export default function HomePage() {
 					<div className="w-full md:flex-1 md:min-w-0">
 						{/* Logo and News Container */}
 						<div className="relative flex flex-col">
-							{/* 演奏風景の写真（左右に均等な余白を持たせ、Welcome表記付き） */}
-							<div className="pt-6 pl-6 pr-4 md:pt-10 md:pl-10 md:pr-6">
+							{/* モバイル: 全幅・角丸なし・トリミング位置を左右にゆっくりパン(10s往復) */}
+							<div className="relative w-full h-[50vh] overflow-hidden md:hidden">
+								<Image
+									src="/orchestra-hall.webp"
+									alt="Orchestra più Folle の演奏風景"
+									fill
+									className="object-cover hero-pan"
+									priority
+									sizes="100vw"
+								/>
+							</div>
+							{/* PC: 余白・角丸・比率固定の演奏風景写真 */}
+							<div className="hidden md:block pt-6 pl-6 pr-4 md:pt-10 md:pl-10 md:pr-6">
 								<div className="relative w-full aspect-[1999/1330] max-h-[calc(100dvh-19rem)] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
 									<Image
 										src="/orchestra-hall.webp"
