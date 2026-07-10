@@ -303,7 +303,7 @@ export default function HomePage() {
 														<span className="font-mono text-sm text-white/60">
 															{item.date}
 														</span>
-														<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
+														<h3 className={`text-white transition-colors ${item.hasDetailPage ? "group-hover:text-[hsl(var(--brand))]" : ""}`}>
 															{item.title}
 														</h3>
 													</div>
