@@ -1,0 +1,43 @@
+name: Scheduled Release (dev to main)
+
+# 2026-07-11 18:00 JST (= 09:00 UTC) に dev を main へ反映するための一度きりのワークフロー。
+# 実行日を過ぎたら自己削除して再実行を防ぐ。手動実行(workflow_dispatch)も可能。
+
+on:
+  schedule:
+    - cron: "0 9 * * *" # 09:00 UTC = 18:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge dev into main (release)
+        run: |
+          set -euo pipefail
+          # スケジュール実行は反映日(JST 2026-07-11 = UTC 2026-07-11)のみ実施。
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%F)" != "2026-07-11" ]; then
+            echo "本日は反映日ではないためスキップ (UTC $(date -u +%F))"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main dev
+          git checkout main
+          # dev を main へマージ（コンフリクト時は set -e で失敗し反映しない）
+          git merge --no-ff origin/dev -m "リリース: dev を main へ反映 (自動 18:00 JST)"
+          # 一度きりのため、このワークフロー自身を削除して以後の実行を止める
+          git rm .github/workflows/scheduled-release.yml
+          git commit -m "chore: 一度きりのリリース用ワークフローを削除"
+          git push origin main
