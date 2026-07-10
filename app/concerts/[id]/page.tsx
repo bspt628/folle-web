@@ -6,6 +6,7 @@ import { ja } from "date-fns/locale";
 import { getConcert } from "@/lib/constants/concerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { FlyerFlip } from "@/components/ui/flyer-flip";
 import { isVideoPublished } from "@/lib/utils";
 import Head from "next/head";
 
@@ -97,24 +98,12 @@ export default function ConcertDetailPage() {
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
 								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
-										{/* ポスター画像 */}
-										<div className="w-full lg:w-auto shrink-0">
-											<div
-												className="relative mx-auto w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:w-[360px]"
-												style={{ aspectRatio: "0.707" }}
-											>
-												<Image
-													src={concert.posterImage?.url || "/placeholder.jpg"}
-													alt={`${concert.title} Poster`}
-													fill
-													className="object-cover"
-													priority
-													fetchPriority="high"
-													loading="eager"
-													sizes="(max-width: 1024px) 100vw, 360px"
-												/>
-											</div>
-										</div>
+										{/* ポスター画像（表裏が揃う場合はクリックでめくって切替） */}
+										<FlyerFlip
+											front={concert.posterImage}
+											back={concert.posterImageBack}
+											title={concert.title}
+										/>
 
 										{/* コンサート情報 */}
 										<div className="flex-1">
@@ -285,7 +274,7 @@ export default function ConcertDetailPage() {
 													concert.youtubeVideos.length > 0 && (
 														<div className="mb-8">
 															<h4 className="text-lg font-bold text-white mb-4">
-																演奏動画をチラ見せ👀
+																演奏動画をチラ見せ
 															</h4>
 															<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
 																{concert.youtubeVideos
