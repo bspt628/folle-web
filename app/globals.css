@@ -260,6 +260,12 @@
 	animation: fadeOut 1s ease-in-out forwards;
 }
 
+/* オープニング（ロゴアニメーション）中は、背景とオーバーレイ以外を隠す */
+body.opening-active header,
+body.opening-active footer {
+	display: none;
+}
+
 .hidden {
 	opacity: 0;
 	pointer-events: none;

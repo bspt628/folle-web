@@ -127,6 +127,17 @@ export default function HomePage() {
 		}, 3000);
 	}, [pathname]);
 
+	// オープニング中はヘッダー/フッター等を隠すため body にクラスを付与
+	useEffect(() => {
+		const cls = "opening-active";
+		if (showOverlay) {
+			document.body.classList.add(cls);
+		} else {
+			document.body.classList.remove(cls);
+		}
+		return () => document.body.classList.remove(cls);
+	}, [showOverlay]);
+
 	// 次回演奏会がポスター未定(coming soon)の場合は、直近の過去演奏会を表示する
 	const comingSoon = isComingSoonConcert(upcomingConcert);
 	const featuredConcert = comingSoon
@@ -199,8 +210,12 @@ export default function HomePage() {
 					</div>
 				)}
 
-				{/* Content Container（背景はレイアウトの固定背景を使用） */}
-				<div className="relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10">
+				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
+				<div
+					className={`relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10 ${
+						showOverlay ? "invisible" : ""
+					}`}
+				>
 					{/* Main Content */}
 					<div className="w-full md:flex-1 md:min-w-0">
 						{/* Logo and News Container */}
