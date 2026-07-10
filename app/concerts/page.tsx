@@ -80,7 +80,7 @@ export default function ConcertsPage() {
 											)}
 										</div>
 
-										<div className="mt-5 flex items-baseline justify-between gap-4">
+										<div className="mt-5 flex items-baseline gap-3">
 											<span
 												className="shrink-0 text-sm tracking-wider text-white/70"
 												style={{
@@ -92,7 +92,7 @@ export default function ConcertsPage() {
 													locale: ja,
 												})}
 											</span>
-											<h2 className="text-right text-lg font-bold text-white break-words transition-colors group-hover:text-[hsl(var(--brand))]">
+											<h2 className="text-lg font-bold text-white break-words transition-colors group-hover:text-[hsl(var(--brand))]">
 												{concert.title}
 											</h2>
 										</div>
