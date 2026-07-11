@@ -87,6 +87,31 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 					</div>
 				</div>
 			</button>
+			{/* 表裏インジケーター（2枚あることを示す。表=左、裏=右が光る。クリックで切替） */}
+			<div className="mx-auto mt-4 flex max-w-[320px] items-center justify-center gap-3 lg:max-w-none lg:w-[360px]">
+				<button
+					type="button"
+					onClick={() => setFlipped(false)}
+					aria-label="チラシの表面を表示"
+					aria-pressed={!flipped}
+					className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+						!flipped
+							? "bg-[hsl(var(--brand))] shadow-[0_0_10px_hsl(var(--brand))]"
+							: "bg-white/25 hover:bg-white/40"
+					}`}
+				/>
+				<button
+					type="button"
+					onClick={() => setFlipped(true)}
+					aria-label="チラシの裏面を表示"
+					aria-pressed={flipped}
+					className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+						flipped
+							? "bg-[hsl(var(--brand))] shadow-[0_0_10px_hsl(var(--brand))]"
+							: "bg-white/25 hover:bg-white/40"
+					}`}
+				/>
+			</div>
 		</div>
 	);
 }
