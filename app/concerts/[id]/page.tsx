@@ -132,6 +132,10 @@ export default function ConcertDetailPage() {
 									</svg>
 									演奏会一覧へ戻る
 								</Link>
+								{/* タイトル（全端末でチラシの上に配置） */}
+								<h1 className="mb-6 text-2xl font-bold text-white break-words">
+									{concert.title}
+								</h1>
 								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
 										{/* ポスター画像（表裏が揃う場合はクリックでめくって切替） */}
 										<FlyerFlip
@@ -142,9 +146,6 @@ export default function ConcertDetailPage() {
 
 										{/* コンサート情報 */}
 										<div className="flex-1">
-											<h1 className="text-xl font-bold text-white mb-6 break-words">
-												{concert.title}
-											</h1>
 											<div className="space-y-4 text-white/90 mb-8">
 												<div className="space-y-1">
 													<div className="flex flex-wrap items-baseline gap-x-3">

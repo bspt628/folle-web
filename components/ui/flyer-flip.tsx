@@ -28,7 +28,7 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 		return (
 			<div className="w-full lg:w-auto shrink-0">
 				<div
-					className="relative mx-auto w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:w-[360px]"
+					className="relative mx-auto w-full max-w-[320px] overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:max-w-none lg:w-[360px]"
 					style={{ aspectRatio: "0.707" }}
 				>
 					<Image
@@ -52,7 +52,7 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 				type="button"
 				onClick={() => setFlipped((prev) => !prev)}
 				aria-label={flipped ? "チラシの表面を表示" : "チラシの裏面を表示"}
-				className="group relative mx-auto block w-full cursor-pointer rounded-2xl [perspective:1800px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 lg:w-[360px]"
+				className="group relative mx-auto block w-full max-w-[320px] cursor-pointer rounded-2xl [perspective:1800px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 lg:max-w-none lg:w-[360px]"
 				style={{ aspectRatio: "0.707" }}
 			>
 				<div
