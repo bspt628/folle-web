@@ -307,8 +307,12 @@ export default function HomePage() {
 												key={currentNews.id}
 												initial={{ x: "50%", opacity: 0 }}
 												animate={{ x: 0, opacity: 1 }}
-												exit={{ x: "-50%", opacity: 0 }}
-												transition={{ duration: 0.4, ease: "easeInOut" }}
+												exit={{
+													x: "-50%",
+													opacity: 0,
+													transition: { duration: 0.13, ease: "easeIn" },
+												}}
+												transition={{ duration: 0.4, ease: "easeOut" }}
 												onClick={
 													currentNews.hasDetailPage
 														? () => router.push(`/news/${currentNews.id}`)
