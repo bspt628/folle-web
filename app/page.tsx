@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
 	getUpcomingConcert,
 	getLatestPastConcert,
@@ -102,14 +103,15 @@ export default function HomePage() {
 				textContent.split("").forEach((char) => {
 					const span = document.createElement("span");
 					span.textContent = char;
-					span.style.color = "white";
+					// 背景の上に白抜きで表示（確定前は透明）
+					span.style.color = "transparent";
 					text.appendChild(span);
 				});
 
 				let index = 0;
 				const interval = setInterval(() => {
 					if (index < text.children.length) {
-						(text.children[index] as HTMLElement).style.color = "black";
+						(text.children[index] as HTMLElement).style.color = "white";
 						index++;
 					} else {
 						clearInterval(interval);
@@ -125,6 +127,29 @@ export default function HomePage() {
 			}, 1000);
 		}, 3000);
 	}, [pathname]);
+
+	// オープニング中はヘッダー/フッター等を隠すため body にクラスを付与
+	useEffect(() => {
+		const cls = "opening-active";
+		if (showOverlay) {
+			document.body.classList.add(cls);
+		} else {
+			document.body.classList.remove(cls);
+		}
+		return () => document.body.classList.remove(cls);
+	}, [showOverlay]);
+
+	// トップのニュースを約5秒ごとに自動送り（最後→最新へループ）。
+	// オープニング中は動かさず、手動操作(newsIndex変化)でタイマーをリセット。
+	useEffect(() => {
+		if (showOverlay || newsItems.length <= 1) return;
+		const timer = setInterval(() => {
+			setNewsIndex((i) => (i + 1) % newsItems.length);
+		}, 5000);
+		return () => clearInterval(timer);
+	}, [showOverlay, newsIndex, newsItems.length]);
+
+	const currentNews = newsItems[newsIndex] ?? null;
 
 	// 次回演奏会がポスター未定(coming soon)の場合は、直近の過去演奏会を表示する
 	const comingSoon = isComingSoonConcert(upcomingConcert);
@@ -183,8 +208,8 @@ export default function HomePage() {
 						<div className="flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">
 								<Image
-									src="/567993919410012183.jpg"
-									alt="Logo"
+									src="/logo-transparent.png"
+									alt="Orchestra più Folle"
 									className="logo"
 									width={488}
 									height={488}
@@ -198,8 +223,12 @@ export default function HomePage() {
 					</div>
 				)}
 
-				{/* Content Container（背景はレイアウトの固定背景を使用） */}
-				<div className="relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10">
+				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
+				<div
+					className={`relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10 ${
+						showOverlay ? "invisible" : "content-reveal"
+					}`}
+				>
 					{/* Main Content */}
 					<div className="w-full md:flex-1 md:min-w-0">
 						{/* Logo and News Container */}
@@ -243,10 +272,13 @@ export default function HomePage() {
 												type="button"
 												aria-label="新しいニュースを見る"
 												onClick={() =>
-													setNewsIndex((i) => Math.max(i - 1, 0))
+													setNewsIndex(
+														(i) =>
+															(i - 1 + newsItems.length) %
+															newsItems.length
+													)
 												}
-												disabled={newsIndex === 0}
-												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))] disabled:pointer-events-none disabled:opacity-30"
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))]"
 											>
 												<ChevronLeft size={18} aria-hidden="true" />
 											</button>
@@ -257,57 +289,68 @@ export default function HomePage() {
 												type="button"
 												aria-label="過去のニュースを見る"
 												onClick={() =>
-													setNewsIndex((i) =>
-														Math.min(i + 1, newsItems.length - 1)
+													setNewsIndex(
+														(i) => (i + 1) % newsItems.length
 													)
 												}
-												disabled={newsIndex >= newsItems.length - 1}
-												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))] disabled:pointer-events-none disabled:opacity-30"
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))]"
 											>
 												<ChevronRight size={18} aria-hidden="true" />
 											</button>
 										</div>
 									)}
 								</div>
-								{(() => {
-									const item = newsItems[newsIndex];
-									if (!item) return null;
-									return (
-										<div className="border-t border-white/10">
-											<div
-												key={item.id}
+								<div className="relative overflow-hidden border-t border-white/10">
+									<AnimatePresence mode="wait" initial={false}>
+										{currentNews && (
+											<motion.div
+												key={currentNews.id}
+												initial={{ x: "50%", opacity: 0 }}
+												animate={{ x: 0, opacity: 1 }}
+												exit={{
+													x: "-50%",
+													opacity: 0,
+													transition: { duration: 0.13, ease: "easeIn" },
+												}}
+												transition={{ duration: 0.4, ease: "easeOut" }}
 												onClick={
-													item.hasDetailPage
-														? () => router.push(`/news/${item.id}`)
+													currentNews.hasDetailPage
+														? () => router.push(`/news/${currentNews.id}`)
 														: undefined
 												}
-												className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
-													item.hasDetailPage
+												className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-colors duration-300 ${
+													currentNews.hasDetailPage
 														? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
 														: ""
 												}`}
-												{...(item.hasDetailPage && {
+												{...(currentNews.hasDetailPage && {
 													role: "button",
 													tabIndex: 0,
 													onKeyDown: (e) => {
 														if (e.key === "Enter" || e.key === " ") {
 															e.preventDefault();
-															router.push(`/news/${item.id}`);
+															router.push(`/news/${currentNews.id}`);
 														}
 													},
-													"aria-label": `${item.title}の詳細を見る`,
+													"aria-label": `${currentNews.title}の詳細を見る`,
 												})}
 											>
 												<div className="flex items-center justify-between">
 													<div className="flex items-center space-x-4 flex-1">
 														<span className="font-mono text-sm text-white/60">
-															{item.date}
+															{currentNews.date}
 														</span>
-														<h3 className={`text-white transition-colors ${item.hasDetailPage ? "group-hover:text-[hsl(var(--brand))]" : ""}`}>
-															{item.title}
+														<h3
+															className={`text-white transition-colors ${
+																currentNews.hasDetailPage
+																	? "group-hover:text-[hsl(var(--brand))]"
+																	: ""
+															}`}
+														>
+															{currentNews.title}
 														</h3>
 													</div>
-													{item.hasDetailPage && (
+													{currentNews.hasDetailPage && (
 														<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
 															<svg
 																width="16"
@@ -328,10 +371,10 @@ export default function HomePage() {
 														</div>
 													)}
 												</div>
-											</div>
-										</div>
-									);
-								})()}
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</div>
 							</div>
 						</div>
 					</div>

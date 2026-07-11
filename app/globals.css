@@ -244,7 +244,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: white;
+	/* 白背景をやめ、サイトの背景（暗い緑）をそのまま見せて白フラッシュを解消 */
+	background-color: transparent;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -257,6 +258,17 @@
 
 .overlay.fade-out {
 	animation: fadeOut 1s ease-in-out forwards;
+}
+
+/* オープニング（ロゴアニメーション）中は、背景とオーバーレイ以外を隠す */
+body.opening-active header,
+body.opening-active footer {
+	display: none;
+}
+
+/* オープニング終了後、コンテンツが現れる瞬間のフェードイン */
+.content-reveal {
+	animation: fadeIn 0.8s ease-in-out;
 }
 
 .hidden {
@@ -285,6 +297,9 @@
 	transform-origin: center center;
 	margin: auto;
 	display: block;
+	/* 輪郭がほんのり光る白いグロー */
+	filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
+		drop-shadow(0 0 18px rgba(255, 255, 255, 0.5));
 }
 
 .animate-spin {
