@@ -16,7 +16,16 @@ export default function ConcertDetailPage() {
 	// データは静的な定数のため同期的に取得する。
 	// クライアント専用の loading ゲートに依存すると、hydration に失敗した際に
 	// 「Loading...」のまま固まることがあるため、サーバ/クライアント両方で描画する。
-	const concert = getConcert(params.id as string);
+	const rawId = params?.id;
+	const id = Array.isArray(rawId) ? rawId[0] : rawId;
+	const concert = id ? getConcert(id) : null;
+
+	// ルートパラメータが未解決の瞬間は「not found」を出さず、背景のみ表示する
+	// （useParams が一瞬 id を返さないケースで「Concert not found」が
+	//   一瞬ちらつくのを防ぐ）
+	if (!id) {
+		return <div className="min-h-screen" aria-hidden="true" />;
+	}
 
 	if (!concert) {
 		return (
