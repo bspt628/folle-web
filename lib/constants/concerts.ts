@@ -17,6 +17,12 @@ export type Concert = {
 		width: number | null;
 		height: number | null;
 	} | null;
+	// チラシ裏面（表面 = posterImage）。両面が揃うと詳細ページでめくって切り替えできる。
+	posterImageBack?: {
+		url: string | null;
+		width: number | null;
+		height: number | null;
+	} | null;
 	ticketPrice?: {
 		category: string;
 		price: number | null;
@@ -60,6 +66,11 @@ export const CONCERTS: Concert[] = [
 			width: 2894,
 			height: 4093,
 		},
+		posterImageBack: {
+			url: "/flyer-1st-back.webp",
+			width: 1414,
+			height: 2000,
+		},
 		ticketPrice: [
 			{
 				category: "入場無料・全席自由",
@@ -67,8 +78,6 @@ export const CONCERTS: Concert[] = [
 			},
 		],
 		teketUrl: "https://teket.jp/14035/53069",
-		description:
-			"第1回特別演奏会は、指揮に水戸博之氏を迎え、「有名作曲家の名曲で熱狂の渦を起こす」ことをテーマにした演奏会を開催いたします。演奏機会は比較的少ないものの、威厳と緊迫感をあわせ持つ華やかなベートーヴェン / 《シュテファン王》序曲に始まり、メンデルスゾーンの著名な交響曲を2つ、それぞれのドラマを感じながらお届けいたします。演奏者個々人が各々の個性や情熱をぶつけ、考え抜いた音楽を奏で、それを味わっていただける演奏会です。",
 		youtubeVideos: [
 			{
 				title: "「シュテファン王」序曲",
@@ -88,26 +97,43 @@ export const CONCERTS: Concert[] = [
 		id: "2",
 		title: "第2回演奏会",
 		date: "2026-10-24",
-		openTime: null,
-		startTime: "夜公演",
+		openTime: "17:30",
+		startTime: "18:00",
 		conductor: "水戸博之",
 		venue: {
 			name: "パルテノン多摩 大ホール",
 		},
 		program: [
 			{
-				composer: null,
-				title: "未定",
+				composer: "ワーグナー",
+				title: "「さまよえるオランダ人」序曲",
+			},
+			{
+				composer: "ワーグナー",
+				title: "「トリスタンとイゾルデ」より 前奏曲と愛の死",
+			},
+			{
+				composer: "ベートーヴェン",
+				title: "交響曲第6番「田園」",
 			},
 		],
 		posterImage: {
-			url: "/coming-soon-poster.svg",
-			width: 2894,
-			height: 4093,
+			url: "/flyer-2nd-front.jpg",
+			width: 2552,
+			height: 3580,
 		},
-		ticketPrice: [],
-		teketUrl: null,
-		description: "未定",
+		posterImageBack: {
+			url: "/flyer-2nd-back.jpg",
+			width: 2552,
+			height: 3580,
+		},
+		ticketPrice: [
+			{
+				category: "入場無料・全席自由",
+				price: null,
+			},
+		],
+		teketUrl: "https://teket.jp/14035/72751",
 	},
 ];
 

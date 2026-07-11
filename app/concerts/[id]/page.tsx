@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
 import { getConcert } from "@/lib/constants/concerts";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { FlyerFlip } from "@/components/ui/flyer-flip";
 import { isVideoPublished } from "@/lib/utils";
 import Head from "next/head";
 
@@ -14,7 +16,16 @@ export default function ConcertDetailPage() {
 	// データは静的な定数のため同期的に取得する。
 	// クライアント専用の loading ゲートに依存すると、hydration に失敗した際に
 	// 「Loading...」のまま固まることがあるため、サーバ/クライアント両方で描画する。
-	const concert = getConcert(params.id as string);
+	const rawId = params?.id;
+	const id = Array.isArray(rawId) ? rawId[0] : rawId;
+	const concert = id ? getConcert(id) : null;
+
+	// ルートパラメータが未解決の瞬間は「not found」を出さず、背景のみ表示する
+	// （useParams が一瞬 id を返さないケースで「Concert not found」が
+	//   一瞬ちらつくのを防ぐ）
+	if (!id) {
+		return <div className="min-h-screen" aria-hidden="true" />;
+	}
 
 	if (!concert) {
 		return (
@@ -96,31 +107,45 @@ export default function ConcertDetailPage() {
 					<section className="py-16">
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
+								{/* 演奏会一覧へ戻る */}
+								<Link
+									href="/concerts"
+									className="mb-6 inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-[hsl(var(--brand))]"
+									aria-label="演奏会一覧へ戻る"
+								>
+									<svg
+										width="18"
+										height="18"
+										viewBox="0 0 16 16"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										aria-hidden="true"
+										className="transition-transform duration-300 group-hover:-translate-x-1"
+									>
+										<path
+											d="M10 12L6 8L10 4"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+									演奏会一覧へ戻る
+								</Link>
+								{/* タイトル（全端末でチラシの上に配置） */}
+								<h1 className="mb-6 text-2xl font-bold text-white break-words">
+									{concert.title}
+								</h1>
 								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
-										{/* ポスター画像 */}
-										<div className="w-full lg:w-auto shrink-0">
-											<div
-												className="relative mx-auto w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10 lg:w-[360px]"
-												style={{ aspectRatio: "0.707" }}
-											>
-												<Image
-													src={concert.posterImage?.url || "/placeholder.jpg"}
-													alt={`${concert.title} Poster`}
-													fill
-													className="object-cover"
-													priority
-													fetchPriority="high"
-													loading="eager"
-													sizes="(max-width: 1024px) 100vw, 360px"
-												/>
-											</div>
-										</div>
+										{/* ポスター画像（表裏が揃う場合はクリックでめくって切替） */}
+										<FlyerFlip
+											front={concert.posterImage}
+											back={concert.posterImageBack}
+											title={concert.title}
+										/>
 
 										{/* コンサート情報 */}
 										<div className="flex-1">
-											<h1 className="text-xl font-bold text-white mb-6 break-words">
-												{concert.title}
-											</h1>
 											<div className="space-y-4 text-white/90 mb-8">
 												<div className="space-y-1">
 													<div className="flex flex-wrap items-baseline gap-x-3">
@@ -285,7 +310,7 @@ export default function ConcertDetailPage() {
 													concert.youtubeVideos.length > 0 && (
 														<div className="mb-8">
 															<h4 className="text-lg font-bold text-white mb-4">
-																演奏動画をチラ見せ👀
+																演奏動画をチラ見せ
 															</h4>
 															<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
 																{concert.youtubeVideos

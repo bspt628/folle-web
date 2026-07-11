@@ -80,13 +80,19 @@ export default function ConcertsPage() {
 											)}
 										</div>
 
-										<div className="mt-5 border-l-2 border-[hsl(var(--brand))] pl-4">
-											<span className="block font-mono text-sm text-white/70">
+										<div className="mt-5 flex items-baseline gap-3">
+											<span
+												className="shrink-0 text-sm tracking-wider text-white/70"
+												style={{
+													fontFamily:
+														'"游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", sans-serif',
+												}}
+											>
 												{format(parseISO(concert.date), "yyyy/MM/dd (E)", {
 													locale: ja,
 												})}
 											</span>
-											<h2 className="mt-1 text-lg font-bold text-white break-words transition-colors group-hover:text-[hsl(var(--brand))]">
+											<h2 className="text-lg font-bold text-white break-words transition-colors group-hover:text-[hsl(var(--brand))]">
 												{concert.title}
 											</h2>
 										</div>

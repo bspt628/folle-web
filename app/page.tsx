@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
 	getUpcomingConcert,
 	getLatestPastConcert,
@@ -19,6 +21,8 @@ export default function HomePage() {
 	const [upcomingConcert, setUpcomingConcert] = useState<Concert | null>(null);
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [isFadingOut, setIsFadingOut] = useState(false);
+	// ニュースは1件ずつ表示。index 0 が最新（配列は新しい順）。
+	const [newsIndex, setNewsIndex] = useState(0);
 	const newsRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const pathname = usePathname();
@@ -99,14 +103,15 @@ export default function HomePage() {
 				textContent.split("").forEach((char) => {
 					const span = document.createElement("span");
 					span.textContent = char;
-					span.style.color = "white";
+					// 背景の上に白抜きで表示（確定前は透明）
+					span.style.color = "transparent";
 					text.appendChild(span);
 				});
 
 				let index = 0;
 				const interval = setInterval(() => {
 					if (index < text.children.length) {
-						(text.children[index] as HTMLElement).style.color = "black";
+						(text.children[index] as HTMLElement).style.color = "white";
 						index++;
 					} else {
 						clearInterval(interval);
@@ -122,6 +127,29 @@ export default function HomePage() {
 			}, 1000);
 		}, 3000);
 	}, [pathname]);
+
+	// オープニング中はヘッダー/フッター等を隠すため body にクラスを付与
+	useEffect(() => {
+		const cls = "opening-active";
+		if (showOverlay) {
+			document.body.classList.add(cls);
+		} else {
+			document.body.classList.remove(cls);
+		}
+		return () => document.body.classList.remove(cls);
+	}, [showOverlay]);
+
+	// トップのニュースを約5秒ごとに自動送り（最後→最新へループ）。
+	// オープニング中は動かさず、手動操作(newsIndex変化)でタイマーをリセット。
+	useEffect(() => {
+		if (showOverlay || newsItems.length <= 1) return;
+		const timer = setInterval(() => {
+			setNewsIndex((i) => (i + 1) % newsItems.length);
+		}, 5000);
+		return () => clearInterval(timer);
+	}, [showOverlay, newsIndex, newsItems.length]);
+
+	const currentNews = newsItems[newsIndex] ?? null;
 
 	// 次回演奏会がポスター未定(coming soon)の場合は、直近の過去演奏会を表示する
 	const comingSoon = isComingSoonConcert(upcomingConcert);
@@ -173,15 +201,15 @@ export default function HomePage() {
 					content="https://orchestrapiufolle.com/567993919410012183.jpg"
 				/>
 			</Head>
-			<div className="h-screen relative">
+			<div className="min-h-screen relative">
 				{/* オーバーレイ */}
 				{showOverlay && (
 					<div className={`overlay ${isFadingOut ? "fade-out" : ""}`}>
 						<div className="flex items-center justify-center gap-4">
 							<div className="relative flex items-center justify-center">
 								<Image
-									src="/567993919410012183.jpg"
-									alt="Logo"
+									src="/logo-transparent.png"
+									alt="Orchestra più Folle"
 									className="logo"
 									width={488}
 									height={488}
@@ -195,12 +223,30 @@ export default function HomePage() {
 					</div>
 				)}
 
-				{/* Content Container（背景はレイアウトの固定背景を使用） */}
-				<div className="relative z-10 h-full flex flex-col md:flex-row overflow-y-auto md:overflow-y-hidden pt-20">
+				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
+				<div
+					className={`relative z-10 flex flex-col lg:flex-row lg:items-start pt-20 pb-10 ${
+						showOverlay ? "invisible" : "content-reveal"
+					}`}
+				>
 					{/* Main Content */}
-					<div className="w-full md:w-1/2">
+					<div className="w-full lg:flex-1 lg:min-w-0">
 						{/* Logo and News Container */}
-						<div className="relative h-full flex flex-col">
+						<div className="relative flex flex-col">
+							{/* 演奏風景の写真（左右に均等な余白を持たせ、Welcome表記付き） */}
+							<div className="pt-6 pl-6 pr-4 md:pt-10 md:pl-10 md:pr-6">
+								<div className="relative w-full aspect-[1999/1330] max-h-[calc(100dvh-19rem)] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
+									<Image
+										src="/orchestra-hall.webp"
+										alt="Orchestra più Folle の演奏風景"
+										fill
+										className="object-cover object-center"
+										priority
+										sizes="(max-width: 768px) 100vw, 55vw"
+									/>
+								</div>
+							</div>
+
 							{/* Logo - temporarily hidden */}
 							{/* {isMdScreen ? (
 							<div className="w-[50vw] h-[50vw] opacity-40 slow-rotate absolute bottom-0">
@@ -214,78 +260,129 @@ export default function HomePage() {
 							</div>
 						) : null} */}
 
-							{/* News Section */}
+							{/* News Section（1件ずつ表示。< > で前後のニュースへ） */}
 							<div ref={newsRef} className="px-6 py-8">
-								<h2 className="mb-5 text-2xl font-bold tracking-tight text-white">
-									ニュース
-								</h2>
-								<div className="divide-y divide-white/10 border-t border-white/10">
-									{newsItems.map((item, index) => (
-										<div
-											key={index}
-											onClick={
-												item.hasDetailPage
-													? () => router.push(`/news/${item.id}`)
-													: undefined
-											}
-											className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-all duration-300 ${
-												item.hasDetailPage
-													? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
-													: ""
-											}`}
-											{...(item.hasDetailPage && {
-												role: "button",
-												tabIndex: 0,
-												onKeyDown: (e) => {
-													if (e.key === "Enter" || e.key === " ") {
-														e.preventDefault();
-														router.push(`/news/${item.id}`);
-													}
-												},
-												"aria-label": `${item.title}の詳細を見る`,
-											})}
-										>
-											<div className="flex items-center justify-between">
-												<div className="flex items-center space-x-4 flex-1">
-													<span className="font-mono text-sm text-white/60">
-														{item.date}
-													</span>
-													<h3 className="text-white transition-colors group-hover:text-[hsl(var(--brand))]">
-														{item.title}
-													</h3>
-												</div>
-												{item.hasDetailPage && (
-													<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
-														<svg
-															width="16"
-															height="16"
-															viewBox="0 0 16 16"
-															fill="none"
-															xmlns="http://www.w3.org/2000/svg"
-															className="transition-transform duration-300 group-hover:translate-x-1"
-														>
-															<path
-																d="M6 12L10 8L6 4"
-																stroke="currentColor"
-																strokeWidth="2"
-																strokeLinecap="round"
-																strokeLinejoin="round"
-															/>
-														</svg>
-													</div>
-												)}
-											</div>
+								<div className="mb-5 flex items-center justify-between gap-4">
+									<h2 className="text-2xl font-bold tracking-tight text-white">
+										ニュース
+									</h2>
+									{newsItems.length > 1 && (
+										<div className="flex items-center gap-2">
+											<button
+												type="button"
+												aria-label="新しいニュースを見る"
+												onClick={() =>
+													setNewsIndex(
+														(i) =>
+															(i - 1 + newsItems.length) %
+															newsItems.length
+													)
+												}
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))]"
+											>
+												<ChevronLeft size={18} aria-hidden="true" />
+											</button>
+											<span className="min-w-[3rem] text-center text-xs tabular-nums text-white/60 select-none">
+												{newsIndex + 1} / {newsItems.length}
+											</span>
+											<button
+												type="button"
+												aria-label="過去のニュースを見る"
+												onClick={() =>
+													setNewsIndex(
+														(i) => (i + 1) % newsItems.length
+													)
+												}
+												className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[hsl(var(--brand))] hover:text-[hsl(var(--brand))]"
+											>
+												<ChevronRight size={18} aria-hidden="true" />
+											</button>
 										</div>
-									))}
+									)}
+								</div>
+								<div className="relative overflow-hidden border-t border-white/10">
+									<AnimatePresence mode="wait" initial={false}>
+										{currentNews && (
+											<motion.div
+												key={currentNews.id}
+												initial={{ x: "50%", opacity: 0 }}
+												animate={{ x: 0, opacity: 1 }}
+												exit={{
+													x: "-50%",
+													opacity: 0,
+													transition: { duration: 0.13, ease: "easeIn" },
+												}}
+												transition={{ duration: 0.4, ease: "easeOut" }}
+												onClick={
+													currentNews.hasDetailPage
+														? () => router.push(`/news/${currentNews.id}`)
+														: undefined
+												}
+												className={`group border-l-2 border-transparent py-4 pl-4 pr-2 transition-colors duration-300 ${
+													currentNews.hasDetailPage
+														? "cursor-pointer hover:border-[hsl(var(--brand))] hover:bg-white/5"
+														: ""
+												}`}
+												{...(currentNews.hasDetailPage && {
+													role: "button",
+													tabIndex: 0,
+													onKeyDown: (e) => {
+														if (e.key === "Enter" || e.key === " ") {
+															e.preventDefault();
+															router.push(`/news/${currentNews.id}`);
+														}
+													},
+													"aria-label": `${currentNews.title}の詳細を見る`,
+												})}
+											>
+												<div className="flex items-center justify-between">
+													<div className="flex items-center space-x-4 flex-1">
+														<span className="font-mono text-sm text-white/60">
+															{currentNews.date}
+														</span>
+														<h3
+															className={`text-white transition-colors ${
+																currentNews.hasDetailPage
+																	? "group-hover:text-[hsl(var(--brand))]"
+																	: ""
+															}`}
+														>
+															{currentNews.title}
+														</h3>
+													</div>
+													{currentNews.hasDetailPage && (
+														<div className="ml-4 text-white/60 transition-colors group-hover:text-[hsl(var(--brand))]">
+															<svg
+																width="16"
+																height="16"
+																viewBox="0 0 16 16"
+																fill="none"
+																xmlns="http://www.w3.org/2000/svg"
+																className="transition-transform duration-300 group-hover:translate-x-1"
+															>
+																<path
+																	d="M6 12L10 8L6 4"
+																	stroke="currentColor"
+																	strokeWidth="2"
+																	strokeLinecap="round"
+																	strokeLinejoin="round"
+																/>
+															</svg>
+														</div>
+													)}
+												</div>
+											</motion.div>
+										)}
+									</AnimatePresence>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					{/* Right Side - 次回 / 直近の演奏会 */}
-					<div className="w-full md:w-1/2 px-6 py-8 flex items-start justify-center mt-8 md:mt-0">
+					<div className="w-full lg:w-auto lg:shrink-0 pl-6 pr-6 lg:pr-14 py-8 flex items-start justify-center mt-8 lg:mt-0">
 						{featuredConcert && (
-							<div className="w-full md:w-[min(calc(50vw),calc((100vh-200px)*0.707))] lg:w-[min(calc(50vw),calc((100vh-200px)*0.707))] flex flex-col">
+							<div className="w-full lg:w-[calc((100vh-220px)*0.707)] flex flex-col">
 								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 									{featuredLabel}
 								</h2>

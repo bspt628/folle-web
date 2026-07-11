@@ -199,8 +199,8 @@ export default function ContactPage() {
 											required
 											value={formData.name}
 											onChange={handleChange}
-											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
-											placeholder="お名前をご記入ください。"
+											className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/50"
+											placeholder=""
 											disabled={isSubmitting}
 											aria-invalid={hasAttemptedSubmit && formData.name === ""}
 											aria-describedby={
@@ -239,8 +239,8 @@ export default function ContactPage() {
 											pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 											value={formData.email}
 											onChange={handleChange}
-											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
-											placeholder="メールアドレスをご記入ください。"
+											className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/50"
+											placeholder=""
 											disabled={isSubmitting}
 											aria-invalid={
 												hasAttemptedSubmit &&
@@ -301,8 +301,8 @@ export default function ContactPage() {
 											required
 											value={formData.subject}
 											onChange={handleChange}
-											className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/50"
-											placeholder="件名をご記入ください。"
+											className="w-full bg-white/10 border-white/30 text-white placeholder:text-white/50"
+											placeholder=""
 											disabled={isSubmitting}
 											aria-invalid={
 												hasAttemptedSubmit && formData.subject === ""
@@ -343,8 +343,8 @@ export default function ContactPage() {
 											rows={10}
 											value={formData.message}
 											onChange={handleChange}
-											className="w-full min-h-[15rem] resize-none overflow-hidden bg-white/5 border-white/10 text-white placeholder:text-white/50 [field-sizing:normal]"
-											placeholder="お問い合わせ内容をご記入ください。"
+											className="w-full min-h-[15rem] resize-none overflow-hidden bg-white/10 border-white/30 text-white placeholder:text-white/50 [field-sizing:normal]"
+											placeholder=""
 											disabled={isSubmitting}
 											aria-invalid={
 												hasAttemptedSubmit && formData.message === ""
