@@ -225,12 +225,12 @@ export default function HomePage() {
 
 				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
 				<div
-					className={`relative z-10 flex flex-col md:flex-row md:items-start pt-20 pb-10 ${
+					className={`relative z-10 flex flex-col lg:flex-row lg:items-start pt-20 pb-10 ${
 						showOverlay ? "invisible" : "content-reveal"
 					}`}
 				>
 					{/* Main Content */}
-					<div className="w-full md:flex-1 md:min-w-0">
+					<div className="w-full lg:flex-1 lg:min-w-0">
 						{/* Logo and News Container */}
 						<div className="relative flex flex-col">
 							{/* 演奏風景の写真（左右に均等な余白を持たせ、Welcome表記付き） */}
@@ -380,9 +380,9 @@ export default function HomePage() {
 					</div>
 
 					{/* Right Side - 次回 / 直近の演奏会 */}
-					<div className="w-full md:w-auto md:shrink-0 pl-6 pr-6 md:pr-14 py-8 flex items-start justify-center mt-8 md:mt-0">
+					<div className="w-full lg:w-auto lg:shrink-0 pl-6 pr-6 lg:pr-14 py-8 flex items-start justify-center mt-8 lg:mt-0">
 						{featuredConcert && (
-							<div className="w-full md:w-[calc((100vh-220px)*0.707)] flex flex-col">
+							<div className="w-full lg:w-[calc((100vh-220px)*0.707)] flex flex-col">
 								<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 									{featuredLabel}
 								</h2>
