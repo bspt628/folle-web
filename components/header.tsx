@@ -90,7 +90,7 @@ export default function Header() {
 
 						{/* Desktop Navigation */}
 						<nav
-							className="max-md:hidden flex items-center space-x-8"
+							className="max-lg:hidden flex items-center space-x-8"
 							aria-label="メインナビゲーション"
 						>
 							{navItems.map((item) => (
@@ -106,7 +106,7 @@ export default function Header() {
 
 						{/* Mobile Menu Button */}
 						<button
-							className="md:hidden p-2 text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors duration-200"
+							className="lg:hidden p-2 text-white hover:text-[hsl(var(--primary))] hover:brightness-150 transition-colors duration-200"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 							aria-label="メインメニューを開閉"
 							aria-expanded={isMobileMenuOpen}
@@ -119,7 +119,7 @@ export default function Header() {
 					{/* Mobile Navigation */}
 					<nav
 						id="mobile-navigation"
-						className={`md:hidden mt-4 pb-4 border-t border-black/10 ${
+						className={`lg:hidden mt-4 pb-4 border-t border-black/10 ${
 							!isMobileMenuOpen ? "hidden" : ""
 						}`}
 						aria-label="モバイルメインナビゲーション"
