@@ -7,17 +7,34 @@ import LogoLink from "@/components/ui/logo-link";
 
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [isHidden, setIsHidden] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const firstFocusableElementRef = useRef<HTMLAnchorElement>(null);
 	const lastFocusableElementRef = useRef<HTMLAnchorElement>(null);
+	const lastScrollYRef = useRef(0);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
+			const y = window.scrollY;
+			setIsScrolled(y > 50);
+			const last = lastScrollYRef.current;
+			// 微小なスクロールは無視してちらつきを防ぐ
+			if (Math.abs(y - last) <= 5) return;
+			if (isMobileMenuOpen || y <= 80) {
+				// 上部付近・メニュー展開中は常に表示
+				setIsHidden(false);
+			} else if (y > last) {
+				// 下方向にスクロール → ヘッダーを上へ隠す
+				setIsHidden(true);
+			} else {
+				// 上方向にスクロール → ヘッダーを表示
+				setIsHidden(false);
+			}
+			lastScrollYRef.current = y;
 		};
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [isMobileMenuOpen]);
 
 	useEffect(() => {
 		if (isMobileMenuOpen) {
@@ -62,9 +79,9 @@ export default function Header() {
 	return (
 		<>
 			<header
-				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/20 backdrop-blur-xl border-b border-white/10 ${
-					isScrolled ? "shadow-sm" : ""
-				}`}
+				className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 bg-black border-b border-white/10 ${
+					isHidden ? "-translate-y-full" : "translate-y-0"
+				} ${isScrolled ? "shadow-sm" : ""}`}
 				role="banner"
 			>
 				<div className="w-full px-4">
