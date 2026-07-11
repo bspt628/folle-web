@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
 import { getConcert } from "@/lib/constants/concerts";
@@ -97,6 +98,31 @@ export default function ConcertDetailPage() {
 					<section className="py-16">
 						<div className="container mx-auto px-4">
 							<div className="max-w-6xl mx-auto">
+								{/* 演奏会一覧へ戻る */}
+								<Link
+									href="/concerts"
+									className="mb-6 inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-[hsl(var(--brand))]"
+									aria-label="演奏会一覧へ戻る"
+								>
+									<svg
+										width="18"
+										height="18"
+										viewBox="0 0 16 16"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										aria-hidden="true"
+										className="transition-transform duration-300 group-hover:-translate-x-1"
+									>
+										<path
+											d="M10 12L6 8L10 4"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+									演奏会一覧へ戻る
+								</Link>
 								<div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
 										{/* ポスター画像（表裏が揃う場合はクリックでめくって切替） */}
 										<FlyerFlip
