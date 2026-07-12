@@ -6,17 +6,19 @@ export default function NotFound() {
 	return (
 		// 背景・ヘッダー・フッターはルートレイアウトのものを利用
 		<div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pt-20 pb-16 text-center">
-			{/* Fオケのロゴ */}
-			<div className="mb-8 flex h-28 w-28 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10">
-				<Image
-					src="/logo.svg"
-					alt="Orchestra più Folle"
-					width={72}
-					height={72}
-					className="h-16 w-16"
-					priority
-				/>
-			</div>
+			{/* Fオケのロゴ（オープニングと同じ白グロー） */}
+			<Image
+				src="/logo.svg"
+				alt="Orchestra più Folle"
+				width={192}
+				height={192}
+				className="mb-8 h-48 w-48"
+				style={{
+					filter:
+						"drop-shadow(0 0 6px rgba(255,255,255,0.85)) drop-shadow(0 0 18px rgba(255,255,255,0.5))",
+				}}
+				priority
+			/>
 
 			<p className="mb-3 font-mono text-sm tracking-[0.4em] text-white/50">
 				404
