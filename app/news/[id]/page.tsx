@@ -16,13 +16,13 @@ export default function NewsDetailPage() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchNewsItem = async () => {
-			const item = getNewsById(params.id as string);
-			setNewsItem(item);
-			setIsLoading(false);
-		};
-
-		fetchNewsItem();
+		const rawId = params?.id;
+		const id = Array.isArray(rawId) ? rawId[0] : rawId;
+		// ルートパラメータが未解決（戻る操作の遷移アニメ中など）の間は状態を変えず、
+		// 直前のニュースを保持して「ニュースが見つかりません」のちらつきを防ぐ
+		if (!id) return;
+		setNewsItem(getNewsById(id));
+		setIsLoading(false);
 	}, [params.id]);
 
 	if (isLoading) {
