@@ -32,7 +32,7 @@ export default function ConcertDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/gray-back.webp"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -73,13 +73,13 @@ export default function ConcertDetailPage() {
 					<meta property="og:type" content="event" />
 					<meta
 						property="og:url"
-						content={`https://orchestrapiufolle.com/concerts/${concert.id}`}
+						content={`https://piufolle.com/concerts/${concert.id}`}
 					/>
 					<meta property="og:site_name" content="Orchestra più Folle" />
 					{concert.posterImage?.url && (
 						<meta
 							property="og:image"
-							content={`https://orchestrapiufolle.com${concert.posterImage.url}`}
+							content={`https://piufolle.com${concert.posterImage.url}`}
 						/>
 					)}
 					<meta name="twitter:card" content="summary_large_image" />
@@ -96,7 +96,7 @@ export default function ConcertDetailPage() {
 					{concert.posterImage?.url && (
 						<meta
 							name="twitter:image"
-							content={`https://orchestrapiufolle.com${concert.posterImage.url}`}
+							content={`https://piufolle.com${concert.posterImage.url}`}
 						/>
 					)}
 				</Head>
