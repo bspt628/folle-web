@@ -6,7 +6,6 @@ import { format, parseISO } from "date-fns";
 import { ja } from "date-fns/locale";
 import { getConcert } from "@/lib/constants/concerts";
 import { useParams } from "next/navigation";
-import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { FlyerFlip } from "@/components/ui/flyer-flip";
 import { isVideoPublished } from "@/lib/utils";
@@ -18,14 +17,7 @@ export default function ConcertDetailPage() {
 	// クライアント専用の loading ゲートに依存すると、hydration に失敗した際に
 	// 「Loading...」のまま固まることがあるため、サーバ/クライアント両方で描画する。
 	const rawId = params?.id;
-	const currentId = Array.isArray(rawId) ? rawId[0] : rawId;
-	// 一覧へ戻る遷移のフェードアウト中は useParams が id を返さなくなる。
-	// 直前の id を保持し、消えていく間も演奏会の内容を描画し続ける。
-	const lastIdRef = useRef(currentId);
-	if (currentId) {
-		lastIdRef.current = currentId;
-	}
-	const id = lastIdRef.current;
+	const id = Array.isArray(rawId) ? rawId[0] : rawId;
 	const concert = id ? getConcert(id) : null;
 
 	// ルートパラメータが未解決の瞬間は「not found」を出さず、背景のみ表示する
