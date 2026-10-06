@@ -62,9 +62,9 @@ export const CONCERTS: Concert[] = [
 			},
 		],
 		posterImage: {
-			url: "/1stビラ.png",
-			width: 2894,
-			height: 4093,
+			url: "/flyer-1st-front.webp",
+			width: 1414,
+			height: 2000,
 		},
 		posterImageBack: {
 			url: "/flyer-1st-back.webp",
@@ -118,14 +118,14 @@ export const CONCERTS: Concert[] = [
 			},
 		],
 		posterImage: {
-			url: "/flyer-2nd-front.jpg",
-			width: 2552,
-			height: 3580,
+			url: "/flyer-2nd-front.webp",
+			width: 1600,
+			height: 2245,
 		},
 		posterImageBack: {
-			url: "/flyer-2nd-back.jpg",
-			width: 2552,
-			height: 3580,
+			url: "/flyer-2nd-back.webp",
+			width: 1600,
+			height: 2245,
 		},
 		ticketPrice: [
 			{

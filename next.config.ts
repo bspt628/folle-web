@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
 	// Image optimization
 	images: {
 		domains: ["images.microcms-assets.io"],
+		// 変換済み画像をブラウザと CDN に30日間保持させる。
+		// 画像を差し替えるときはファイル名を変えて、古いキャッシュを参照させない。
+		minimumCacheTTL: 2592000,
+		// 表示幅の最大は全画面背景で、2048px を超える変換は不要。
+		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
 		// coming-soon プレースホルダー等の SVG を next/image で表示するため許可。
 		// スクリプトは CSP で無効化し、サンドボックス下でのみ描画する。
 		dangerouslyAllowSVG: true,

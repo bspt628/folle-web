@@ -8,7 +8,7 @@ const mockConcerts = [
 		title: "第1回特別演奏会",
 		date: "2025-11-09T00:00:00+09:00",
 		venue: "テスト会場1",
-		posterUrl: "/1stビラ.png",
+		posterUrl: "/flyer-1st-front.webp",
 		status: "upcoming",
 	},
 ];

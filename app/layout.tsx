@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://piufolle.com"),
 	title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
 	description:
 		"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
@@ -30,10 +31,10 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "ja_JP",
 		siteName: "Orchestra più Folle",
-		url: "https://orchestrapiufolle.com",
+		url: "https://piufolle.com",
 		images: [
 			{
-				url: "https://orchestrapiufolle.com/567993919410012183.jpg",
+				url: "https://piufolle.com/567993919410012183.jpg",
 				width: 1200,
 				height: 630,
 				alt: "Orchestra più Folle - オーケストラ ピウ フォーレ",
@@ -45,9 +46,6 @@ export const metadata: Metadata = {
 		title: "Orchestra più Folle | オーケストラ ピウ フォーレ",
 		description:
 			"Orchestra più Folle（オーケストラ ピウ フォーレ）は、東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。演奏会情報をお届けします。",
-	},
-	alternates: {
-		canonical: "https://orchestrapiufolle.com",
 	},
 };
 
@@ -71,7 +69,7 @@ export default function RootLayout({
 				    暗い緑基調にしているため白くならない。 */}
 				<div className="fixed inset-0 -z-10">
 					<Image
-						src="/bg-green.jpg"
+						src="/bg-green.webp"
 						alt=""
 						aria-hidden="true"
 						fill
