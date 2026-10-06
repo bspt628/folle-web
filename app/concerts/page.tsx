@@ -29,12 +29,12 @@ export default function ConcertsPage() {
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:url"
-					content="https://orchestrapiufolle.com/concerts"
+					content="https://piufolle.com/concerts"
 				/>
 				<meta property="og:site_name" content="Orchestra più Folle" />
 				<meta
 					property="og:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content="Concerts | Orchestra più Folle" />
@@ -44,7 +44,7 @@ export default function ConcertsPage() {
 				/>
 				<meta
 					name="twitter:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 			</Head>
 			<PageContainer>

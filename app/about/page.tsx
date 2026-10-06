@@ -17,11 +17,11 @@ export default function AboutPage() {
 					content="Orchestra più Folle（オーケストラ ピウ フォーレ）について。東京大学音楽部管弦楽団の団員とOBOGを中心に2025年に結成されたオーケストラです。"
 				/>
 				<meta property="og:type" content="website" />
-				<meta property="og:url" content="https://orchestrapiufolle.com/about" />
+				<meta property="og:url" content="https://piufolle.com/about" />
 				<meta property="og:site_name" content="Orchestra più Folle" />
 				<meta
 					property="og:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content="About Us | Orchestra più Folle" />
@@ -31,7 +31,7 @@ export default function AboutPage() {
 				/>
 				<meta
 					name="twitter:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 			</Head>
 			<PageContainer>

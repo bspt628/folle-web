@@ -128,12 +128,12 @@ export default function ContactPage() {
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:url"
-					content="https://orchestrapiufolle.com/contact"
+					content="https://piufolle.com/contact"
 				/>
 				<meta property="og:site_name" content="Orchestra più Folle" />
 				<meta
 					property="og:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content="Contact Us | Orchestra più Folle" />
@@ -143,7 +143,7 @@ export default function ContactPage() {
 				/>
 				<meta
 					name="twitter:image"
-					content="https://orchestrapiufolle.com/567993919410012183.jpg"
+					content="https://piufolle.com/567993919410012183.jpg"
 				/>
 			</Head>
 			<PageContainer>
