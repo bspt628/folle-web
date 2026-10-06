@@ -411,9 +411,7 @@ export default function HomePage() {
 											fill
 											className="object-cover transition-transform duration-500 group-hover:scale-105"
 											priority
-											fetchPriority="high"
-											loading="eager"
-											sizes="(max-width: 768px) 100vw, 50vw"
+											sizes="(max-width: 1024px) 100vw, 640px"
 										/>
 									</div>
 								</div>

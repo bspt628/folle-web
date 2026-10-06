@@ -37,9 +37,7 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 						fill
 						className="object-cover"
 						priority
-						fetchPriority="high"
-						loading="eager"
-						sizes="(max-width: 1024px) 100vw, 360px"
+						sizes="(max-width: 1024px) 320px, 360px"
 					/>
 				</div>
 			</div>
@@ -67,9 +65,7 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 							fill
 							className="object-cover"
 							priority
-							fetchPriority="high"
-							loading="eager"
-							sizes="(max-width: 1024px) 100vw, 360px"
+							sizes="(max-width: 1024px) 320px, 360px"
 						/>
 					</div>
 					{/* 裏面 */}
@@ -82,7 +78,7 @@ export function FlyerFlip({ front, back, title }: FlyerFlipProps) {
 							alt={`${label} チラシ裏面`}
 							fill
 							className="object-cover"
-							sizes="(max-width: 1024px) 100vw, 360px"
+							sizes="(max-width: 1024px) 320px, 360px"
 						/>
 					</div>
 				</div>

@@ -30,7 +30,7 @@ export default function NewsDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/gray-back.webp"
 						alt="Background"
 						fill
 						className="object-cover"
@@ -52,7 +52,7 @@ export default function NewsDetailPage() {
 			<div className="h-screen relative">
 				<div className="absolute inset-0 z-0">
 					<Image
-						src="/gray_back.jpg"
+						src="/gray-back.webp"
 						alt="Background"
 						fill
 						className="object-cover"

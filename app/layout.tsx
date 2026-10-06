@@ -71,7 +71,7 @@ export default function RootLayout({
 				    暗い緑基調にしているため白くならない。 */}
 				<div className="fixed inset-0 -z-10">
 					<Image
-						src="/bg-green.jpg"
+						src="/bg-green.webp"
 						alt=""
 						aria-hidden="true"
 						fill
