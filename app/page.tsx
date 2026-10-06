@@ -21,6 +21,8 @@ export default function HomePage() {
 	const [upcomingConcert, setUpcomingConcert] = useState<Concert | null>(null);
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [isFadingOut, setIsFadingOut] = useState(false);
+	// オープニングを再生したときだけ、終了後に本文をフェードインさせる
+	const [playedOpening, setPlayedOpening] = useState(false);
 	// ニュースは1件ずつ表示。index 0 が最新（配列は新しい順）。
 	const [newsIndex, setNewsIndex] = useState(0);
 	const newsRef = useRef<HTMLDivElement>(null);
@@ -70,6 +72,8 @@ export default function HomePage() {
 			setShowOverlay(false);
 			return;
 		}
+
+		setPlayedOpening(true);
 
 		// アニメーションのタイミングを制御
 		const logo = document.querySelector(".logo") as HTMLElement;
@@ -226,7 +230,7 @@ export default function HomePage() {
 				{/* Content Container（背景はレイアウトの固定背景を使用）。オープニング中は非表示 */}
 				<div
 					className={`relative z-10 flex flex-col lg:flex-row lg:items-start pt-20 pb-10 ${
-						showOverlay ? "invisible" : "content-reveal"
+						showOverlay ? "invisible" : playedOpening ? "content-reveal" : ""
 					}`}
 				>
 					{/* Main Content */}
